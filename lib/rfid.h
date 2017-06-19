@@ -6,7 +6,9 @@
 #include <stdbool.h>
 
 //Project
+#include "../globals.h"
 #include "commands.h"
+#include "signal.h"
 
 
 //Typedefs
@@ -27,7 +29,7 @@ extern dataBitGenLoc rfid_sig_delim(uint8_t arr[], dataBitGenLoc loc);
 extern dataBitGenLoc rfid_sig_RTCal(uint8_t arr[], dataBitGenLoc loc);
 extern dataBitGenLoc rfid_sig_TRCal(uint8_t arr[], dataBitGenLoc loc);
 
-
+extern dataBitGenLoc rfid_sig_endOfSignal(uint8_t arr[], dataBitGenLoc loc, bool cw_on);
 
 extern dataBitGenLoc rfid_sig_Query(uint8_t arr[], dataBitGenLoc loc, QueryCommand cmd);
 extern dataBitGenLoc rfid_sig_Select(uint8_t arr[], dataBitGenLoc loc, SelectCommand cmd);

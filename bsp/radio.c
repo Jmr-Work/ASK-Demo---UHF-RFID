@@ -3,12 +3,12 @@
  *  @brief      x
  *  @details    x
  *
- *  @target     x
- *  @board      x
+ *  @target     MSP430F5438A/CC2541/MSP430F5529
+ *  @board      TrxEB/CC2541EMK/5529-Launchpad
  *
  *  @author     Justin Reina, Firmware Engineer, Misc. Company
- *  @created    x
- *  @last rev   x
+ *  @created    6/19/17
+ *  @last rev   6/19/17
  *
  *
  *  @notes      x
@@ -30,36 +30,6 @@
 /** @fcn        void radio_spi_init(void)
  *  @brief      x
  *  @details    x
- *
- *  @section    Purpose
- *      x
- *
- *  @param      [in]    name    descrip
- *
- *  @param      [out]   name    descrip
- *
- *  @return     (type) descrip
- *
- *  @pre        x
- *
- *  @post       x
- *
- *  @section    Operation
- *      x
- *
- *  @section    Opens
- *      x
- *
- *  @section    Hazards & Risks
- *      x
- *
- *  @section    Todo
- *      x
- *
- *  @section    Timing
- *      x
- *
- *  @note       x
  */
 /************************************************************************************************************************************/
 void radio_spi_init(void) {
@@ -76,36 +46,6 @@ void radio_spi_init(void) {
 /** @fcn        void radio_init(void)
  *  @brief      x
  *  @details    x
- *
- *  @section    Purpose
- *      x
- *
- *  @param      [in]    name    descrip
- *
- *  @param      [out]   name    descrip
- *
- *  @return     (type) descrip
- *
- *  @pre        x
- *
- *  @post       x
- *
- *  @section    Operation
- *      x
- *
- *  @section    Opens
- *      x
- *
- *  @section    Hazards & Risks
- *      x
- *
- *  @section    Todo
- *      x
- *
- *  @section    Timing
- *      x
- *
- *  @note       x
  */
 /************************************************************************************************************************************/
 void radio_init(void) {

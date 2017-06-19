@@ -3,12 +3,12 @@
  * 	@brief		x
  * 	@details	x
  *
- *  @target		x
- *	@board		x
+ *  @target     MSP430F5438A/CC2541/MSP430F5529
+ *  @board      TrxEB/CC2541EMK/5529-Launchpad
  *
- * 	@author		Justin Reina, Firmware Engineer, Misc. Company
- * 	@created	x
- * 	@last rev	x
+ *  @author     Justin Reina, Firmware Engineer, Misc. Company
+ *  @created    6/19/17
+ *  @last rev   6/19/17
  *
  *
  * 	@notes		x

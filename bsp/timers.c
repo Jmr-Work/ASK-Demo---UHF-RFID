@@ -7,8 +7,8 @@
  *  @board      TrxEB/CC2541EMK/5529-Launchpad
  *
  *  @author     Justin Reina, Firmware Engineer, Misc. Company
- *  @created    x
- *  @last rev   x
+ *  @created    6/19/17
+ *  @last rev   6/19/17
  *
  *  @src  http://coder-tronics.com/msp430-timer-pwm-tutorial/
 
@@ -30,36 +30,6 @@
 /** @fcn        void timers_init(void)
  *  @brief      x
  *  @details    x
- *
- *  @section    Purpose
- *      x
- *
- *  @param      [in]    name    descrip
- *
- *  @param      [out]   name    descrip
- *
- *  @return     (type) descrip
- *
- *  @pre        x
- *
- *  @post       x
- *
- *  @section    Operation
- *      x
- *
- *  @section    Opens
- *      x
- *
- *  @section    Hazards & Risks
- *      x
- *
- *  @section    Todo
- *      x
- *
- *  @section    Timing
- *      x
- *
- *  @note       x
  */
 /************************************************************************************************************************************/
 void timers_init(void) {
@@ -77,36 +47,6 @@ void timers_init(void) {
 /** @fcn        __interrupt void Timer0_A0 (void)
  *  @brief      x
  *  @details    x
- *
- *  @section    Purpose
- *      x
- *
- *  @param      [in]    name    descrip
- *
- *  @param      [out]   name    descrip
- *
- *  @return     (type) descrip
- *
- *  @pre        x
- *
- *  @post       x
- *
- *  @section    Operation
- *      x
- *
- *  @section    Opens
- *      x
- *
- *  @section    Hazards & Risks
- *      x
- *
- *  @section    Todo
- *      x
- *
- *  @section    Timing
- *      x
- *
- *  @note       x
  */
 /************************************************************************************************************************************/
 #pragma vector=TIMER0_A0_VECTOR

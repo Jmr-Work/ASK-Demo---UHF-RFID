@@ -3,12 +3,12 @@
  *  @brief      illustration & demo of using the cc12xx for UHF-RFID ASK Generation
  *  @details    x
  *
- *  @target     MSP430F5438A
- *  @board      TrxEB
+ *  @target     MSP430F5438A/CC2541/MSP430F5529
+ *  @board      TrxEB/CC2541EMK/5529-Launchpad
  *
  *  @author     Justin Reina, Firmware Engineer, Misc. Company
- *  @created    x
- *  @last rev   x
+ *  @created    6/19/17
+ *  @last rev   6/19/17
  *
  *  @section    Output Targets
  *      Tari = 25us

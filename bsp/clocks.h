@@ -34,6 +34,5 @@ void jmr_bspMcuSetVCoreUp(uint8_t ui8Level);
 void jmr_bspMcuSetVCoreDown(uint8_t ui8Level);
 
 
-
 #endif /* BSP_CLOCKS_H_ */
 

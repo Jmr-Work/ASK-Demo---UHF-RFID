@@ -19,6 +19,8 @@
 extern void signal_generate(void);
 extern void signal_grab_next(void);
 
+extern uint16_t signal_size;
+
 
 #endif /* LIB_SIGNAL_H_ */
 

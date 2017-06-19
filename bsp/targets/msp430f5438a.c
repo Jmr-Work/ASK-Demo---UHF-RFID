@@ -1,3 +1,26 @@
+/************************************************************************************************************************************/
+/** @file       msp430f5438a.c
+ *  @brief      x
+ *  @details    x
+ *
+ *  @target     MSP430F5438A/CC2541/MSP430F5529
+ *  @board      TrxEB/CC2541EMK/5529-Launchpad
+ *
+ *  @author     Justin Reina, Firmware Engineer, Misc. Company
+ *  @created    6/19/17
+ *  @last rev   6/19/17
+ *
+ *
+ *  @notes      x
+ *
+ *  @section    Opens
+ *          none current
+ *
+ *  @section    Legal Disclaimer
+ *          All contents of this source file and/or any other Misc. Product related source files are the explicit property of
+ *          Misc. Company. Do not distribute. Do not copy.
+ */
+/************************************************************************************************************************************/
 #include "msp430f5438a.h"
 
 
@@ -8,36 +31,6 @@ static uint16_t ui16IntState;
 /** @fcn        void msp430f5438a_init(void)
  *  @brief      x
  *  @details    x
- *
- *  @section    Purpose
- *      x
- *
- *  @param      [in]    name    descrip
- *
- *  @param      [out]   name    descrip
- *
- *  @return     (type) descrip
- *
- *  @pre        x
- *
- *  @post       x
- *
- *  @section    Operation
- *      x
- *
- *  @section    Opens
- *      x
- *
- *  @section    Hazards & Risks
- *      x
- *
- *  @section    Todo
- *      x
- *
- *  @section    Timing
- *      x
- *
- *  @note       x
  */
 /************************************************************************************************************************************/
 void msp430f5438a_init(void) {
@@ -58,36 +51,6 @@ void msp430f5438a_init(void) {
 /** @fcn        void msp430f5438a_enable_interrupts(void)
  *  @brief      x
  *  @details    x
- *
- *  @section    Purpose
- *      x
- *
- *  @param      [in]    name    descrip
- *
- *  @param      [out]   name    descrip
- *
- *  @return     (type) descrip
- *
- *  @pre        x
- *
- *  @post       x
- *
- *  @section    Operation
- *      x
- *
- *  @section    Opens
- *      x
- *
- *  @section    Hazards & Risks
- *      x
- *
- *  @section    Todo
- *      x
- *
- *  @section    Timing
- *      x
- *
- *  @note       x
  */
 /************************************************************************************************************************************/
 void msp430f5438a_enable_interrupts(void) {
@@ -105,36 +68,6 @@ void msp430f5438a_enable_interrupts(void) {
 /** @fcn        void msp430f5438a_clocks_init(void)
  *  @brief      x
  *  @details    x
- *
- *  @section    Purpose
- *      x
- *
- *  @param      [in]    name    descrip
- *
- *  @param      [out]   name    descrip
- *
- *  @return     (type) descrip
- *
- *  @pre        x
- *
- *  @post       x
- *
- *  @section    Operation
- *      x
- *
- *  @section    Opens
- *      x
- *
- *  @section    Hazards & Risks
- *      x
- *
- *  @section    Todo
- *      x
- *
- *  @section    Timing
- *      x
- *
- *  @note       x
  */
 /************************************************************************************************************************************/
 void msp430f5438a_clocks_init(void) {
@@ -217,36 +150,6 @@ void msp430f5438a_clocks_init(void) {
 /** @fcn        void msp430f5438a_gpio_init(void)
  *  @brief      x
  *  @details    x
- *
- *  @section    Purpose
- *      x
- *
- *  @param      [in]    name    descrip
- *
- *  @param      [out]   name    descrip
- *
- *  @return     (type) descrip
- *
- *  @pre        x
- *
- *  @post       x
- *
- *  @section    Operation
- *      x
- *
- *  @section    Opens
- *      x
- *
- *  @section    Hazards & Risks
- *      x
- *
- *  @section    Todo
- *      x
- *
- *  @section    Timing
- *      x
- *
- *  @note       x
  */
 /************************************************************************************************************************************/
 void msp430f5438a_gpio_init(void) {
@@ -288,36 +191,6 @@ void msp430f5438a_gpio_init(void) {
 /** @fcn        void msp430f5438a_timers_init(void)
  *  @brief      x
  *  @details    x
- *
- *  @section    Purpose
- *      x
- *
- *  @param      [in]    name    descrip
- *
- *  @param      [out]   name    descrip
- *
- *  @return     (type) descrip
- *
- *  @pre        x
- *
- *  @post       x
- *
- *  @section    Operation
- *      x
- *
- *  @section    Opens
- *      x
- *
- *  @section    Hazards & Risks
- *      x
- *
- *  @section    Todo
- *      x
- *
- *  @section    Timing
- *      x
- *
- *  @note       x
  */
 /************************************************************************************************************************************/
 void msp430f5438a_timers_init(void) {

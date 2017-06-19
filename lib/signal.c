@@ -3,18 +3,21 @@
  *  @brief      x
  *  @details    x
  *
- *  @target     x
- *  @board      x
+ *  @target     MSP430F5438A/CC2541/MSP430F5529
+ *  @board      TrxEB/CC2541EMK/5529-Launchpad
  *
  *  @author     Justin Reina, Firmware Engineer, Misc. Company
- *  @created    x
- *  @last rev   x
+ *  @created    6/19/17
+ *  @last rev   6/19/17
  *
  *
  *  @notes      x
  *
  *  @section    Opens
  *          none current
+ *
+ *  @assum      signal stored is always stored to the full byte on signal completion (e.g. if your message is 4 bits, toss into b0:b3
+ *              then leave b4:b7 High!)
  *
  *  @section    Legal Disclaimer
  *          All contents of this source file and/or any other Misc. Product related source files are the explicit property of
@@ -48,7 +51,9 @@ QueryCommand query_cmd = {
                              .crc5 = 0b00000
                           };
 
-uint16_t next_grab_ind = 0;
+//Signal Vars
+uint16_t next_grab_ind = 0;                                                 /* where to grab for the next transmission segment      */
+uint16_t signal_size;                                                       /* how big the signal stored is, measured in bytes      */
 
 
 /************************************************************************************************************************************/
@@ -56,35 +61,9 @@ uint16_t next_grab_ind = 0;
  *  @brief      generate the RFID signal for use in the project
  *  @details    x
  *
- *  @section    Purpose
- *      x
+ *  @post       data is generated from [0]:b0..[signal_size-1]:b7
  *
- *  @param      [in]    name    descrip
- *
- *  @param      [out]   name    descrip
- *
- *  @return     (type) descrip
- *
- *  @pre        x
- *
- *  @post       x
- *
- *  @section    Operation
- *      x
- *
- *  @section    Opens
- *      x
- *
- *  @section    Hazards & Risks
- *      x
- *
- *  @section    Todo
- *      x
- *
- *  @section    Timing
- *      x
- *
- *  @note       x
+ *  @note       this generation concludes on Idle-Low, violating our 'thou shalt leave on HIGH' edict, but this is intentional!
  */
 /************************************************************************************************************************************/
 void signal_generate(void) {
@@ -104,6 +83,9 @@ void signal_generate(void) {
 
     loc = rfid_sig_idleRF(data_arr, loc, 3200, false);
 
+    //Store new signal size
+    signal_size = loc.arr_ind+1;                                            /* e.g. if 3 bytes in array, arr_ind=2, signal_size = 3 */
+
     return;
 }
 
@@ -118,9 +100,9 @@ void signal_grab_next(void) {
 
     P4OUT |= BIT5;
 
-    memcpy(&tx_buff[0], &data_arr[next_grab_ind], TX_BUFF_SIZE*sizeof(uint8_t));      //?
+    memcpy(&tx_buff[0], &data_arr[next_grab_ind], TX_BUFF_SIZE*sizeof(uint8_t));      /* @open   validate in depth                  */
 
-    next_grab_ind = (next_grab_ind + TX_BUFF_SIZE) % SRC_BUFF_SIZE;
+    next_grab_ind = (next_grab_ind + TX_BUFF_SIZE) % signal_size;
 
     P4OUT &= ~BIT5;
 
