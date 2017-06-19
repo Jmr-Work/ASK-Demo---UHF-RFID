@@ -65,9 +65,6 @@ int main(void) {
 /************************************************************************************************************************************/
 void sys_init(void) {
 
-    //Watchodog
-    WDTCTL = WDTPW | WDTHOLD;                                               /* Stop watchdog timer                                  */
-
     //MCU
     mcu_init();
 

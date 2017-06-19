@@ -57,17 +57,6 @@ void msp430f5438a_demo(void) {
     signal_generate();
     signal_grab_next();
 
-    //Load Tx FIFO
-    for(i=0; i< TX_BUFF_SIZE; i++) {
-        tx_buff[i] = 0x55;
-    }
-
-    //Place Marker for scope inspect
-    tx_buff[TX_BUFF_SIZE/2+0]  = 0x00;
-    tx_buff[TX_BUFF_SIZE/2+1]  = 0x00;
-    tx_buff[TX_BUFF_SIZE/2+2] = 0xFF;
-    tx_buff[TX_BUFF_SIZE/2+3] = 0xFF;
-
     //Empty FIFO before use (required)
     trxSpiCmdStrobe(CC120X_SFTX);
 
