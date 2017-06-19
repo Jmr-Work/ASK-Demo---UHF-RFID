@@ -1,0 +1,16 @@
+@section 	SmartRF Generation Procedure
+	Connect USB, Change P17 to 'USB'
+	Set Switches to S2:Enable, S1: SmartRF
+	Power On
+	Apply 'RESET MCU' & 'RESET USB'
+	Open SmartRF Studio7
+	Open CC1200 Device Control Panel
+	
+	Press 'Device Reset'
+	Setting for 'Generic 868: 500ksps, 2-FSK, ETSI'
+	Modulation Format: ASK/OOK
+	Symbol Rate: 160 ksps
+	
+	Register Export (use 'Jmr template')
+	
+	Import to CCS, in emk/ dir
