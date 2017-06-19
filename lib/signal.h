@@ -3,9 +3,11 @@
 
 
 //Libraries
+#include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <string.h>
 
 
 //Project
@@ -15,7 +17,7 @@
 
 //Globals
 extern void signal_generate(void);
-
+extern void signal_grab_next(void);
 
 
 #endif /* LIB_SIGNAL_H_ */

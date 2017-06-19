@@ -24,7 +24,6 @@
 #include "signal.h"
 
 
-
 SelectCommand sel_cmd = {
                         .command = 0b1010,
                         .target = 0b011,
@@ -49,6 +48,7 @@ QueryCommand query_cmd = {
                              .crc5 = 0b00000
                           };
 
+uint16_t next_grab_ind = 0;
 
 
 /************************************************************************************************************************************/
@@ -107,3 +107,22 @@ void signal_generate(void) {
     return;
 }
 
+
+/************************************************************************************************************************************/
+/** @fcn        void signal_grab_next(void)
+ *  @brief      grab next tx buffer segment
+ *  @details    x
+ */
+/************************************************************************************************************************************/
+void signal_grab_next(void) {
+
+    P4OUT |= BIT5;
+
+    memcpy(&tx_buff[0], &data_arr[next_grab_ind], TX_BUFF_SIZE*sizeof(uint8_t));      //?
+
+    next_grab_ind = (next_grab_ind + TX_BUFF_SIZE) % SRC_BUFF_SIZE;
+
+    P4OUT &= ~BIT5;
+
+    return;
+}

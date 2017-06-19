@@ -52,10 +52,10 @@ void msp430f5438a_demo(void) {
     uint16_t i = 0;
     uint16_t loop_ct = 0;
     uint16_t open_ct = 0;
-    uint8_t tx_buff[TX_BUFF_SIZE] = {0};
 
     //Generate Waveform
-//! signal_generate();
+    signal_generate();
+    signal_grab_next();
 
     //Load Tx FIFO
     for(i=0; i< TX_BUFF_SIZE; i++) {
@@ -84,10 +84,10 @@ void msp430f5438a_demo(void) {
         //Load the buffer into the TX_FIFO
         cc112xSpiWriteTxFifo(tx_buff, TX_BUFF_SIZE);                        /* Send the message                                     */
 
-        P4OUT |= BIT5;                                                      /* BIT5 pulse: 100ms                                    */
-
         // Send packet
         trxSpiCmdStrobe(CC120X_STX);
+
+        signal_grab_next();
 
         // Wait for radio to finish sending packet
         do {
@@ -97,7 +97,7 @@ void msp430f5438a_demo(void) {
 
         } while(open_ct < 120);
 
-        P4OUT &= ~(BIT5|BIT7);
+        P4OUT &= ~BIT7;
 
         // Put radio in powerdown to save power
         trxSpiCmdStrobe(CC120X_SPWD);
