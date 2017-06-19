@@ -9,12 +9,24 @@
 
 
 //Processor
-#include <msp430.h>
+#include "bsp/mcu.h"
 
 
 //Project
-#include "bsp/mcu.h"
+#include "bsp/clocks.h"
+#include "bsp/timers.h"
+#include "bsp/gpio.h"
+#include "bsp/radio.h"
 
+////Comm Libs
+//#include "lib/rfid.h"
+//
+//
+////Defs
+//#define TX_BUFF_SIZE        (127)                                          /* continuous tx observed from 2 to 127 (max)            */
+//
+////Globals
+//extern uint8_t tx_buff[TX_BUFF_SIZE];
 
 //Locals
 void sys_init(void);
