@@ -34,6 +34,9 @@
 #include "globals.h"
 
 
+uint8_t tx_buff[TX_BUFF_SIZE] = {0};
+
+uint8_t data_arr[2000] = {0x00};
 
 
 /************************************************************************************************************************************/
@@ -57,7 +60,7 @@ int main(void) {
 	sys_init();
 	
 	//Generate Waveform
-//!	//<open>
+	signal_generate();
 
 	//Run Demo
 	mcu_demo();
