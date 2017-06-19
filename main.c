@@ -43,15 +43,6 @@ uint8_t data_arr[2000] = {0x00};
 /** @fcn        int main(void)
  *  @brief      x
  *  @details    x
- *
- *  @section    Waveform
- *      Pre: .        Idle-Off    []
- *      [0]: (200 us) Idle-CW    [200us]
- *      [1]: .        Select      [3162.5us]
- *      [2]: (200 us) Idle-CW     [200us]
- *      [3]: .        Query       [1425us]
- *      [4]: (400 ms) Idle-CW     [400us]
- *      [5]: .        Idle-Off    [1000us]
  */
 /************************************************************************************************************************************/
 int main(void) {
@@ -59,9 +50,6 @@ int main(void) {
     //Init
 	sys_init();
 	
-	//Generate Waveform
-	signal_generate();
-
 	//Run Demo
 	mcu_demo();
 

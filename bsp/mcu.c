@@ -95,6 +95,42 @@ void mcu_enable_interrupts(void) {
 }
 
 
+/************************************************************************************************************************************/
+/** @fcn        void mcu_demo(void)
+ *  @brief      x
+ *  @details    x
+ *
+ *  @section    Purpose
+ *      x
+ *
+ *  @param      [in]    name    descrip
+ *
+ *  @param      [out]   name    descrip
+ *
+ *  @return     (type) descrip
+ *
+ *  @pre        x
+ *
+ *  @post       x
+ *
+ *  @section    Operation
+ *      x
+ *
+ *  @section    Opens
+ *      x
+ *
+ *  @section    Hazards & Risks
+ *      x
+ *
+ *  @section    Todo
+ *      x
+ *
+ *  @section    Timing
+ *      x
+ *
+ *  @note       x
+ */
+/************************************************************************************************************************************/
 void mcu_demo(void) {
 
 #ifdef TARGETS_MSP430F5438A_H_

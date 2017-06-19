@@ -20,7 +20,7 @@
 
 //Libs
 #include "lib/signal.h"
-//#include "lib/rfid.h"
+#include "lib/rfid.h"
 
 
 //Defs
