@@ -9,7 +9,7 @@
 
 //Project
 #include "cc1200.h"
-#include "cc1200_simple_link_reg_config.h"
+#include "cc1200_reg_config.h"
 
 
 //Globals

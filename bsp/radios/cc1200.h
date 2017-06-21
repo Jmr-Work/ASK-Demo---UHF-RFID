@@ -7,9 +7,9 @@
 
 //Processor
 #include <msp430.h>
+#include "cc1200_reg_config.h"
 
 //Project
-#include "cc1200_simple_link_reg_config.h"
 #include "radio_configure.h"
 
 
