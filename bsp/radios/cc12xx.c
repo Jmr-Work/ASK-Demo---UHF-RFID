@@ -403,6 +403,6 @@ bool cc12xx_verifyPartNumber(void) {
     //Check Part Number
     cc120xSpiReadReg(CC120X_PARTNUMBER, &part_number, 1);
 
-    return (part_number == CHIP_PARTNUMBER_CC1200);
+    return (part_number == CHIP_PARTNUMBER_UHF_ID);
 }
 

@@ -16,6 +16,15 @@
 #define RADIO_SEL_CC1200                                                    /* Entry-level radio with similar features              */
 
 
+//Chip Selection
+#ifdef RADIO_SEL_CC1200
+#define CHIP_PARTNUMBER_UHF_ID       CHIP_PARTNUMBER_CC1200
+#endif
+#ifdef RADIO_SEL_CC1175
+#define CHIP_PARTNUMBER_UHF_ID       CHIP_PARTNUMBER_CC1175
+#endif
+
+
 //Globals
 extern void radio_gpio_init(void);
 extern void radio_spi_init(void);
