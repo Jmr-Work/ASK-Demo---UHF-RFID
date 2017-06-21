@@ -50,6 +50,7 @@
  *  @section    Opens
  *      calculate & insert valid CRC-5
  *      confirm this matches what a reader outputs
+ *      Validate Timing
  *
  *  @section    Generation Format
  *      - Preamble -  Delim, Data-0, RTCal, TRCal (PDF p.165)
@@ -63,7 +64,7 @@
 /************************************************************************************************************************************/
 dataBitGenLoc rfid_sig_Query(uint8_t arr[], dataBitGenLoc loc, QueryCommand cmd) {
 
-    //Pre-amble
+    //Pre-amble (Delim, Data-0, RTCal, TRCal)
     loc = rfid_sig_delim(arr, loc);
     loc = rfid_sig_dataBit(arr, loc, false);
     loc = rfid_sig_RTCal(arr, loc);
@@ -132,12 +133,17 @@ dataBitGenLoc rfid_sig_Query(uint8_t arr[], dataBitGenLoc loc, QueryCommand cmd)
  *  @section    Opens
  *      calculate & insert valid CRC-16
  *      confirm this matches what a reader outputs
+ *      Validate Timing
  *
  *  @note       Select - [1] Sec 9.3.2.11.1.1 - p.177 (PDF p.199)
  */
 /************************************************************************************************************************************/
 dataBitGenLoc rfid_sig_Select(uint8_t arr[], dataBitGenLoc loc, SelectCommand cmd) {
 
+    //Frame-Sync (Delim, Data-0, RTCal)
+    loc = rfid_sig_delim(arr, loc);
+    loc = rfid_sig_dataBit(arr, loc, false);
+    loc = rfid_sig_RTCal(arr, loc);
 
     //Command (4b) - 0b1010
     loc = rfid_sig_dataBit(arr, loc, true);
@@ -235,23 +241,16 @@ dataBitGenLoc rfid_sig_Select(uint8_t arr[], dataBitGenLoc loc, SelectCommand cm
  *  @param      [in]    (bool) cw_on - state of signal to store (High or Low)
  *
  *  @return     (dataBitGenLoc) new location to write next signal contents
+ *
+ *  @section    Opens
+ *      Validate Timing
  */
 /************************************************************************************************************************************/
 dataBitGenLoc rfid_sig_idleRF(uint8_t *arr, dataBitGenLoc loc, uint32_t idleRF_cts, bool cw_on) {
 
     while(idleRF_cts--) {
         //add the bit
-        if(cw_on) {
-            arr[loc.arr_ind] |= (1<<loc.byte_ind);
-        } else {
-            arr[loc.arr_ind] &= ~(1<<loc.byte_ind);
-        }
-
-        //update the loc for next
-        if(++loc.byte_ind >= BITS_IN_BYTE) {
-            loc.byte_ind = 0;
-            loc.arr_ind++;
-        }
+        loc = rfid_sig_add_chip(arr, loc, cw_on);
     }
 
     //Safety
@@ -272,61 +271,30 @@ dataBitGenLoc rfid_sig_idleRF(uint8_t *arr, dataBitGenLoc loc, uint32_t idleRF_c
  *  @param      [in]    (bool) bitVal - Data-0 or Data-1?
  *
  *  @return     (dataBitGenLoc) new location to write next signal contents
+ *
+ *  @section    Opens
+ *      Validate Timing
  */
 /************************************************************************************************************************************/
 dataBitGenLoc rfid_sig_dataBit(uint8_t arr[], dataBitGenLoc loc, bool bitVal) {
 
-    uint32_t arr_ind  = loc.arr_ind;
-    uint32_t byte_ind = loc.byte_ind;
-
     //Data1(3 High, 1 Low)
     //Data0(2 High, 1 Low)
 
+    //Data-1 Chip (extension)
     if(bitVal) {
-        //CHIP1 (H)
-        arr[arr_ind] |= (1<<byte_ind);
-        byte_ind = (byte_ind+1) % BITS_IN_BYTE;
-
-        if(byte_ind == 0) {
-            arr_ind++;
-        }
+        loc = rfid_sig_add_chip(arr, loc, true);
     }
 
-    //CHIP2 (H)
-    arr[arr_ind] |= (1<<byte_ind);
-    byte_ind = (byte_ind+1) % BITS_IN_BYTE;
-
-    if(byte_ind == 0) {
-        arr_ind++;
-    }
-
-    //CHIP3 (H)
-    arr[arr_ind] |= (1<<byte_ind);
-    byte_ind = (byte_ind+1) % BITS_IN_BYTE;
-
-    if(byte_ind == 0) {
-        arr_ind++;
-    }
-
-    //CHIP4 (L)
-    arr[arr_ind] &= ~(1<<byte_ind);
-    byte_ind = (byte_ind+1) % BITS_IN_BYTE;
-
-
-    //update the loc for next
-    if(byte_ind == 0) {
-        arr_ind++;
-    }
-
-    dataBitGenLoc newLoc;
-
-    newLoc.arr_ind = arr_ind;
-    newLoc.byte_ind = byte_ind;
+    //Data-0 RFID Symbol
+    loc = rfid_sig_add_chip(arr, loc, true);
+    loc = rfid_sig_add_chip(arr, loc, true);
+    loc = rfid_sig_add_chip(arr, loc, false);
 
     //Safety
     rfid_sig_endOfSignal(arr, loc, true);                                   /* leave end Idle-High, as safety                       */
 
-    return newLoc;
+    return loc;
 }
 
 
@@ -340,32 +308,19 @@ dataBitGenLoc rfid_sig_dataBit(uint8_t arr[], dataBitGenLoc loc, bool bitVal) {
  *  @param      [in]    (bool) bitVal - Data-0 or Data-1?
  *
  *  @return     (dataBitGenLoc) new location to write next signal contents
+ *
+ *  @section    Opens
+ *      Validate Timing
  */
 /************************************************************************************************************************************/
 dataBitGenLoc rfid_sig_delim(uint8_t *arr, dataBitGenLoc loc) {
 
-    uint32_t arr_ind  = loc.arr_ind;
-    uint32_t byte_ind = loc.byte_ind;
-
-    //Low (1 Symbol, PW)
-    arr[arr_ind] &= ~(1<<byte_ind);
-    byte_ind = (byte_ind+1) % BITS_IN_BYTE;
-
-
-    //update the loc for next
-    if(byte_ind == 0) {
-        arr_ind++;
-    }
-
-    dataBitGenLoc newLoc;
-
-    newLoc.arr_ind = arr_ind;
-    newLoc.byte_ind = byte_ind;
+    loc = rfid_sig_add_chip(arr, loc, false);
 
     //Safety
     rfid_sig_endOfSignal(arr, loc, true);                                   /* leave end Idle-High, as safety                       */
 
-    return newLoc;
+    return loc;
 }
 
 
@@ -379,44 +334,27 @@ dataBitGenLoc rfid_sig_delim(uint8_t *arr, dataBitGenLoc loc) {
  *  @param      [in]    (dataBitGenLoc) loc - where in arr[] to begin storing the message, bitwise
  *
  *  @return     (dataBitGenLoc) new location to write next signal contents
+ *
+ *  @section    Opens
+ *      Validate Timing
  */
 /************************************************************************************************************************************/
 dataBitGenLoc rfid_sig_RTCal(uint8_t arr[], dataBitGenLoc loc) {
 
     uint32_t i;
-    uint32_t arr_ind  = loc.arr_ind;
-    uint32_t byte_ind = loc.byte_ind;
 
     //High (5 Symbols)
     for(i=0; i<5; i++) {
-        arr[arr_ind] |= (1<<byte_ind);
-        byte_ind = (byte_ind+1) % BITS_IN_BYTE;
-
-        if(byte_ind == 0) {
-            arr_ind++;
-        }
+        loc = rfid_sig_add_chip(arr, loc, true);
     }
-
 
     //Low (1 Symbol, PW)
-    arr[arr_ind] &= ~(1<<byte_ind);
-    byte_ind = (byte_ind+1) % BITS_IN_BYTE;
-
-
-    //update the loc for next
-    if(byte_ind == 0) {
-        arr_ind++;
-    }
-
-    dataBitGenLoc newLoc;
-
-    newLoc.arr_ind = arr_ind;
-    newLoc.byte_ind = byte_ind;
+    loc = rfid_sig_add_chip(arr, loc, false);
 
     //Safety
     rfid_sig_endOfSignal(arr, loc, true);                                   /* leave end Idle-High, as safety                       */
 
-    return newLoc;
+    return loc;
 }
 
 
@@ -430,44 +368,27 @@ dataBitGenLoc rfid_sig_RTCal(uint8_t arr[], dataBitGenLoc loc) {
  *  @param      [in]    (dataBitGenLoc) loc - where in arr[] to begin storing the message, bitwise
  *
  *  @return     (dataBitGenLoc) new location to write next signal contents
+ *
+ *  @section    Opens
+ *      Validate Timing
  */
 /************************************************************************************************************************************/
 dataBitGenLoc rfid_sig_TRCal(uint8_t arr[], dataBitGenLoc loc) {
 
     uint32_t i;
-    uint32_t arr_ind  = loc.arr_ind;
-    uint32_t byte_ind = loc.byte_ind;
 
     //High (16 Symbols)
     for(i=0; i<16; i++) {
-        arr[arr_ind] |= (1<<byte_ind);
-        byte_ind = (byte_ind+1) % BITS_IN_BYTE;
-
-        if(byte_ind == 0) {
-            arr_ind++;
-        }
+        loc = rfid_sig_add_chip(arr, loc, true);
     }
-
 
     //Low (1 Symbol, PW)
-    arr[arr_ind] &= ~(1<<byte_ind);
-    byte_ind = (byte_ind+1) % BITS_IN_BYTE;
-
-
-    //update the loc for next
-    if(byte_ind == 0) {
-        arr_ind++;
-    }
-
-    dataBitGenLoc newLoc;
-
-    newLoc.arr_ind = arr_ind;
-    newLoc.byte_ind = byte_ind;
+    loc = rfid_sig_add_chip(arr, loc, false);
 
     //Safety
     rfid_sig_endOfSignal(arr, loc, true);                                   /* leave end Idle-High, as safety                       */
 
-    return newLoc;
+    return loc;
 }
 
 
@@ -516,4 +437,42 @@ dataBitGenLoc rfid_sig_endOfSignal(uint8_t arr[], dataBitGenLoc loc, bool cw_on)
     return newLoc;
 }
 
+
+
+/************************************************************************************************************************************/
+/** @fcn        dataBitGenLoc rfid_sig_idleRF(uint8_t *arr, dataBitGenLoc loc, uint32_t idleRF_cts, bool value)
+ *  @brief      write a single chip to the waveform
+ *  @details    x
+ *
+ *  @param      [in]    (uint8_t) arr[] - where to write
+ *  @param      [in]    (dataBitGenLoc) loc - where in arr[] to begin store the chip, bitwise
+ *  @param      [in]    (bool) value - state of signal to store (High or Low)
+ *
+ *  @return     (dataBitGenLoc) new location to write next signal contents
+ *
+ *  @section    Vocabulary
+ *      symbol      - 1 tick of radio clock                   (12.5us)
+ *      chip        - 1 unit of RFID waveform                 (12.5us)
+ *      rfid-symbol - smallest RFID waveform component (e.g. Delim, RTCal, Data-0, etc.)
+ *      message     - 1 RFID command from reader->tag         (e.g. Query or Select)
+ *      response    - 1 RFID response to reader message       (e.g. RN16)
+ */
+/************************************************************************************************************************************/
+dataBitGenLoc rfid_sig_add_chip(uint8_t *arr, dataBitGenLoc loc, bool value) {
+
+        //add the bit
+        if(value) {
+            arr[loc.arr_ind] |= (1<<loc.byte_ind);
+        } else {
+            arr[loc.arr_ind] &= ~(1<<loc.byte_ind);
+        }
+
+        //update the loc for next
+        if(++loc.byte_ind >= BITS_IN_BYTE) {
+            loc.byte_ind = 0;
+            loc.arr_ind++;
+        }
+
+    return loc;
+}
 

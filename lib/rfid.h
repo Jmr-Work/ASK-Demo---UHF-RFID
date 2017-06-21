@@ -34,6 +34,6 @@ extern dataBitGenLoc rfid_sig_endOfSignal(uint8_t arr[], dataBitGenLoc loc, bool
 extern dataBitGenLoc rfid_sig_Query(uint8_t arr[], dataBitGenLoc loc, QueryCommand cmd);
 extern dataBitGenLoc rfid_sig_Select(uint8_t arr[], dataBitGenLoc loc, SelectCommand cmd);
 
+extern dataBitGenLoc rfid_sig_add_chip(uint8_t *arr, dataBitGenLoc loc, bool value);
 
 #endif /* LIB_RFID_H_ */
-
