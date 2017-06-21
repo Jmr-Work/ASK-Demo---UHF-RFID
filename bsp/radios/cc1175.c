@@ -49,13 +49,13 @@ void cc1175_init(void) {
     P8OUT |= BIT0;
 
     //Software Reset
-    trxSpiCmdStrobe(CC120X_SRES);
+    trxSpiCmdStrobe(CC112X_SRES);                                           /* CC1200 - CC120X_SRES                                 */
 
     //Verify ID
     bool valid_id = cc12xx_verifyPartNumber();
 
     if(!valid_id) {
-        for(;;);                                                           /* not the CC1200, spin                                  */
+        for(;;);                                                            /* not the CC1175, spin                                  */
     }
 
 
@@ -68,15 +68,15 @@ void cc1175_init(void) {
     //******************************************************************************************************************************//
     // CALIBRATE                                                                                                                    //
     //******************************************************************************************************************************//
-    trxSpiCmdStrobe(CC120X_SCAL);
+    trxSpiCmdStrobe(CC112X_SCAL);                                           /* CC1200 - CC120X_SCAL                                 */
 
     // Wait for calibration to be done (radio back in IDLE state)
     do {
-      cc120xSpiReadReg(CC120X_MARCSTATE, &marcState, 1);
+      cc120xSpiReadReg(CC112X_MARCSTATE, &marcState, 1);                    /* CC1200 - CC120X_MARCSTATE                            */
     } while (marcState != 0x41);
 
     // Put radio in powerdown to save power
-    trxSpiCmdStrobe(CC120X_SPWD);
+    trxSpiCmdStrobe(CC112X_SPWD);                                           /* CC1200 - CC120X_SPWD                                 */
 
     return;
 //</DIRECT COPY>
@@ -182,13 +182,13 @@ void cc1175_run_init(void) {
 
 //<DIRECT COPY - cc1200_run_init()>
     //Empty FIFO before use (required)
-    trxSpiCmdStrobe(CC120X_SFTX);
+    trxSpiCmdStrobe(CC112X_SFTX);                                           /* CC1200 - CC120X_SFTX                                 */
 
     // Strobe IDLE and fill TX FIFO
-    trxSpiCmdStrobe(CC120X_SIDLE);
+    trxSpiCmdStrobe(CC112X_SIDLE);                                          /* CC1200 - CC120X_SIDLE                                */
 
     // wait for radio to enter IDLE state
-    while((trxSpiCmdStrobe(CC120X_SNOP)& 0xF0) != 0x00);
+    while((trxSpiCmdStrobe(CC112X_SNOP)& 0xF0) != 0x00);                    /* CC1200 - CC120X_SNOP                                 */
 
     return;
 //</DIRECT COPY>
@@ -201,7 +201,16 @@ void cc1175_run_init(void) {
  */
 /************************************************************************************************************************************/
 void cc1175_run_loop(void) {
-    for(;;);
+
+//<DIRECT COPY - cc1200_run_loop()>
+    //Load the buffer into the TX_FIFO
+/*!?*/    cc112xSpiWriteTxFifo(tx_buff, TX_BUFF_SIZE);                      /* Send the message                                     */
+
+    // Send packet
+    trxSpiCmdStrobe(CC112X_STX);                                            /* CC1200 - CC120X_STX                                  */
+//</DIRECT COPY>
+
+    return;
 }
 
 
@@ -211,7 +220,20 @@ void cc1175_run_loop(void) {
  */
 /************************************************************************************************************************************/
 void cc1175_run_waitForRoom(void) {
-    for(;;);
+
+//<DIRECT COPY - cc1200_run_waitForRoom()>
+    uint16_t open_ct;
+
+    // Wait for radio to finish sending packet
+    do {
+/*!?*/        open_ct = cc12xx_queryTxFifo();
+
+        asm(" NOP");
+
+    } while(open_ct < 120);
+//</DIRECT COPY>
+
+    return;
 }
 
 
@@ -221,6 +243,12 @@ void cc1175_run_waitForRoom(void) {
  */
 /************************************************************************************************************************************/
 void cc1175_run_prepForNext(void) {
-    for(;;);
+
+//<DIRECT COPY - cc1200_run_prepForNext()>
+    // Put radio in powerdown to save power
+    trxSpiCmdStrobe(CC112X_SPWD);                                           /* CC1200 - CC120X_SPWD                                 */
+//</DIRECT COPY>
+
+    return;
 }
 

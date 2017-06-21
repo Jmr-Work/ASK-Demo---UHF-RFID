@@ -51,8 +51,8 @@ const registerSetting_t preferredSettings_cc1175[NUM_PREFERRED_SETTINGS_CC1175] 
  {CC112X_FIFO_CFG,          0x00},                        //(0x001e) fifo configuration
  {CC112X_SETTLING_CFG,      0x03},                        //(0x0020) frequency synthesizer calibration and settling con..
  {CC112X_FS_CFG,            0x12},                        //(0x0021) frequency synthesizer configuration
- {CC112X_PKT_CFG0,          0x20},                        //(0x0028) packet configuration reg. 0
-///      0b0100 0000 Continuous
+ {CC112X_PKT_CFG0,          0x40},                        //(0x0028) packet configuration reg. 0
+//      0b0100 0000 Continuous
 //      0b0010 0000 Fixed
  {CC112X_PA_CFG0,           0x7A},                        //(0x002d) power amplifier configuration reg. 0
  {CC112X_PKT_LEN,           0xFF},                        //(0x002e) packet length configuration
