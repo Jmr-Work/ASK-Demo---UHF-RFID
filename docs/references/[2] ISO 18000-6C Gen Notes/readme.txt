@@ -1,0 +1,1 @@
+stored locally, see ../../ISO 18000-6C Gen Notes.xlsx

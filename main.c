@@ -21,7 +21,13 @@
  *
  *  @section    References
  *      1 - ISO/IEC 18000-6:C, Second Edition
- *      2 - ISO 18000-6C Gen Notes.xlsx (see doc/)
+ *      2 - ISO 18000-6C Gen Notes
+ *      3 - CC1175 Datasheet
+ *      4 - CC1175 User's Guide
+ *      5 - CC1200 Datasheet
+ *      6 - CC1200 User's Guide
+ *      7 - CC1175 EMK Design Files
+ *      8 - CC1200 EMK Design Files
  *
  *  @section    Opens
  *          none current
