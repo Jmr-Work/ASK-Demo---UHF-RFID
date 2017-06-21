@@ -17,6 +17,7 @@
 
 
 //Globals
+extern void radio_gpio_init(void);
 extern void radio_spi_init(void);
 extern void radio_init(void);
 

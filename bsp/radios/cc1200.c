@@ -82,6 +82,28 @@ void cc1200_init(void) {
 
 
 /************************************************************************************************************************************/
+/** @fcn        void cc1200_gpio_init(void)
+ *  @brief      initialize the CC1200's GPIO for use
+ *  @details    x
+ */
+/************************************************************************************************************************************/
+void cc1200_gpio_init(void) {
+
+    //RESET_N
+    P8OUT |= BIT0;                                                          /* RESET_N is active low, init to high                  */
+    P8SEL &= ~BIT0;
+    P8DIR |= BIT0;
+
+    //CS_N
+    P3SEL &= ~BIT0;
+    P3OUT |=  BIT0;
+    P3DIR |=  BIT0;
+
+    return;
+}
+
+
+/************************************************************************************************************************************/
 /** @fcn        void cc1200_spi_init(void)
  *  @brief      initialize the CC1200's SPI interface
  *  @details    x

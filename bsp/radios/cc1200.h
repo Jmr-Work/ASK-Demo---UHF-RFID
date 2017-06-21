@@ -14,6 +14,7 @@
 
 
 //Globals
+extern void cc1200_gpio_init(void);
 extern void cc1200_init(void);
 extern void cc1200_spi_init(void);
 
