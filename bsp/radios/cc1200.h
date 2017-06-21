@@ -9,6 +9,9 @@
 #include <msp430.h>
 #include "cc1200_reg_config.h"
 
+//Radio
+#include "cc12xx.h"
+
 
 //Definitions
 #define TRXEM_PORT_SEL       P3SEL
