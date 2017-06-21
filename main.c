@@ -52,8 +52,6 @@ int main(void) {
 	
 	//Run Demo
 	mcu_demo();
-
-	return EXIT_SUCCESS;
 }
 
 

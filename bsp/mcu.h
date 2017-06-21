@@ -10,10 +10,12 @@
 #define     TARGET_SEL_MSP430F5438A                                          /* starting dev platform                                */
 //#define   TARGET_SEL_MSP430F5529                                           /* shared dev example-platform                          */
 
+
 //Globals
 extern void mcu_init(void);
 extern void mcu_enable_interrupts(void);
 extern void mcu_demo(void);
+
 
 #endif /* TARGETS_MCU_H_ */
 

@@ -511,3 +511,70 @@ bool cc1200_verifyPartNumber(void) {
 
     return (part_number == CHIP_PARTNUMBER_CC1200);
 }
+
+
+/************************************************************************************************************************************/
+/** @fcn        void cc1200_run_init(void)
+ *  @brief      x
+ */
+/************************************************************************************************************************************/
+void cc1200_run_init(void) {
+
+    //Empty FIFO before use (required)
+    trxSpiCmdStrobe(CC120X_SFTX);
+
+    // Strobe IDLE and fill TX FIFO
+    trxSpiCmdStrobe(CC120X_SIDLE);
+
+    // wait for radio to enter IDLE state
+    while((trxSpiCmdStrobe(CC120X_SNOP)& 0xF0) != 0x00);
+}
+
+
+/************************************************************************************************************************************/
+/** @fcn        void cc1200_run_loop(void)
+ *  @brief      x
+ */
+/************************************************************************************************************************************/
+void cc1200_run_loop(void) {
+    //Load the buffer into the TX_FIFO
+    cc112xSpiWriteTxFifo(tx_buff, TX_BUFF_SIZE);                        /* Send the message                                     */
+
+    // Send packet
+    trxSpiCmdStrobe(CC120X_STX);
+}
+
+
+/************************************************************************************************************************************/
+/** @fcn        void cc1200_run_waitForRoom(void)
+ *  @brief      x
+ */
+/************************************************************************************************************************************/
+void cc1200_run_waitForRoom(void) {
+
+    uint16_t open_ct;
+
+    // Wait for radio to finish sending packet
+    do {
+        open_ct = cc1200_queryTxFifo();
+
+        asm(" NOP");
+
+    } while(open_ct < 120);
+
+    return;
+}
+
+
+/************************************************************************************************************************************/
+/** @fcn        void cc1200_run_prepForNext(void)
+ *  @brief      x
+ */
+/************************************************************************************************************************************/
+void cc1200_run_prepForNext(void) {
+    // Put radio in powerdown to save power
+    trxSpiCmdStrobe(CC120X_SPWD);
+
+    return;
+}
+
