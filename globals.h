@@ -33,15 +33,6 @@
 #define NUM_BITS_IN_BYTE    (8)
 
 
-//TI CC-Series PARTNUMBER Register Values
-#define CHIP_PARTNUMBER_CC1175 (0x5A)                                       /* see [4]  p.105 PARTNUMBER                            */
-#define CHIP_PARTNUMBER_CC1120 (0x48)
-#define CHIP_PARTNUMBER_CC1121 (0x40)
-#define CHIP_PARTNUMBER_CC1125 (0x58)
-#define CHIP_PARTNUMBER_CC1200 (0x20)                                       /* see [6]  p.109 PARTNUMBER                            */
-#define CHIP_PARTNUMBER_CC1201 (0x21)
-
-
 //Globals
 extern uint8_t tx_buff[TX_BUFF_SIZE];
 extern uint8_t data_arr[SRC_BUFF_SIZE];

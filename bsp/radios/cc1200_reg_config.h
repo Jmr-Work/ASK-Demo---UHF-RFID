@@ -19,7 +19,7 @@ typedef struct
 
 
 //Definitions
-#define NUM_PREFERRED_SETTINGS_CC1200    (51)
+#define NUM_PREFERRED_SETTINGS_CC1200    (52)
 
 
 //Global Vars
