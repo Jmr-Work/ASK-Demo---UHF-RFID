@@ -34,7 +34,7 @@
 /************************************************************************************************************************************/
 void timers_init(void) {
 
-#ifdef TARGET_IS_MSP430F5438A
+#ifdef TARGET_SEL_MSP430F5438A
     msp430f5438a_timers_init();
 #endif
 
@@ -42,7 +42,7 @@ void timers_init(void) {
 }
 
 
-#ifdef TARGET_IS_MSP430F5438A
+#ifdef TARGET_SEL_MSP430F5438A
 /************************************************************************************************************************************/
 /** @fcn        __interrupt void Timer0_A0 (void)
  *  @brief      x

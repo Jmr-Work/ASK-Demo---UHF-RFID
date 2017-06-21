@@ -33,7 +33,7 @@
 /************************************************************************************************************************************/
 void mcu_init(void) {
 
-#ifdef TARGET_IS_MSP430F5438A
+#ifdef TARGET_SEL_MSP430F5438A
     msp430f5438a_init();
 #endif
 
@@ -50,7 +50,7 @@ void mcu_init(void) {
 /************************************************************************************************************************************/
 void mcu_enable_interrupts(void) {
 
-#ifdef TARGET_IS_MSP430F5438A
+#ifdef TARGET_SEL_MSP430F5438A
     msp430f5438a_enable_interrupts();
 #endif
 
