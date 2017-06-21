@@ -1,15 +1,37 @@
 @section 	SmartRF Generation Procedure
-	Connect USB, Change P17 to 'USB'
+	Power Off (MAIN POWER->OFF)
+	Disconnect Power, USB & FET
+	Plug in EMK to TrxEB
 	Set Switches to S2:Enable, S1: SmartRF
-	Power On
+	Change P17 to 'USB'
+	Connect USB	
+	Power On (MAIN POWER->ON)
 	Apply 'RESET MCU' & 'RESET USB'
 	Open SmartRF Studio7
-	Open CC1200 Device Control Panel
 	
+CC1200:
+	Open CC1200 Device Control Panel
 	Press 'Device Reset'
 	Setting for 'Generic 868: 500ksps, 2-FSK, ETSI'
 	Modulation Format: ASK/OOK
-	Symbol Rate: 160 ksps
+	Symbol Rate: 80 ksps
+	
+CC1175:
+	Open CC1175 Device Control Panel
+	Press 'Device Reset'
+	Setting for 'Generic 868: 200ksps, 4-GFSK, Max'
+	Modulation Format: ASK/OOK
+	Symbol Rate: 80 ksps
+
+
+	Verify symbols with oscilloscope:
+		Tab: Packet TX
+		Packet Count: Infinite
+		Mode: Hex
+		Value: "00000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFF0000000000000000000000000000000000000000000000000000000000000"
+			*this is 16 '1' symbols in a row
+		Press 'Start'
+		Verify signal timing on oscilloscope (t=200us expected, 12.5us symbol)
 	
 	Register Export (use 'Jmr template')
 	
