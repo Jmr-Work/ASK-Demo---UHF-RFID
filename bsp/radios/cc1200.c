@@ -46,7 +46,7 @@ void cc1200_init(void) {
     //******************************************************************************************************************************//
     // INIT RADIO CONFIG                                                                                                            //
     //******************************************************************************************************************************//
-    radio_configure();                                                   /* configure the radio for use                          */
+    cc1200_configure();                                                     /* configure the radio for use                          */
 
     //******************************************************************************************************************************//
     // CALIBRATE                                                                                                                    //
@@ -381,7 +381,6 @@ void trxReadWriteBurstSingle(uint8_t addr, uint8_t *pData, uint16_t len) {
 }
 
 
-
 /************************************************************************************************************************************/
 /** @fcn        uint8_t cc1200_queryTxFifo(void)
  *  @brief      query the TX FIFO for #elements open for insertion
@@ -405,3 +404,77 @@ uint8_t cc1200_queryTxFifo(void) {
 
     return open_ct;
 }
+
+
+/************************************************************************************************************************************/
+/** @fcn        void cc1200_configure(void)
+ *  @brief      configure the radio for use
+ *
+ *  @pre        radio was reset
+ *  @post       radio is ready for operation
+ */
+/************************************************************************************************************************************/
+void cc1200_configure(void) {
+
+    uint16_t i;
+
+    for(i=0; i<NUM_PREFERRED_SETTINGS_CC1200; i++) {
+
+        uint8_t data = preferredSettings[i].data;
+
+        uint16_t addr = preferredSettings[i].addr;
+
+        cc1200_reg_write(addr, data);
+    }
+
+    return;
+}
+
+
+/************************************************************************************************************************************/
+/** @fcn        void cc1200_reg_write(uint16_t addr, uint8_t data)
+ *  @brief      apply register values to configure the radio for use
+ *
+ *  @param      [in]    (uint16_t) addr - address
+ *  @param      [in]    (uint8_t) data  - data to write
+ *
+ */
+/************************************************************************************************************************************/
+void cc1200_reg_write(uint16_t addr, uint8_t data) {
+
+    uint8_t rd[2];
+
+    //Read
+    cc120xSpiReadReg(addr, &rd[0], 1);
+
+    //Write
+    cc112xSpiWriteReg(addr, &data, 1);
+
+    //Read
+    cc120xSpiReadReg(addr, &rd[1], 1);
+
+    //Validate
+    if(data != rd[1]) {
+        for(;;);                                                            /* catch & spin                                         */
+    }
+
+    return;
+}
+
+
+/************************************************************************************************************************************/
+/** @fcn        void cc1200_reg_read(uint16_t addr, uint8_t *dataPtr)
+ *  @brief      clean wrapper to read a single register value
+ *
+ *  @param      [in]    (uint16_t)  addr     - address
+ *  @param      [in]    (uint8_t *) dataPtr  - where to store value
+ *
+ */
+/************************************************************************************************************************************/
+void cc1200_reg_read(uint16_t addr, uint8_t *dataPtr) {
+
+    cc120xSpiReadReg(addr, dataPtr, 1);
+
+    return;
+}
+

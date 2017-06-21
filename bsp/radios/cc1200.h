@@ -9,9 +9,6 @@
 #include <msp430.h>
 #include "cc1200_reg_config.h"
 
-//Project
-#include "radio_configure.h"
-
 
 //Definitions
 #define TRXEM_PORT_SEL       P3SEL
@@ -266,6 +263,11 @@ extern rfStatus_t trx16BitRegAccess(uint8_t accessType, uint8_t extAddr, uint8_t
 
 extern rfStatus_t cc112xSpiWriteReg(uint16_t addr, uint8_t*pData, uint8_t len);
 extern rfStatus_t cc112xSpiWriteTxFifo(uint8_t *pData, uint8_t len);
+
+extern void cc1200_configure(void);
+extern void cc1200_reg_write(uint16_t addr, uint8_t data);
+extern void cc1200_reg_read(uint16_t addr, uint8_t *dataPtr);
+
 
 //Locals
 void trxReadWriteBurstSingle(uint8_t addr, uint8_t *pData, uint16_t len);
