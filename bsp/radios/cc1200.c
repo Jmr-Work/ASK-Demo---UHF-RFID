@@ -14,7 +14,7 @@
  *  @notes      x
  *
  *  @section    Opens
- *          none current
+ *          do something better than the hard spin if id not matching (id_matches)
  *
  *  @section    Legal Disclaimer
  *          All contents of this source file and/or any other Misc. Product related source files are the explicit property of
@@ -43,10 +43,19 @@ void cc1200_init(void) {
     //Software Reset
     trxSpiCmdStrobe(CC120X_SRES);
 
+    //Verify ID
+    bool valid_id = cc1200_verifyPartNumber();
+
+    if(!valid_id) {
+        for(;;);                                                           /* not the CC1200, spin                                  */
+    }
+
+
     //******************************************************************************************************************************//
     // INIT RADIO CONFIG                                                                                                            //
     //******************************************************************************************************************************//
     cc1200_configure();                                                     /* configure the radio for use                          */
+
 
     //******************************************************************************************************************************//
     // CALIBRATE                                                                                                                    //
@@ -478,3 +487,27 @@ void cc1200_reg_read(uint16_t addr, uint8_t *dataPtr) {
     return;
 }
 
+
+/************************************************************************************************************************************/
+/** @fcn        bool cc1200_verifyPartNumber(void)
+ *  @brief      is the register value for [PARTNUMBER] match the CC1200?
+ *
+ *  @return     (bool) if Part Number is valid for CC1200
+ */
+/************************************************************************************************************************************/
+bool cc1200_verifyPartNumber(void) {
+
+    uint16_t i;
+
+    uint8_t part_number;
+
+    //small reset delay, cc12xx is non-deterministic on Reg-read values immediately after reset
+    for(i=0; i<1000; i++) {
+        asm(" NOP");
+    }
+
+    //Check Part Number
+    cc120xSpiReadReg(CC120X_PARTNUMBER, &part_number, 1);
+
+    return (part_number == CHIP_PARTNUMBER_CC1200);
+}

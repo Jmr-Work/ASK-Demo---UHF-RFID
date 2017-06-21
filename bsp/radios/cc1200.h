@@ -268,6 +268,7 @@ extern void cc1200_configure(void);
 extern void cc1200_reg_write(uint16_t addr, uint8_t data);
 extern void cc1200_reg_read(uint16_t addr, uint8_t *dataPtr);
 
+extern bool cc1200_verifyPartNumber(void);
 
 //Locals
 void trxReadWriteBurstSingle(uint8_t addr, uint8_t *pData, uint16_t len);
