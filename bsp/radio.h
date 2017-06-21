@@ -12,17 +12,24 @@
 
 
 //Radio Selection
-//#define RADIO_SEL_CC1175                                                  /* Uhf-Id's target radio                                */
-#define RADIO_SEL_CC1200                                                    /* Entry-level radio with similar features              */
+#define RADIO_SEL_CC1175                                                  /* Uhf-Id's target radio                                */
+//#define RADIO_SEL_CC1200                                                    /* Entry-level radio with similar features              */
 
 
 //Chip Selection
 #ifdef RADIO_SEL_CC1200
-#define CHIP_PARTNUMBER_UHF_ID       CHIP_PARTNUMBER_CC1200
+    #define CHIP_PARTNUMBER_UHF_ID      CHIP_PARTNUMBER_CC1200
+    #define preferredSettings           preferredSettings_cc1200
+    #define NUM_PREFERRED_SETTINGS      NUM_PREFERRED_SETTINGS_CC1200
 #endif
 #ifdef RADIO_SEL_CC1175
-#define CHIP_PARTNUMBER_UHF_ID       CHIP_PARTNUMBER_CC1175
+    #define CHIP_PARTNUMBER_UHF_ID      CHIP_PARTNUMBER_CC1175
+    #define preferredSettings           preferredSettings_cc1175
+    #define NUM_PREFERRED_SETTINGS      NUM_PREFERRED_SETTINGS_CC1175
 #endif
+
+
+
 
 
 //Globals

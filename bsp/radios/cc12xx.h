@@ -5,6 +5,7 @@
 #define NUM_PREFERRED_SETTINGS_CC1200   (52)    //<TEMP!>
 #define CHIP_PARTNUMBER_CC1200          (0x20)  //<TEMP!>
 #include "cc1200_reg_config.h"                  //<TEMP!>
+#include "cc1175_reg_config.h"                  //<TEMP!>
 //</TEMP>
 
 

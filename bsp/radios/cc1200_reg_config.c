@@ -24,7 +24,7 @@
 #include "cc1200_reg_config.h"
 
 
-const registerSetting_t preferredSettings[NUM_PREFERRED_SETTINGS_CC1200] =
+const registerSetting_t preferredSettings_cc1200[NUM_PREFERRED_SETTINGS_CC1200] =
 {
   {CC120X_IOCFG2,            0x06},                        //(0x0001) gpio2 io pin configuration
   {CC120X_SYNC_CFG1,         0xAB},                        //(0x0008) sync word detection configuration reg. 1
