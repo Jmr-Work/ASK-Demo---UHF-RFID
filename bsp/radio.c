@@ -37,7 +37,9 @@ void radio_spi_init(void) {
 #ifdef RADIO_SEL_CC1200
     cc1200_spi_init();
 #endif
-
+#ifdef RADIO_SEL_CC1175
+    cc1175_spi_init();
+#endif
     return;
 }
 
@@ -53,13 +55,15 @@ void radio_init(void) {
 #ifdef RADIO_SEL_CC1200
     cc1200_init();
 #endif
-
+#ifdef RADIO_SEL_CC1175
+    cc1175_init();
+#endif
     return;
 }
 
 
 /************************************************************************************************************************************/
-/** @fcn        void cc1200_run_loop(void)
+/** @fcn        void radio_run_loop(void)
  *  @brief      x
  */
 /************************************************************************************************************************************/
@@ -68,13 +72,15 @@ void radio_run_init(void) {
 #ifdef RADIO_SEL_CC1200
     cc1200_run_init();
 #endif
-
+#ifdef RADIO_SEL_CC1175
+    cc1175_run_init();
+#endif
     return;
 }
 
 
 /************************************************************************************************************************************/
-/** @fcn        void cc1200_run_loop(void)
+/** @fcn        void radio_run_loop(void)
  *  @brief      x
  */
 /************************************************************************************************************************************/
@@ -83,13 +89,15 @@ void radio_run_loop(void) {
 #ifdef RADIO_SEL_CC1200
     cc1200_run_loop();
 #endif
-
+#ifdef RADIO_SEL_CC1175
+    cc1175_run_loop();
+#endif
     return;
 }
 
 
 /************************************************************************************************************************************/
-/** @fcn        void cc1200_run_loop(void)
+/** @fcn        void radio_run_loop(void)
  *  @brief      x
  */
 /************************************************************************************************************************************/
@@ -98,13 +106,15 @@ void radio_run_waitForRoom(void) {
 #ifdef RADIO_SEL_CC1200
     cc1200_run_waitForRoom();
 #endif
-
+#ifdef RADIO_SEL_CC1175
+    cc1175_run_waitForRoom();
+#endif
     return;
 }
 
 
 /************************************************************************************************************************************/
-/** @fcn        void cc1200_run_loop(void)
+/** @fcn        void radio_run_loop(void)
  *  @brief      x
  */
 /************************************************************************************************************************************/
@@ -113,7 +123,9 @@ void radio_run_prepForNext(void) {
 #ifdef RADIO_SEL_CC1200
     cc1200_run_prepForNext();
 #endif
-
+#ifdef RADIO_SEL_CC1175
+    cc1175_run_prepForNext();
+#endif
     return;
 }
 

@@ -163,7 +163,13 @@ void msp430f5438a_gpio_init(void) {
     P11DIR |= (BIT0+BIT1+BIT2);                                             /* Enable output to P11.0/1/2                           */
     P11SEL |= (BIT0+BIT1+BIT2);                                             /* @note    I only validate ACLK & SMCLK out            */
 
+    //@todo     radio_gpio_init() generation
 #ifdef RADIO_SEL_CC1200
+    P8OUT |= BIT0;                                                          /* RESET_N is active low, init to high                  */
+    P8SEL &= ~BIT0;
+    P8DIR |= BIT0;
+#endif
+#ifdef RADIO_SEL_CC1175
     P8OUT |= BIT0;                                                          /* RESET_N is active low, init to high                  */
     P8SEL &= ~BIT0;
     P8DIR |= BIT0;

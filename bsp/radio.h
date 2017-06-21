@@ -2,6 +2,7 @@
 #define BSP_RADIO_H_
 
 //Radios
+#include "radios/cc1175.h"
 #include "radios/cc1200.h"
 
 
