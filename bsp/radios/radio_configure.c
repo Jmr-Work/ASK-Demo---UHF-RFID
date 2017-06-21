@@ -37,7 +37,8 @@ void radio_configure(void) {
 
     uint16_t i;
 
-    for(i=0; i<51; i++) {
+    for(i=0; i<NUM_PREFERRED_SETTINGS_CC1200; i++) {
+
         uint8_t data = preferredSettings[i].data;
 
         uint16_t addr = preferredSettings[i].addr;

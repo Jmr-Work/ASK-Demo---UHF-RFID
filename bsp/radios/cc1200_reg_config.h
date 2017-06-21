@@ -6,6 +6,10 @@
 #include <stdint.h>
 
 
+//Project
+#include "../../globals.h"
+
+
 //Typedefs
 typedef struct
 {
@@ -14,8 +18,12 @@ typedef struct
 } registerSetting_t;
 
 
+//Definitions
+#define NUM_PREFERRED_SETTINGS_CC1200    (51)
+
+
 //Global Vars
-extern const registerSetting_t preferredSettings[];
+extern const registerSetting_t preferredSettings[NUM_PREFERRED_SETTINGS_CC1200];
 
 
 #endif /* EMK_CC1200_SIMPLE_LINK_REG_CONFIG_H_ */
