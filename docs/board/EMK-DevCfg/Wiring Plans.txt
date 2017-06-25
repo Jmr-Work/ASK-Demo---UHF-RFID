@@ -1,0 +1,65 @@
+@brief 		a wiring plan and schematic for the CC2541 & CC1200/CC1175 dev setup using 
+	the TrxEB boards
+@details	using the TrxEB with the EMK's is very simple, and very clean. But lots 
+	of wires, see below!
+
+
+@section 	General Wiring Needs (CC251&CC1200/CC1175)
+	TrxEB-1: CC1200/CC1175
+	TrxEB-2: CC2541
+	
+	CC1175-EMK
+		RESET	TrxEB-P2.15 / TrxEB-P7.10 [Core] 	(MSP-P  #P8.0/RF_RESET_N)
+		GND		TrxEB-P2.2, P1.1, P1.19	  [Core]	(GND)
+		PWR		TrxEB-P2.7, P2.9		  [Core]	(PWR)
+		GPIO0	TrxEB-P1.10 / TrxEB-P7.8  [Opt]	(MSP-P #P1_7)
+		GPIO2	TrxEB-P1.12 / TrxEB-P7.4  [Opt]	(MSP-P #P1_3)
+		GPIO3	TrxEB-P2.18 / TrxEB-P7.3  [Opt]	(MSP-P #P1_2/RF_SPI1_SCLK)
+		CSN		TrxEB-P1.14 / TrxEB-P7.14 [Core]	(MSP-P #P3.0/RF_SPI0_CS_N)
+		SCLK	TrxEB-P1.16 / TrxEB-P7.12 [Core]	(MSP-P #P3.3/RF_SPI0_SCLK)
+		MOSI	TrxEB-P1.18 / TrxEB-P7.16 [Core]	(MSP-P #P3.1/RF_SPI0_MOSI)
+		MISO	TrxEB-P1.20 / TrxEB-P7.18 [Core]	(MSP-P #P3.2/RF_SPI0_MISO)
+
+@section 	CC2541 TrxEB Solution
+	@needs (SPI: CSN, SCLK, MOSI, MISO) (GPIO: RESET) (Opt: GPIO0/2/3)
+	
+	@section 	CC2541 Pinouts
+		CSN -  P0.4	TrxEB-P1.3  / TrxEB-P7.5
+		SCLK - P0.5 TrxEB-P2.18 / TrxEB-P7.3
+		MOSI - P0.3 TrxEB-P1.9  / TrxEB-P7.7
+		MISO - P0.2 TrxEB-P1.7  / TrxEB-P7.9
+			
+		DIO -  P0.0 TrxEB-P1.11 / TrxEB-P7.15
+		DIO -  P0.1 TrxEB-P1.5  / TrxEB-P7.13
+		DIO -  P0.6 TrxEB-P1.15 / TrxEB-P7.17
+		
+		RST -  P0.7 TrxEB-P1.17 / TrxEB-P7.19
+				
+		VCC -  		TrxEB-P2.7, P2.9
+		GND -  		TrxEB-P2.2
+	
+@section 	CC1200/CC1175 TrxEB Solution
+
+		 #1            #2
+	  CC1175EMK <-> CC2541EMK	| Color
+	CSN   P7.14 <-> P7.5		| (Blue)
+	SCLK  P7.12 <-> P7.3		| (Yellow)
+	MOSI  P7.16 <-> P7.7		| (Orange)
+	MISO  P7.18 <-> P7.9		| (Green)
+	
+	GPIO0 P7.8  <-> P7.15		| (Brown)
+	GPIO2 P7.4  <-> P7.13		| (Purple)
+	GPIO3 P7.3  <-> P7.17		| (Grey)
+	
+	RESET P7.10 <-> P7.19		| (White)
+	
+	VCC   VRF   <-> VRF			| (Red)
+	GND   P4.2  <-> P4.2		| (Black)
+
+@section	Steps
+[X]	Program both TrxEB's with nulll firmware
+[X]	Establish wiring plan
+	Wire 'em up!
+
+
+

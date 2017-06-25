@@ -1,6 +1,12 @@
 #ifndef BSP_RADIO_H_
 #define BSP_RADIO_H_
 
+
+//Radio Selection
+#define RADIO_SEL_CC1175                                                  /* Uhf-Id's target radio                                */
+//#define RADIO_SEL_CC1200                                                    /* Entry-level radio with similar features              */
+
+
 //Radios
 #include "radios/cc1175.h"
 #include "radios/cc1200.h"
@@ -9,11 +15,6 @@
 //Project
 #include "mcu.h"
 #include "radios/cc1200_reg_config.h"
-
-
-//Radio Selection
-#define RADIO_SEL_CC1175                                                  /* Uhf-Id's target radio                                */
-//#define RADIO_SEL_CC1200                                                    /* Entry-level radio with similar features              */
 
 
 //Chip Selection
@@ -27,9 +28,6 @@
     #define preferredSettings           preferredSettings_cc1175
     #define NUM_PREFERRED_SETTINGS      NUM_PREFERRED_SETTINGS_CC1175
 #endif
-
-
-
 
 
 //Globals
