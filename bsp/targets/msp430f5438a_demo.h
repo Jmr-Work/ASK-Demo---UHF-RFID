@@ -8,12 +8,10 @@
 
 //Processor
 #include <msp430.h>
-#include "msp430f5438a_demo.h"
 
 
 //Project
 #include "../../globals.h"
-#include "../clocks.h"
 
 
 //Radio

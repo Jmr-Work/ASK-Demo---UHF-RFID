@@ -14,7 +14,7 @@
  *  @notes      x
  *
  *  @section    Opens
- *          none current
+ *          clean headers for radio_spi() routines
  *
  *  @section    Legal Disclaimer
  *          All contents of this source file and/or any other Misc. Product related source files are the explicit property of
@@ -118,7 +118,7 @@ void msp430f5438a_clocks_init(void) {
     ui32SetMultiplier = DCO_MULT_16MHZ;                                     /* &ui32SetMultiplier);                                 */
 
     // Set VCore setting
-    jmr_bspMcuSetVCore(ui8SetVCore);
+    msp430f5438a_bspMcuSetVCore(ui8SetVCore);
 
     // Disable FLL control loop, set lowest possible DCOx, MODx and select a suitable range
     __bis_SR_register(SCG0);
@@ -163,7 +163,7 @@ void msp430f5438a_gpio_init(void) {
     P11DIR |= (BIT0+BIT1+BIT2);                                             /* Enable output to P11.0/1/2                           */
     P11SEL |= (BIT0+BIT1+BIT2);                                             /* @note    I only validate ACLK & SMCLK out            */
 
-    radio_gpio_init();
+    mcu_radio_gpio_init();
 
     P3SEL &= ~BIT0;                                                         /* RF_SPI0_CS_ as GPIO output high                      */
     P3OUT |=  BIT0;
@@ -201,62 +201,298 @@ void msp430f5438a_timers_init(void) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------//
+//@src  cc12xx.h: #define TRXEM_SPI_BEGIN()              st( TRXEM_PORT_OUT &= ~TRXEM_SPI_SC_N_PIN; asm(" NOP"); )
 void msp430f5438a_radio_spi_begin(void) {
-    for(;;);
+
+    TRXEM_PORT_OUT &= ~TRXEM_SPI_SC_N_PIN;
+
+    asm(" NOP");
+
     return;
 }
 
 
+//@src  cc12xx.h: #define TRXEM_SPI_TX(x)                st( UCB0IFG &= ~UCRXIFG; UCB0TXBUF= (x); )
 void msp430f5438a_radio_spi_tx(uint8_t x) {
-    for(;;);
+
+    UCB0IFG &= ~UCRXIFG;
+
+    UCB0TXBUF= x;
+
     return;
 }
 
 
+//@src  cc12xx.h: #define TRXEM_SPI_WAIT_DONE()          st( while(!(UCB0IFG & UCRXIFG)); )
 void msp430f5438a_radio_spi_wait_done(void) {
-    for(;;);
+
+    while(!(UCB0IFG & UCRXIFG));
+
     return;
 }
 
 
-void msp430f5438a_radio_spi_rx(void) {
-    for(;;);
+//@src  cc12xx.h: #define TRXEM_SPI_RX()                 UCB0RXBUF
+uint8_t msp430f5438a_radio_spi_rx(void) {
+
+    return UCB0RXBUF;
+}
+
+
+//@src  cc12xx.h: #define TRXEM_SPI_WAIT_MISO_LOW(x)     st( uint8_t count = 200;
+//@note     no one uses this routine, keeping it around out of courtesy
+void msp430f5438a_radio_spi_wait_miso_low(void) {
+
+    uint8_t count = 200;
+    //uint8_t x;                                                            /* unused input argument to source TI demo, omitting    */
+
+    while(TRXEM_PORT_IN & TRXEM_SPI_MISO_PIN) {
+        __delay_cycles(5000);
+        count--;
+        if (count == 0) {
+            break;
+        }
+    }
+
+    //if(count>0) {
+    //    x = 1;
+    //} else {
+    //    x = 0;
+    //}
+
     return;
 }
 
 
-void msp430f5438a_radio_spi_wait_miso_low(uint8_t x) {
-    for(;;);
-    return;
-}
-
-
+//@src  cc12xx.h: #define TRXEM_SPI_END()                st( asm(" NOP"); TRXEM_PORT_OUT |= TRXEM_SPI_SC_N_PIN; )
 void msp430f5438a_radio_spi_end(void) {
-    for(;;);
+
+    asm(" NOP");
+
+    TRXEM_PORT_OUT |= TRXEM_SPI_SC_N_PIN;
+
     return;
 }
 
 
-void msp430f5438a_radio_spi_hw_reset(void) {
-    for(;;);
+//@src  manual generation
+void msp430f5438a_radio_hw_reset(void) {
+
+    int i;
+
+    P8OUT &= ~BIT0;                                                         /* Apply Reset to the Module (1.120ms pulse)            */
+
+    for(i=0; i<2000; i++) { asm(" NOP"); }
+
+    P8OUT |= BIT0;
+
+    return;
+}
+
+//@src  'trxSpiCmdStrobe(CC120X_SRES);'
+void msp430f5438a_radio_sw_reset(void) {
+
+    //Software Reset
+    trxSpiCmdStrobe(CC120X_SRES);
+
     return;
 }
 
 
-void msp430f5438a_radio_spi_wait_miso_high(uint8_t x) {
-    for(;;);
+
+//@src  cc12xx.h: 'while(TRXEM_PORT_IN & TRXEM_SPI_MISO_PIN);'
+void msp430f5438a_radio_spi_wait_for_miso_low(void) {
+
+    while(TRXEM_PORT_IN & TRXEM_SPI_MISO_PIN);
+
     return;
 }
 
 
+//@src  cc12xx.h: cc1175_spi_init()
 void msp430f5438a_radio_spi_init(void) {
-    for(;;);
+
+
+    const uint8_t clockDivider = 0x10;                                      /* original value used in demo source                   */
+
+    //******************************************************************************************************************************//
+    //                                                  INIT UCB0 (SPI)                                                             //
+    //******************************************************************************************************************************//
+    // RF SPI0 CS as GPIO output high                                       /* (from bspInit() call) - config CS's GPIO             */
+    P3SEL &= ~BIT0;
+    P3OUT |=  BIT0;
+    P3DIR |=  BIT0;
+
+    /* Keep peripheral in reset state*/
+    UCB0CTL1 |= UCSWRST;
+
+    /* Configuration
+     * -  8-bit
+     * -  Master Mode
+     * -  3-pin
+     * -  synchronous mode
+     * -  MSB first
+     * -  Clock phase select = captured on first edge
+     * -  Inactive state is low
+     * -  SMCLK as clock source
+     * -  Spi clk is adjusted corresponding to systemClock as the highest rate
+     *    supported by the supported radios: this could be optimized and done
+     *    after chip detect.
+     */
+    UCB0CTL0  =  0x00+UCMST + UCSYNC + UCMODE_0 + UCMSB + UCCKPH;
+    UCB0CTL1 |=  UCSSEL_2;
+    UCB0BR1   =  0x00;
+
+    UCB0BR0 = clockDivider;
+
+    /* Configure port and pins
+     * - MISO/MOSI/SCLK GPIO controlled by peripheral
+     * - CS_n GPIO controlled manually, set to 1
+     */
+    TRXEM_PORT_SEL |= TRXEM_SPI_MOSI_PIN + TRXEM_SPI_MISO_PIN + TRXEM_SPI_SCLK_PIN;
+    TRXEM_PORT_SEL &= ~TRXEM_SPI_SC_N_PIN;
+    TRXEM_PORT_OUT |= TRXEM_SPI_SC_N_PIN + TRXEM_SPI_MISO_PIN;/* Pullup on MISO */
+
+    TRXEM_PORT_DIR |= TRXEM_SPI_SC_N_PIN;
+    /* In case not automatically set */
+    TRXEM_PORT_DIR |= TRXEM_SPI_MOSI_PIN + TRXEM_SPI_SCLK_PIN;
+    TRXEM_PORT_DIR &= ~TRXEM_SPI_MISO_PIN;
+
+    /* Release for operation */
+    UCB0CTL1 &= ~UCSWRST;
+
     return;
 }
 
 
+//@src  cc12xx.h: cc1175_gpio_init()
 void msp430f5438a_radio_gpio_init(void) {
-    for(;;);
+
+    //RESET_N
+    P8OUT |= BIT0;                                                          /* RESET_N is active low, init to high                  */
+    P8SEL &= ~BIT0;
+    P8DIR |= BIT0;
+
+    //CS_N
+    P3SEL &= ~BIT0;
+    P3OUT |=  BIT0;
+    P3DIR |=  BIT0;
+
+
+}
+
+
+/************************************************************************************************************************************/
+/** @fcn        void msp430f5438a_bspMcuSetVCore(uint8_t ui8Level)
+ *  @brief      This function sets the PMM core voltage (PMMCOREV) setting
+ *  @details    x
+ *
+ *  @param      [in]    (uint8_t ui8Level - the target VCore setting
+ */
+/************************************************************************************************************************************/
+void msp430f5438a_bspMcuSetVCore(uint8_t ui8Level) {
+
+    uint8_t ui8ActLevel;
+
+    do {
+        ui8ActLevel = PMMCTL0_L & PMMCOREV_3;
+        if(ui8ActLevel < ui8Level) {
+
+            // Set Vcore (step by step)
+            msp430f5438a_bspMcuSetVCoreUp(++ui8ActLevel);
+        }
+        if(ui8ActLevel > ui8Level) {
+            // Set VCore step by step
+            msp430f5438a_bspMcuSetVCoreDown(--ui8ActLevel);
+        }
+    } while(ui8ActLevel != ui8Level);
+}
+
+
+/************************************************************************************************************************************/
+/** @fcn        void msp430f5438a_bspMcuSetVCoreUp(uint8_t ui8Level)
+ *  @brief      This function sets the PMM core voltage (PMMCOREV) setting.
+ *  @details    x
+ *
+ *  @param      [in]    (uint8_t ui8Level - the target VCore setting
+ */
+/************************************************************************************************************************************/
+void msp430f5438a_bspMcuSetVCoreUp(uint8_t ui8Level) {
+    // Open PMM module registers for write access
+    PMMCTL0_H = 0xA5;
+
+    // Set SVS/M high side to new ui8Level
+    SVSMHCTL = (SVSMHCTL & ~(SVSHRVL0 * 3 + SVSMHRRL0)) | (SVSHE + SVSHRVL0 * ui8Level + SVMHE + SVSMHRRL0 * ui8Level);
+
+    // Set SVM new Level
+    SVSMLCTL = SVSLE + SVMLE + SVSMLRRL0 * ui8Level;
+
+    // Set SVS/M low side to new level
+    SVSMLCTL = (SVSMLCTL & ~(SVSMLRRL_3)) | (SVMLE + SVSMLRRL0 * ui8Level);
+
+    // Wait until SVM is settled
+    while((PMMIFG & SVSMLDLYIFG) == 0);
+
+    // Set VCore to 'level' and clear flags
+    PMMCTL0_L = PMMCOREV0 * ui8Level;
+    PMMIFG &= ~(SVMLVLRIFG + SVMLIFG);
+
+    if((PMMIFG & SVMLIFG)) {
+
+        // Wait until level is reached
+        while((PMMIFG & SVMLVLRIFG) == 0);
+    }
+
+    // Set SVS/M Low side to new level
+    SVSMLCTL = (SVSMLCTL & ~(SVSLRVL0 * 3 + SVSMLRRL_3)) | (SVSLE + SVSLRVL0 * ui8Level + SVMLE + SVSMLRRL0 * ui8Level);
+
+    // Lock PMM module registers from write access
+    PMMCTL0_H = 0x00;
+}
+
+
+/************************************************************************************************************************************/
+/** @fcn        void msp430f5438a_bspMcuSetVCoreDown(uint8_t ui8Level)
+ *  @brief      This function sets the PMM core voltage (PMMCOREV) setting.
+ *  @details    x
+ *
+ *  @param      [in]    (uint8_t ui8Level - the target VCore setting
+ */
+/************************************************************************************************************************************/
+void msp430f5438a_bspMcuSetVCoreDown(uint8_t ui8Level) {
+
+    // Open PMM module registers for write access
+    PMMCTL0_H = 0xA5;
+
+    // Set SVS/M low side to new level
+    SVSMLCTL = (SVSMLCTL & ~(SVSLRVL0 * 3 + SVSMLRRL_3)) | (SVSLRVL0 * ui8Level + SVMLE + SVSMLRRL0 * ui8Level);
+
+    // Wait until SVM is settled
+    while((PMMIFG & SVSMLDLYIFG) == 0);
+
+    // Set VCore to new level
+    PMMCTL0_L = (ui8Level * PMMCOREV0);
+
+    // Lock PMM module registers for write access
+    PMMCTL0_H = 0x00;
+}
+
+
+#ifdef TARGET_SEL_MSP430F5438A
+
+/************************************************************************************************************************************/
+/** @fcn        __interrupt void Timer0_A0 (void)
+ *  @brief      x
+ *  @details    x
+ */
+/************************************************************************************************************************************/
+#pragma vector=TIMER0_A0_VECTOR
+__interrupt void Timer0_A0 (void) {
+
+    P4OUT ^= BIT0;
+
     return;
 }
+
+#endif
 

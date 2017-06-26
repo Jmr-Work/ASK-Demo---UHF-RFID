@@ -6,18 +6,16 @@
 #include <stdint.h>
 
 //Processor
-#include <msp430.h>
-#include "cc1200_reg_config.h"
+#include "../mcu.h"
+
 
 //Radio
 #include "cc12xx.h"
+#include "cc1200_reg_config.h"
 
 
 //Globals
-extern void cc1200_gpio_init(void);
 extern void cc1200_init(void);
-extern void cc1200_spi_init(void);
-
 extern void cc1200_run_init(void);
 extern void cc1200_run_loop(void);
 extern void cc1200_run_waitForRoom(void);

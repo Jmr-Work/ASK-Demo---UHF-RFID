@@ -18,24 +18,13 @@ typedef uint8_t rfStatus_t;
 
 
 //CC-Series PARTNUMBER Register Values
-#define CHIP_PARTNUMBER_CC1175 (0x5A)                                       /* see [4]  p.105 PARTNUMBER                            */
-#define CHIP_PARTNUMBER_CC1120 (0x48)
-#define CHIP_PARTNUMBER_CC1121 (0x40)
-#define CHIP_PARTNUMBER_CC1125 (0x58)
-#define CHIP_PARTNUMBER_CC1200 (0x20)                                       /* see [6]  p.109 PARTNUMBER                            */
-#define CHIP_PARTNUMBER_CC1201 (0x21)
+#define CHIP_PARTNUMBER_CC1175          (0x5A)                              /* see [4]  p.105 PARTNUMBER                            */
+#define CHIP_PARTNUMBER_CC1120          (0x48)
+#define CHIP_PARTNUMBER_CC1121          (0x40)
+#define CHIP_PARTNUMBER_CC1125          (0x58)
+#define CHIP_PARTNUMBER_CC1200          (0x20)                              /* see [6]  p.109 PARTNUMBER                            */
+#define CHIP_PARTNUMBER_CC1201          (0x21)
 
-
-//Definitions
-#define TRXEM_PORT_SEL       P3SEL
-#define TRXEM_PORT_OUT       P3OUT
-#define TRXEM_PORT_DIR       P3DIR
-#define TRXEM_PORT_IN        P3IN
-
-#define TRXEM_SPI_MOSI_PIN   BIT1
-#define TRXEM_SPI_MISO_PIN   BIT2
-#define TRXEM_SPI_SCLK_PIN   BIT3
-#define TRXEM_SPI_SC_N_PIN   BIT0
 
 /* Command strobe registers (from cc120x_spi.h & User's Guide Sec. 3.2.2)                                                           */
 #define CC120X_SRES                     0x30      /*  SRES    - Reset chip                                                          */
@@ -190,8 +179,8 @@ typedef uint8_t rfStatus_t;
 #define CC120X_AGC_GAIN2                0x2F7A
 #define CC120X_AGC_GAIN1                0x2F7B
 #define CC120X_AGC_GAIN0                0x2F7C
-#define CC120X_CFM_RX_DATA_OUT         0x2F7D
-#define CC120X_CFM_TX_DATA_IN          0x2F7E
+#define CC120X_CFM_RX_DATA_OUT          0x2F7D
+#define CC120X_CFM_TX_DATA_IN           0x2F7E
 #define CC120X_ASK_SOFT_RX_DATA         0x2F7F
 #define CC120X_RNDGEN                   0x2F80
 #define CC120X_MAGN2                    0x2F81
@@ -507,27 +496,6 @@ extern bool cc12xx_verifyPartNumber(void);
 
 //Locals
 void trxReadWriteBurstSingle(uint8_t addr, uint8_t *pData, uint16_t len);
-
-
-//Misc.
-#define st(x)      do { x } while (__LINE__ == -1)
-
-/* Macros for Transceivers(TRX) */
-#define TRXEM_SPI_BEGIN()              st( TRXEM_PORT_OUT &= ~TRXEM_SPI_SC_N_PIN; asm(" NOP"); )
-#define TRXEM_SPI_TX(x)                st( UCB0IFG &= ~UCRXIFG; UCB0TXBUF= (x); )
-#define TRXEM_SPI_WAIT_DONE()          st( while(!(UCB0IFG & UCRXIFG)); )
-#define TRXEM_SPI_RX()                 UCB0RXBUF
-#define TRXEM_SPI_WAIT_MISO_LOW(x)     st( uint8_t count = 200; \
-                                           while(TRXEM_PORT_IN & TRXEM_SPI_MISO_PIN) \
-                                           { \
-                                              __delay_cycles(5000); \
-                                              count--; \
-                                              if (count == 0) break; \
-                                           } \
-                                           if(count>0) (x) = 1; \
-                                           else (x) = 0; )
-
-#define TRXEM_SPI_END()                st( asm(" NOP"); TRXEM_PORT_OUT |= TRXEM_SPI_SC_N_PIN; )
 
 
 #endif /* BSP_RADIOS_CC12XX_H_ */

@@ -31,14 +31,14 @@
 
 
 //Globals
-extern void radio_gpio_init(void);
-extern void radio_spi_init(void);
 extern void radio_init(void);
-
 extern void radio_run_init(void);
 extern void radio_run_loop(void);
 extern void radio_run_waitForRoom(void);
 extern void radio_run_prepForNext(void);
+
+#define radio_spi_init  mcu_radio_spi_init                                  /* for cleanliness of presentation in main.c            */
+
 
 #endif /* BSP_RADIO_H_ */
 

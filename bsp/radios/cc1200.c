@@ -36,19 +36,16 @@
 void cc1200_init(void) {
 
     uint8_t  marcState;
-    uint32_t i;
 
 
     //******************************************************************************************************************************//
     //                                                          RESET                                                               //
     //******************************************************************************************************************************//
-    //Hardware Reset
-    P8OUT &= ~BIT0;                                                         /* Apply Reset to the Module (1.120ms pulse)            */
-    for(i=0; i<2000; i++) { asm(" NOP"); }
-    P8OUT |= BIT0;
+    //Hardware
+    mcu_radio_hw_reset();
 
-    //Software Reset
-    trxSpiCmdStrobe(CC120X_SRES);
+    //Software
+    mcu_radio_sw_reset();
 
     //Verify ID
     bool valid_id = cc12xx_verifyPartNumber();
@@ -76,93 +73,6 @@ void cc1200_init(void) {
 
     // Put radio in powerdown to save power
     trxSpiCmdStrobe(CC120X_SPWD);
-
-    return;
-}
-
-
-/************************************************************************************************************************************/
-/** @fcn        void cc1200_gpio_init(void)
- *  @brief      initialize the CC1200's GPIO for use
- *  @details    x
- */
-/************************************************************************************************************************************/
-void cc1200_gpio_init(void) {
-
-    //RESET_N
-    P8OUT |= BIT0;                                                          /* RESET_N is active low, init to high                  */
-    P8SEL &= ~BIT0;
-    P8DIR |= BIT0;
-
-    //CS_N
-    P3SEL &= ~BIT0;
-    P3OUT |=  BIT0;
-    P3DIR |=  BIT0;
-
-    return;
-}
-
-
-/************************************************************************************************************************************/
-/** @fcn        void cc1200_spi_init(void)
- *  @brief      initialize the CC1200's SPI interface
- *  @details    x
- *
- * @src     direct copy trx_rf_spi.c:trxRfSpiInterfaceInit(0x10)
- *
- *  @param      [in]    (uint8) clockDivider - SMCLK/clockDivider gives SCLK frequency (0x10) <- <temp> 0x10
- *
- */
-/************************************************************************************************************************************/
-void cc1200_spi_init(void) {
-
-    const uint8_t clockDivider = 0x10;                                      /* original value used in demo source                   */
-
-    //******************************************************************************************************************************//
-    //                                                  INIT UCB0 (SPI)                                                             //
-    //******************************************************************************************************************************//
-    // RF SPI0 CS as GPIO output high                                       /* (from bspInit() call) - config CS's GPIO             */
-    P3SEL &= ~BIT0;
-    P3OUT |=  BIT0;
-    P3DIR |=  BIT0;
-
-    /* Keep peripheral in reset state*/
-    UCB0CTL1 |= UCSWRST;
-
-    /* Configuration
-     * -  8-bit
-     * -  Master Mode
-     * -  3-pin
-     * -  synchronous mode
-     * -  MSB first
-     * -  Clock phase select = captured on first edge
-     * -  Inactive state is low
-     * -  SMCLK as clock source
-     * -  Spi clk is adjusted corresponding to systemClock as the highest rate
-     *    supported by the supported radios: this could be optimized and done
-     *    after chip detect.
-     */
-    UCB0CTL0  =  0x00+UCMST + UCSYNC + UCMODE_0 + UCMSB + UCCKPH;
-    UCB0CTL1 |=  UCSSEL_2;
-    UCB0BR1   =  0x00;
-
-    UCB0BR0 = clockDivider;
-
-    /* Configure port and pins
-     * - MISO/MOSI/SCLK GPIO controlled by peripheral
-     * - CS_n GPIO controlled manually, set to 1
-     */
-    TRXEM_PORT_SEL |= TRXEM_SPI_MOSI_PIN + TRXEM_SPI_MISO_PIN + TRXEM_SPI_SCLK_PIN;
-    TRXEM_PORT_SEL &= ~TRXEM_SPI_SC_N_PIN;
-    TRXEM_PORT_OUT |= TRXEM_SPI_SC_N_PIN + TRXEM_SPI_MISO_PIN;/* Pullup on MISO */
-
-    TRXEM_PORT_DIR |= TRXEM_SPI_SC_N_PIN;
-    /* In case not automatically set */
-    TRXEM_PORT_DIR |= TRXEM_SPI_MOSI_PIN + TRXEM_SPI_SCLK_PIN;
-    TRXEM_PORT_DIR &= ~TRXEM_SPI_MISO_PIN;
-
-    /* Release for operation */
-    UCB0CTL1 &= ~UCSWRST;
 
     return;
 }
@@ -197,6 +107,8 @@ void cc1200_run_loop(void) {
 
     // Send packet
     trxSpiCmdStrobe(CC120X_STX);
+
+    return;
 }
 
 

@@ -7,8 +7,6 @@
 
 //Globals
 extern void cc1175_init(void);
-extern void cc1175_gpio_init(void);
-extern void cc1175_spi_init(void);
 extern void cc1175_run_init(void);
 extern void cc1175_run_loop(void);
 extern void cc1175_run_waitForRoom(void);

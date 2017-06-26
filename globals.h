@@ -13,14 +13,13 @@
 
 
 //Project
-#include "bsp/clocks.h"
-#include "bsp/timers.h"
-#include "bsp/gpio.h"
 #include "bsp/radio.h"
+
 
 //Libs
 #include "lib/signal.h"
 #include "lib/rfid.h"
+
 
 //Test & Dev
 #include "sys/test/rfid_test.h"

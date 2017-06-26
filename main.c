@@ -31,6 +31,7 @@
  *
  *  @section    Opens
  *          deprecate temp_radio.h                          (correct header format in consideration)
+ *          cleanup cc12xx.h header '<TEMP>' section
  *          validate packet contents
  *          validate symbol timing
  *          migrate clocks, timers & gpio to a single file  (bsp.c, to consider)

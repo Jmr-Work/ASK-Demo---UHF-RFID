@@ -47,17 +47,17 @@ rfStatus_t trxSpiCmdStrobe(uint8_t cmd) {
 
     uint8_t rc;
 
-    TRXEM_SPI_BEGIN();
+    mcu_radio_spi_begin();
 
-    while(TRXEM_PORT_IN & TRXEM_SPI_MISO_PIN);
+    mcu_radio_spi_wait_for_miso_low();
 
-    TRXEM_SPI_TX(cmd);
+    mcu_radio_spi_tx(cmd);
 
-    TRXEM_SPI_WAIT_DONE();
+    mcu_radio_spi_wait_done();
 
-    rc = TRXEM_SPI_RX();
+    rc = mcu_radio_spi_rx();
 
-    TRXEM_SPI_END();
+    mcu_radio_spi_end();
 
     return(rc);
 }
@@ -88,7 +88,9 @@ rfStatus_t cc120xSpiReadReg(uint16_t addr, uint8_t *pData, uint8_t len) {
 
 
   /* Checking if this is a FIFO access -> returns chip not ready  */
-  if((CC120X_SINGLE_TXFIFO<=tempAddr)&&(tempExt==0)) return STATUS_CHIP_RDYn_BM;
+  if((CC120X_SINGLE_TXFIFO<=tempAddr)&&(tempExt==0)) {
+      return STATUS_CHIP_RDYn_BM;
+  }
 
   /* Decide what register space is accessed */
   if(!tempExt) {
@@ -123,15 +125,15 @@ rfStatus_t trx8BitRegAccess(uint8_t accessType, uint8_t addrByte, uint8_t *pData
     uint8_t readValue;
 
     /* Pull CS_N low and wait for SO to go low before communication starts */
-    TRXEM_SPI_BEGIN();
-    while(TRXEM_PORT_IN & TRXEM_SPI_MISO_PIN);
+    mcu_radio_spi_begin();
+    mcu_radio_spi_wait_for_miso_low();
     /* send register address byte */
-    TRXEM_SPI_TX(accessType|addrByte);
-    TRXEM_SPI_WAIT_DONE();
+    mcu_radio_spi_tx(accessType|addrByte);
+    mcu_radio_spi_wait_done();
     /* Storing chip status */
-    readValue = TRXEM_SPI_RX();
+    readValue = mcu_radio_spi_rx();
     trxReadWriteBurstSingle(accessType|addrByte,pData,len);
-    TRXEM_SPI_END();
+    mcu_radio_spi_end();
     /* return the status byte value */
     return(readValue);
 }
@@ -156,18 +158,18 @@ rfStatus_t trx16BitRegAccess(uint8_t accessType, uint8_t extAddr, uint8_t regAdd
 
     uint8_t readValue;
 
-    TRXEM_SPI_BEGIN();
-    while(TRXEM_PORT_IN & TRXEM_SPI_MISO_PIN);
+    mcu_radio_spi_begin();
+    mcu_radio_spi_wait_for_miso_low();
     /* send extended address byte with access type bits set */
-    TRXEM_SPI_TX(accessType|extAddr);
-    TRXEM_SPI_WAIT_DONE();
+    mcu_radio_spi_tx(accessType|extAddr);
+    mcu_radio_spi_wait_done();
     /* Storing chip status */
-    readValue = TRXEM_SPI_RX();
-    TRXEM_SPI_TX(regAddr);
-    TRXEM_SPI_WAIT_DONE();
+    readValue = mcu_radio_spi_rx();
+    mcu_radio_spi_tx(regAddr);
+    mcu_radio_spi_wait_done();
     /* Communicate len number of bytes */
     trxReadWriteBurstSingle(accessType|extAddr,pData,len);
-    TRXEM_SPI_END();
+    mcu_radio_spi_end();
 
     /* return the status byte value */
     return(readValue);
@@ -247,40 +249,41 @@ rfStatus_t cc112xSpiWriteTxFifo(uint8_t *pData, uint8_t len) {
 void trxReadWriteBurstSingle(uint8_t addr, uint8_t *pData, uint16_t len) {
 
     uint16_t i;
+
     /* Communicate len number of bytes: if RX - the procedure sends 0x00 to push bytes from slave*/
-  if(addr&RADIO_READ_ACCESS) {
+    if(addr&RADIO_READ_ACCESS) {
 
-    if(addr&RADIO_BURST_ACCESS) {
+        if(addr&RADIO_BURST_ACCESS) {
 
-      for(i = 0; i < len; i++) {
-          TRXEM_SPI_TX(0);            /* Possible to combining read and write as one access type */
-          TRXEM_SPI_WAIT_DONE();
-          *pData = TRXEM_SPI_RX();     /* Store pData from last pData RX */
-          pData++;
-      }
+            for(i = 0; i < len; i++) {
+                mcu_radio_spi_tx(0);            /* Possible to combining read and write as one access type */
+                mcu_radio_spi_wait_done();
+                *pData = mcu_radio_spi_rx();     /* Store pData from last pData RX */
+                pData++;
+            }
+        }
+        else {
+            mcu_radio_spi_tx(0);
+            mcu_radio_spi_wait_done();
+            *pData = mcu_radio_spi_rx();
+        }
     }
     else {
-      TRXEM_SPI_TX(0);
-      TRXEM_SPI_WAIT_DONE();
-      *pData = TRXEM_SPI_RX();
+        if(addr&RADIO_BURST_ACCESS) {
+            /* Communicate len number of bytes: if TX - the procedure doesn't overwrite pData */
+            for (i = 0; i < len; i++) {
+                mcu_radio_spi_tx(*pData);
+                mcu_radio_spi_wait_done();
+                pData++;
+            }
+        }
+        else {
+            mcu_radio_spi_tx(*pData);
+            mcu_radio_spi_wait_done();
+        }
     }
-  }
-  else {
-    if(addr&RADIO_BURST_ACCESS) {
-      /* Communicate len number of bytes: if TX - the procedure doesn't overwrite pData */
-      for (i = 0; i < len; i++) {
-        TRXEM_SPI_TX(*pData);
-        TRXEM_SPI_WAIT_DONE();
-        pData++;
-      }
-    }
-    else {
-      TRXEM_SPI_TX(*pData);
-      TRXEM_SPI_WAIT_DONE();
-    }
-  }
 
-  return;
+    return;
 }
 
 
