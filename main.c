@@ -30,9 +30,10 @@
  *      8 - CC1200 EMK Design Files
  *
  *  @section    Opens
- *          deprecate temp_radio.h      (correct header format in consideration)
+ *          deprecate temp_radio.h                          (correct header format in consideration)
  *          validate packet contents
  *          validate symbol timing
+ *          migrate clocks, timers & gpio to a single file  (bsp.c, to consider)
  *
  *  @section    Legal Disclaimer
  *          All contents of this source file and/or any other Misc. Product related source files are the explicit property of

@@ -200,3 +200,63 @@ void msp430f5438a_timers_init(void) {
     return;
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------//
+void msp430f5438a_radio_spi_begin(void) {
+    for(;;);
+    return;
+}
+
+
+void msp430f5438a_radio_spi_tx(uint8_t x) {
+    for(;;);
+    return;
+}
+
+
+void msp430f5438a_radio_spi_wait_done(void) {
+    for(;;);
+    return;
+}
+
+
+void msp430f5438a_radio_spi_rx(void) {
+    for(;;);
+    return;
+}
+
+
+void msp430f5438a_radio_spi_wait_miso_low(uint8_t x) {
+    for(;;);
+    return;
+}
+
+
+void msp430f5438a_radio_spi_end(void) {
+    for(;;);
+    return;
+}
+
+
+void msp430f5438a_radio_spi_hw_reset(void) {
+    for(;;);
+    return;
+}
+
+
+void msp430f5438a_radio_spi_wait_miso_high(uint8_t x) {
+    for(;;);
+    return;
+}
+
+
+void msp430f5438a_radio_spi_init(void) {
+    for(;;);
+    return;
+}
+
+
+void msp430f5438a_radio_gpio_init(void) {
+    for(;;);
+    return;
+}
+
