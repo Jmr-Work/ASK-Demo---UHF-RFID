@@ -1,26 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
     <fileVersion>2</fileVersion>
-    <fileChecksum>3428276810</fileChecksum>
+    <fileChecksum>1383992352</fileChecksum>
     <configuration>
         <name>Debug</name>
         <outputs>
             <file>$PROJ_DIR$\main.c</file>
             <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
             <file>$PROJ_DIR$\Debug\Obj\ask_demo.pbd</file>
+            <file>$PROJ_DIR$\..\globals.h</file>
             <file>$PROJ_DIR$\Debug\Obj\main.r51</file>
             <file>$PROJ_DIR$\Debug\Exe\ask_demo.d51</file>
+            <file>$PROJ_DIR$\..\main.c</file>
             <file>$PROJ_DIR$\Debug\Obj\main.__cstat.et</file>
             <file>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_cc2541F128_banked.xcl</file>
             <file>$TOOLKIT_DIR$\lib\clib\cl-pli-blxd-1e16x01.r51</file>
             <file>$PROJ_DIR$\Debug\List\ask_demo.map</file>
+            <file>$PROJ_DIR$\..\lib\commands.h</file>
+            <file>$TOOLKIT_DIR$\inc\clib\stdarg.h</file>
+            <file>$PROJ_DIR$\..\bsp\radios\cc12xx.h</file>
+            <file>$TOOLKIT_DIR$\inc\clib\stdio.h</file>
+            <file>$TOOLKIT_DIR$\inc\clib\string.h</file>
+            <file>$PROJ_DIR$\..\sys\test\rfid_test.h</file>
+            <file>$PROJ_DIR$\..\bsp\radios\cc1175_reg_config.h</file>
+            <file>$PROJ_DIR$\..\bsp\radio.h</file>
+            <file>$TOOLKIT_DIR$\inc\clib\stdlib.h</file>
+            <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
+            <file>$TOOLKIT_DIR$\inc\clib\stdint.h</file>
+            <file>$PROJ_DIR$\..\bsp\radios\cc1200_reg_config.h</file>
+            <file>$PROJ_DIR$\..\bsp\radios\cc1200.h</file>
+            <file>$PROJ_DIR$\..\bsp\targets\cc2541_demo.h</file>
+            <file>$PROJ_DIR$\..\bsp\radios\temp_radio.h</file>
+            <file>$PROJ_DIR$\..\lib\rfid.h</file>
+            <file>$TOOLKIT_DIR$\inc\clib\stdbool.h</file>
+            <file>$PROJ_DIR$\..\lib\signal.h</file>
+            <file>$PROJ_DIR$\..\bsp\mcu.h</file>
+            <file>$PROJ_DIR$\..\bsp\targets\cc2541.h</file>
         </outputs>
         <file>
             <name>$PROJ_DIR$\main.c</name>
             <outputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 3</file>
+                    <file> 4</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
@@ -28,7 +50,7 @@
                 </tool>
                 <tool>
                     <name>__cstat</name>
-                    <file> 5</file>
+                    <file> 7</file>
                 </tool>
             </outputs>
         </file>
@@ -37,13 +59,36 @@
             <outputs>
                 <tool>
                     <name>XLINK</name>
-                    <file> 8</file>
+                    <file> 10</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>XLINK</name>
-                    <file> 6 3 7</file>
+                    <file> 8 4 9</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\main.c</name>
+            <outputs>
+                <tool>
+                    <name>ICC8051</name>
+                    <file> 4</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 1</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICC8051</name>
+                    <file> 3 19 20 21 27 29 30 24 18 23 13 22 25 17 28 14 12 15 26 11 16</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 23 28 21 29 25 3 20 30 19 27 18 22 26 24 13 17 14 15 12 11 16</file>
                 </tool>
             </inputs>
         </file>
@@ -52,7 +97,7 @@
             <outputs>
                 <tool>
                     <name>XLINK</name>
-                    <file> 4 8</file>
+                    <file> 5 10</file>
                 </tool>
             </outputs>
         </file>

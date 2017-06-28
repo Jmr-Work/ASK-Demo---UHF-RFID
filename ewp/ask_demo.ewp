@@ -137,7 +137,7 @@
                 </option>
                 <option>
                     <name>RTLibraryPath</name>
-                    <state>$TOOLKIT_DIR$\LIB\CLIB\cl-pli-nsid-1e16x01.r51</state>
+                    <state>$TOOLKIT_DIR$\LIB\CLIB\cl-pli-blxd-1e16x01.r51</state>
                 </option>
                 <option>
                     <name>Input variant</name>
@@ -817,7 +817,7 @@
                 </option>
                 <option>
                     <name>XclFile</name>
-                    <state>$TOOLKIT_DIR$\config\devices\_generic\lnk51ew_8052.xcl</state>
+                    <state>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_CC2541F128_banked.xcl</state>
                 </option>
                 <option>
                     <name>XclFileSlave</name>
@@ -945,7 +945,7 @@
                 </option>
                 <option>
                     <name>ExtraOutputFile</name>
-                    <state>templproj.sim</state>
+                    <state>ask_demo.sim</state>
                 </option>
                 <option>
                     <name>ExtraOutputFormat</name>
@@ -2251,6 +2251,9 @@
         </group>
     </group>
     <file>
-        <name>$PROJ_DIR$\main.c</name>
+        <name>$PROJ_DIR$\..\globals.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\..\main.c</name>
     </file>
 </project>

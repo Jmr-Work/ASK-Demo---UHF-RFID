@@ -2125,6 +2125,9 @@
         </group>
     </group>
     <file>
-        <name>$PROJ_DIR$\main.c</name>
+        <name>$PROJ_DIR$\..\globals.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\..\main.c</name>
     </file>
 </project>

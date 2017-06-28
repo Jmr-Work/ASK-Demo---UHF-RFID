@@ -49,8 +49,11 @@
         <FreqHi>0</FreqHi>
     </Simulator>
     <DebugChecksum>
-        <Checksum>3636573575</Checksum>
+        <Checksum>65729590</Checksum>
     </DebugChecksum>
+    <CallStack>
+        <ShowArgs>0</ShowArgs>
+    </CallStack>
     <Breakpoints>
         <Count>0</Count>
     </Breakpoints>
@@ -71,7 +74,4 @@
         <Count>0</Count>
         <SuppressDialog>0</SuppressDialog>
     </Aliases>
-    <CallStack>
-        <ShowArgs>0</ShowArgs>
-    </CallStack>
 </settings>
