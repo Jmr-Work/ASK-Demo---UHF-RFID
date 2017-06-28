@@ -60,7 +60,7 @@ int main(void) {
 	sys_init();
 	
 	//Run Demo
-//!	mcu_demo();
+	mcu_demo();
 }
 
 
@@ -73,23 +73,23 @@ int main(void) {
 void sys_init(void) {
 
     //MCU
-//!    mcu_init();
+    mcu_init();
 
     //Clocks
-//!    clocks_init();
+    clocks_init();
 
     //GPIO
-//!    gpio_init();
+    gpio_init();
 
     //Periphs
-//!    timers_init();
-//!    radio_spi_init();
+    timers_init();
+    radio_spi_init();
 
     //Board
-//!    radio_init();
+    radio_init();
 
     //Begin Operations
-//!    mcu_enable_interrupts();
+    mcu_enable_interrupts();
 
     return;
 }

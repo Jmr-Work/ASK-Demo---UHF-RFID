@@ -28,27 +28,27 @@
 
 
 SelectCommand sel_cmd = {
-                        .command = 0b1010,
-                        .target = 0b011,
-                        .action = 0b000,
-                        .membank = 0b01,
-                        .pointer = 0b00000000,
-                        .length = 0b00010000,
-                        .mask = 0x0000,
-                        .truncate = 0b0,
-                        .crc16 = 0x0000
+                        .command   = b1010,
+                        .target    = b011,
+                        .action    = b000,
+                        .membank   = b01,
+                        .pointer   = b00000000,
+                        .length    = b00010000,
+                        .mask      = 0x0000,
+                        .truncate  = b0,
+                        .crc16     = 0x0000
                         };
 
 QueryCommand query_cmd = {
-                          .command = 0b1000,
-                               .dr = 0b0,
-                                .m = 0b00,
-                            .trext = 0b1,
-                              .sel = 0b00,
-                          .session = 0b11,
-                           .target = 0b1,
-                                .q = 0b0000,
-                             .crc5 = 0b00000
+                          .command = b1000,
+                               .dr = b0,
+                                .m = b00,
+                            .trext = b1,
+                              .sel = b00,
+                          .session = b11,
+                           .target = b1,
+                                .q = b0000,
+                             .crc5 = b00000
                           };
 
 //Signal Vars

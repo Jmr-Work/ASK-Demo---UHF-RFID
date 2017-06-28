@@ -33,6 +33,8 @@
 /************************************************************************************************************************************/
 #include "cc12xx.h"
 
+#include "../radio.h"                                                       /* temp for integration dev                             */
+
 
 /************************************************************************************************************************************/
 /** @fcn        rfStatus_t trxSpiCmdStrobe(uint8_t cmd)
@@ -209,6 +211,9 @@ void cc12xx_configure(void) {
  *  @param      [in]    (uint16_t) addr - address
  *  @param      [in]    (uint8_t) data  - data to write
  *
+ *  @section    Opens
+ *      re-enable for(;;) catch
+ *
  */
 /************************************************************************************************************************************/
 void cc12xx_reg_write(uint16_t addr, uint8_t data) {
@@ -226,7 +231,7 @@ void cc12xx_reg_write(uint16_t addr, uint8_t data) {
 
     //Validate
     if(data != rd[1]) {
-        for(;;);                                                            /* catch & spin                                         */
+//!        for(;;);                                                            /* catch & spin                                         */
     }
 
     return;
