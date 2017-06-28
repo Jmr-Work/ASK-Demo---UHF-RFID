@@ -15,7 +15,7 @@
 
 
 //Radio
-#include "../radios/cc1200.h"
+#include "../radio.h"
 
 
 //Globals

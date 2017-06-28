@@ -10,14 +10,14 @@
  *  @vocab
  *          The vocabulary 'cc12xx' here denotes this library, not the TI part family (e.g. CC1200)
  *
- *  @section    Un-verified Routines
+ *  @section    Unverified Routines
  *          All
  *
  *  @section    Verified Routines
  *          x
  *
  *  @section    Opens
- *          CC1175 integration
+ *          x
  *
  *  @target     MSP430F5438A/CC2541/MSP430F5529
  *  @board      TrxEB/CC2541EMK/5529-Launchpad
@@ -62,25 +62,20 @@ rfStatus_t trxSpiCmdStrobe(uint8_t cmd) {
     return(rc);
 }
 
-
-/******************************************************************************
- * @fn          cc120xSpiReadReg
+/************************************************************************************************************************************/
+/** @fcn        rfStatus_t cc12xxSpiReadReg(uint16_t addr, uint8_t *pData, uint8_t len)
+ *  @brief      read value(s) from config/status/extended radio register(s)
+ *              - If len  = 1: Reads a single register
+ *              - if len != 1: Reads len register values in burst mode
  *
- * @brief       Read value(s) from config/status/extended radio register(s).
- *              If len  = 1: Reads a single register
- *              if len != 1: Reads len register values in burst mode
+ *  @param      [in] (uint16_t)  addr  - address of first register to read
+ *  @param      [in] (uint8_t *) pData - pointer to data array where read bytes are saved
+ *  @param      [in] (uint8_t)   len   - number of bytes to read
  *
- * input parameters
- *
- * @param       addr   - address of first register to read
- * @param       *pData - pointer to data array where read bytes are saved
- * @param       len   - number of bytes to read
- *
- * output parameters
- *
- * @return      rfStatus_t
+ *  @return     rfStatus_t
  */
-rfStatus_t cc120xSpiReadReg(uint16_t addr, uint8_t *pData, uint8_t len) {
+/************************************************************************************************************************************/
+rfStatus_t cc12xxSpiReadReg(uint16_t addr, uint8_t *pData, uint8_t len) {
 
   uint8_t tempExt  = (uint8_t)(addr>>8);
   uint8_t tempAddr = (uint8_t)(addr & 0x00FF);
@@ -94,12 +89,189 @@ rfStatus_t cc120xSpiReadReg(uint16_t addr, uint8_t *pData, uint8_t len) {
 
   /* Decide what register space is accessed */
   if(!tempExt) {
-      rc = trx8BitRegAccess((RADIO_BURST_ACCESS|RADIO_READ_ACCESS),tempAddr,pData,len);
+      rc = trx8BitRegAccess((RADIO_BURST_ACCESS|RADIO_READ_ACCESS), tempAddr, pData, len);
   }
   else if (tempExt == 0x2F) {
-      rc = trx16BitRegAccess((RADIO_BURST_ACCESS|RADIO_READ_ACCESS),tempExt,tempAddr,pData,len);
+      rc = trx16BitRegAccess((RADIO_BURST_ACCESS|RADIO_READ_ACCESS), tempExt, tempAddr, pData, len);
   }
   return (rc);
+}
+
+
+/************************************************************************************************************************************/
+/** @fcn        rfStatus_t cc112xSpiWriteReg(uint16_t addr, uint8_t*pData, uint8_t len)
+ *  @brief      Write value(s) to config/status/extended radio register(s).
+ *              If len  = 1: Writes a single register
+ *              if len  > 1: Writes len register values in burst mode
+ *
+ *  @param      addr   - address of first register to write
+ *  @param      *pData - pointer to data array that holds bytes to be written
+ *  @param      len    - number of bytes to write
+ *
+ *  @return     rfStatus_t
+ */
+/************************************************************************************************************************************/
+rfStatus_t cc112xSpiWriteReg(uint16_t addr, uint8_t*pData, uint8_t len) {
+
+    uint8_t tempExt  = (uint8_t)(addr>>8);
+    uint8_t tempAddr = (uint8_t)(addr & 0x00FF);
+    uint8_t rc;
+
+    /* Checking if this is a FIFO access - returns chip not ready */
+    if((CC112X_SINGLE_TXFIFO<=tempAddr)&&(tempExt==0)) return STATUS_CHIP_RDYn_BM;
+
+    /* Decide what register space is accessed */
+    if(!tempExt) {
+        rc = trx8BitRegAccess((RADIO_BURST_ACCESS|RADIO_WRITE_ACCESS), tempAddr, pData, len);
+    }
+    else if (tempExt == 0x2F) {
+        rc = trx16BitRegAccess((RADIO_BURST_ACCESS|RADIO_WRITE_ACCESS), tempExt, tempAddr, pData, len);
+    }
+
+    return (rc);
+}
+
+
+/************************************************************************************************************************************/
+/** @fcn        rfStatus_t cc112xSpiWriteTxFifo(uint8 *pData, uint8 len)
+ *  @brief       Write pData to radio transmit FIFO.
+ *
+ *  @param       *pData - pointer to data array that is written to TX FIFO
+ *  @param       len    - Length of data array to be written
+ *
+ *  @return      rfStatus_t
+ */
+/************************************************************************************************************************************/
+rfStatus_t cc112xSpiWriteTxFifo(uint8_t *pData, uint8_t len) {
+
+    uint8_t rc;
+
+    rc = trx8BitRegAccess(0x00,CC112X_BURST_TXFIFO, pData, len);
+
+    return (rc);
+}
+
+
+/************************************************************************************************************************************/
+/** @fcn        uint8_t cc12xx_queryTxFifo(void)
+ *  @brief      query the TX FIFO for #elements open for insertion
+ *
+ *  @pre        TX FIFO is initialized
+ *
+ *  @return     (uint32_t) open count
+ */
+/************************************************************************************************************************************/
+uint8_t cc12xx_queryTxFifo(void) {
+
+    uint8_t fill_ct, open_ct;
+
+    cc12xxSpiReadReg(CC120X_NUM_TXBYTES, &fill_ct, 1);
+
+    if(fill_ct < 128) {
+        open_ct = 127 - fill_ct;
+    } else {
+        open_ct = 0;
+    }
+
+    return open_ct;
+}
+
+
+/************************************************************************************************************************************/
+/** @fcn        void cc12xx_configure(void)
+ *  @brief      configure the radio for use
+ *
+ *  @pre        radio was reset
+ *  @post       radio is ready for operation
+ */
+/************************************************************************************************************************************/
+void cc12xx_configure(void) {
+
+    uint16_t i;
+
+    for(i=0; i<NUM_PREFERRED_SETTINGS_CC1200; i++) {
+
+        uint8_t data = preferredSettings[i].data;
+
+        uint16_t addr = preferredSettings[i].addr;
+
+        cc12xx_reg_write(addr, data);
+    }
+
+    return;
+}
+
+
+/************************************************************************************************************************************/
+/** @fcn        void cc12xx_reg_write(uint16_t addr, uint8_t data)
+ *  @brief      apply register values to configure the radio for use
+ *
+ *  @param      [in]    (uint16_t) addr - address
+ *  @param      [in]    (uint8_t) data  - data to write
+ *
+ */
+/************************************************************************************************************************************/
+void cc12xx_reg_write(uint16_t addr, uint8_t data) {
+
+    uint8_t rd[2];
+
+    //Read
+    cc12xxSpiReadReg(addr, &rd[0], 1);
+
+    //Write
+    cc112xSpiWriteReg(addr, &data, 1);
+
+    //Read
+    cc12xxSpiReadReg(addr, &rd[1], 1);
+
+    //Validate
+    if(data != rd[1]) {
+        for(;;);                                                            /* catch & spin                                         */
+    }
+
+    return;
+}
+
+
+/************************************************************************************************************************************/
+/** @fcn        void cc12xx_reg_read(uint16_t addr, uint8_t *dataPtr)
+ *  @brief      clean wrapper to read a single register value
+ *
+ *  @param      [in]    (uint16_t)  addr     - address
+ *  @param      [in]    (uint8_t *) dataPtr  - where to store value
+ *
+ */
+/************************************************************************************************************************************/
+void cc12xx_reg_read(uint16_t addr, uint8_t *dataPtr) {
+
+    cc12xxSpiReadReg(addr, dataPtr, 1);
+
+    return;
+}
+
+
+/************************************************************************************************************************************/
+/** @fcn        bool cc1200_verifyPartNumber(void)
+ *  @brief      is the register value for [PARTNUMBER] match the CC1200?
+ *
+ *  @return     (bool) if Part Number is valid for CC1200
+ */
+/************************************************************************************************************************************/
+bool cc12xx_verifyPartNumber(void) {
+
+    uint16_t i;
+
+    uint8_t part_number;
+
+    //small reset delay, cc12xx is non-deterministic on Reg-read values immediately after reset
+    for(i=0; i<1000; i++) {
+        asm(" NOP");
+    }
+
+    //Check Part Number
+    cc12xxSpiReadReg(CC120X_PARTNUMBER, &part_number, 1);
+
+    return (part_number == CHIP_PARTNUMBER_UHF_ID);
 }
 
 
@@ -177,60 +349,6 @@ rfStatus_t trx16BitRegAccess(uint8_t accessType, uint8_t extAddr, uint8_t regAdd
 
 
 /************************************************************************************************************************************/
-/** @fcn        rfStatus_t cc112xSpiWriteReg(uint16_t addr, uint8_t*pData, uint8_t len)
- *  @brief      Write value(s) to config/status/extended radio register(s).
- *              If len  = 1: Writes a single register
- *              if len  > 1: Writes len register values in burst mode
- *
- *  @param      addr   - address of first register to write
- *  @param      *pData - pointer to data array that holds bytes to be written
- *  @param      len    - number of bytes to write
- *
- *  @return     rfStatus_t
- */
-/************************************************************************************************************************************/
-rfStatus_t cc112xSpiWriteReg(uint16_t addr, uint8_t*pData, uint8_t len) {
-
-    uint8_t tempExt  = (uint8_t)(addr>>8);
-    uint8_t tempAddr = (uint8_t)(addr & 0x00FF);
-    uint8_t rc;
-
-    /* Checking if this is a FIFO access - returns chip not ready */
-    if((CC112X_SINGLE_TXFIFO<=tempAddr)&&(tempExt==0)) return STATUS_CHIP_RDYn_BM;
-
-    /* Decide what register space is accessed */
-    if(!tempExt) {
-        rc = trx8BitRegAccess((RADIO_BURST_ACCESS|RADIO_WRITE_ACCESS),tempAddr,pData,len);
-    }
-    else if (tempExt == 0x2F) {
-        rc = trx16BitRegAccess((RADIO_BURST_ACCESS|RADIO_WRITE_ACCESS),tempExt,tempAddr,pData,len);
-    }
-
-    return (rc);
-}
-
-
-/************************************************************************************************************************************/
-/** @fcn        rfStatus_t cc112xSpiWriteTxFifo(uint8 *pData, uint8 len)
- *  @brief       Write pData to radio transmit FIFO.
- *
- *  @param       *pData - pointer to data array that is written to TX FIFO
- *  @param       len    - Length of data array to be written
- *
- *  @return      rfStatus_t
- */
-/************************************************************************************************************************************/
-rfStatus_t cc112xSpiWriteTxFifo(uint8_t *pData, uint8_t len) {
-
-    uint8_t rc;
-
-    rc = trx8BitRegAccess(0x00,CC112X_BURST_TXFIFO, pData, len);
-
-    return (rc);
-}
-
-
-/************************************************************************************************************************************/
 /** @fcn        void trxReadWriteBurstSingle(uint8_t addr, uint8_t *pData, uint16_t len)
  *  @brief      When the address byte is sent to the SPI slave, the next byte communicated is the data to be written or read. The
  *              address byte that holds information about read/write -and single/burst-access is provided to this function
@@ -284,128 +402,5 @@ void trxReadWriteBurstSingle(uint8_t addr, uint8_t *pData, uint16_t len) {
     }
 
     return;
-}
-
-
-/************************************************************************************************************************************/
-/** @fcn        uint8_t cc12xx_queryTxFifo(void)
- *  @brief      query the TX FIFO for #elements open for insertion
- *
- *  @pre        TX FIFO is initialized
- *
- *  @return     (uint32_t) open count
- */
-/************************************************************************************************************************************/
-uint8_t cc12xx_queryTxFifo(void) {
-
-    uint8_t fill_ct, open_ct;
-
-    cc120xSpiReadReg(CC120X_NUM_TXBYTES, &fill_ct, 1);
-
-    if(fill_ct < 128) {
-        open_ct = 127 - fill_ct;
-    } else {
-        open_ct = 0;
-    }
-
-    return open_ct;
-}
-
-
-/************************************************************************************************************************************/
-/** @fcn        void cc12xx_configure(void)
- *  @brief      configure the radio for use
- *
- *  @pre        radio was reset
- *  @post       radio is ready for operation
- */
-/************************************************************************************************************************************/
-void cc12xx_configure(void) {
-
-    uint16_t i;
-
-    for(i=0; i<NUM_PREFERRED_SETTINGS_CC1200; i++) {
-
-        uint8_t data = preferredSettings[i].data;
-
-        uint16_t addr = preferredSettings[i].addr;
-
-        cc12xx_reg_write(addr, data);
-    }
-
-    return;
-}
-
-
-/************************************************************************************************************************************/
-/** @fcn        void cc12xx_reg_write(uint16_t addr, uint8_t data)
- *  @brief      apply register values to configure the radio for use
- *
- *  @param      [in]    (uint16_t) addr - address
- *  @param      [in]    (uint8_t) data  - data to write
- *
- */
-/************************************************************************************************************************************/
-void cc12xx_reg_write(uint16_t addr, uint8_t data) {
-
-    uint8_t rd[2];
-
-    //Read
-    cc120xSpiReadReg(addr, &rd[0], 1);
-
-    //Write
-    cc112xSpiWriteReg(addr, &data, 1);
-
-    //Read
-    cc120xSpiReadReg(addr, &rd[1], 1);
-
-    //Validate
-    if(data != rd[1]) {
-        for(;;);                                                            /* catch & spin                                         */
-    }
-
-    return;
-}
-
-
-/************************************************************************************************************************************/
-/** @fcn        void cc12xx_reg_read(uint16_t addr, uint8_t *dataPtr)
- *  @brief      clean wrapper to read a single register value
- *
- *  @param      [in]    (uint16_t)  addr     - address
- *  @param      [in]    (uint8_t *) dataPtr  - where to store value
- *
- */
-/************************************************************************************************************************************/
-void cc12xx_reg_read(uint16_t addr, uint8_t *dataPtr) {
-
-    cc120xSpiReadReg(addr, dataPtr, 1);
-
-    return;
-}
-
-
-/************************************************************************************************************************************/
-/** @fcn        bool cc1200_verifyPartNumber(void)
- *  @brief      is the register value for [PARTNUMBER] match the CC1200?
- *
- *  @return     (bool) if Part Number is valid for CC1200
- */
-/************************************************************************************************************************************/
-bool cc12xx_verifyPartNumber(void) {
-
-    uint16_t i;
-
-    uint8_t part_number;
-
-    //small reset delay, cc12xx is non-deterministic on Reg-read values immediately after reset
-    for(i=0; i<1000; i++) {
-        asm(" NOP");
-    }
-
-    //Check Part Number
-    cc120xSpiReadReg(CC120X_PARTNUMBER, &part_number, 1);
-
-    return (part_number == CHIP_PARTNUMBER_UHF_ID);
 }
 

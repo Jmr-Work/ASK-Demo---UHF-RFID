@@ -20,21 +20,20 @@
  *      develop reg api & lib
  *
  *  @section    References
- *      1 - ISO/IEC 18000-6:C, Second Edition
- *      2 - ISO 18000-6C Gen Notes
- *      3 - CC1175 Datasheet
- *      4 - CC1175 User's Guide
- *      5 - CC1200 Datasheet
- *      6 - CC1200 User's Guide
- *      7 - CC1175 EMK Design Files
- *      8 - CC1200 EMK Design Files
+ *      [1] - ISO/IEC 18000-6:C, Second Edition
+ *      [2] - ISO 18000-6C Gen Notes
+ *      [3] - CC1175 Datasheet
+ *      [4] - CC1175 User's Guide
+ *      [5] - CC1200 Datasheet
+ *      [6] - CC1200 User's Guide
+ *      [7] - CC1175 EMK Design Files
+ *      [8] - CC1200 EMK Design Files
  *
  *  @section    Opens
  *          deprecate temp_radio.h                          (correct header format in consideration)
  *          cleanup cc12xx.h header '<TEMP>' section
  *          validate packet contents
  *          validate symbol timing
- *          migrate clocks, timers & gpio to a single file  (bsp.c, to consider)
  *
  *  @section    Legal Disclaimer
  *          All contents of this source file and/or any other Misc. Product related source files are the explicit property of

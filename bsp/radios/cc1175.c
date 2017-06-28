@@ -68,7 +68,7 @@ void cc1175_init(void) {
 
     // Wait for calibration to be done (radio back in IDLE state)
     do {
-      cc120xSpiReadReg(CC112X_MARCSTATE, &marcState, 1);                    /* CC1200 - CC120X_MARCSTATE                            */
+      cc12xxSpiReadReg(CC112X_MARCSTATE, &marcState, 1);                    /* CC1200 - CC120X_MARCSTATE                            */
     } while (marcState != 0x41);
 
     // Put radio in powerdown to save power

@@ -478,7 +478,7 @@ typedef uint8_t rfStatus_t;
 
 //Globals
 extern rfStatus_t trxSpiCmdStrobe(uint8_t cmd);
-extern rfStatus_t cc120xSpiReadReg(uint16_t addr, uint8_t *pData, uint8_t len);
+extern rfStatus_t cc12xxSpiReadReg(uint16_t addr, uint8_t *pData, uint8_t len);
 
 extern rfStatus_t trx8BitRegAccess(uint8_t accessType, uint8_t addrByte, uint8_t *pData, uint16_t len);
 extern rfStatus_t trx16BitRegAccess(uint8_t accessType, uint8_t extAddr, uint8_t regAddr, uint8_t *pData, uint8_t len);

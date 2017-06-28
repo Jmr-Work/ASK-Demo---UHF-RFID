@@ -15,8 +15,7 @@
 
 
 //Radio
-#include "../radios/cc1200.h"
-#include "../radios/cc1200_reg_config.h"
+#include "../radio.h"
 
 
 //Definitions
