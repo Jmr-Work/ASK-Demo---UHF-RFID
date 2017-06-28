@@ -3,8 +3,8 @@
 
 
 //Radio Selection
-//#define RADIO_SEL_CC1175                                                  /* Uhf-Id's target radio                                */
-#define RADIO_SEL_CC1200                                                    /* Entry-level radio with similar features              */
+#define RADIO_SEL_CC1175                                                  /* Uhf-Id's target radio                                */
+//#define RADIO_SEL_CC1200                                                    /* Entry-level radio with similar features              */
 
 
 //Project
@@ -35,8 +35,9 @@ extern void radio_run_loop(void);
 extern void radio_run_waitForRoom(void);
 extern void radio_run_prepForNext(void);
 
-#define radio_spi_init  mcu_radio_spi_init                                  /* for cleanliness of presentation in main.c            */
-
+#define radio_gpio_init     mcu_radio_gpio_init                             /* for cleanliness of presentation in main.c            */
+#define radio_spi_init      mcu_radio_spi_init
+#define radio_spi_tx        mcu_radio_spi_tx
 
 #endif /* BSP_RADIO_H_ */
 

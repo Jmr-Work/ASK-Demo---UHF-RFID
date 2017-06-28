@@ -80,6 +80,7 @@ void sys_init(void) {
 
     //GPIO
     gpio_init();
+    radio_gpio_init();
 
     //Periphs
     timers_init();
