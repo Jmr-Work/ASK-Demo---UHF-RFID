@@ -98,13 +98,9 @@ void signal_generate(void) {
 /************************************************************************************************************************************/
 void signal_grab_next(void) {
 
-    P4OUT |= BIT5;
-
     memcpy(&tx_buff[0], &data_arr[next_grab_ind], TX_BUFF_SIZE*sizeof(uint8_t));      /* @open   validate in depth                  */
 
     next_grab_ind = (next_grab_ind + TX_BUFF_SIZE) % signal_size;
-
-    P4OUT &= ~BIT5;
 
     return;
 }

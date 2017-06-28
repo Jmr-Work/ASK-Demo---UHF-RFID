@@ -2,13 +2,15 @@
 #define TARGETS_MCU_H_
 
 //Processor Selection                                                         (done this way to make project visually cleanest)
-//#define   TARGET_SEL_CC2541                                                /* final target                                         */
-#define     TARGET_SEL_MSP430F5438A                                          /* starting dev platform                                */
+#define   TARGET_SEL_CC2541                                                 /* final target                                         */
+//#define     TARGET_SEL_MSP430F5438A                                       /* starting dev platform                                */
 //#define   TARGET_SEL_MSP430F5529                                           /* shared dev example-platform                          */
+
 
 //Project
 #ifdef TARGET_SEL_MSP430F5438A
     #include "targets/msp430f5438a.h"
+    #include "targets/msp430f5438a_demo.h"
     #define mcu_radio_spi_begin                 msp430f5438a_radio_spi_begin
     #define mcu_radio_spi_tx                    msp430f5438a_radio_spi_tx
     #define mcu_radio_spi_wait_done             msp430f5438a_radio_spi_wait_done
@@ -29,6 +31,31 @@
     #define clocks_init                         msp430f5438a_clocks_init
     #define timers_init                         msp430f5438a_timers_init
 #endif
+#ifdef TARGET_SEL_CC2541
+    #include "targets/cc2541.h"
+    #include "targets/cc2541_demo.h"
+    #define mcu_radio_spi_begin                 cc2541_radio_spi_begin
+    #define mcu_radio_spi_tx                    cc2541_radio_spi_tx
+    #define mcu_radio_spi_wait_done             cc2541_radio_spi_wait_done
+    #define mcu_radio_spi_rx                    cc2541_radio_spi_rx
+    #define mcu_radio_spi_wait_miso_low         cc2541_radio_spi_wait_miso_low
+    #define mcu_radio_spi_end                   cc2541_radio_spi_end
+    #define mcu_radio_hw_reset                  cc2541_radio_hw_reset
+    #define mcu_radio_sw_reset                  cc2541_radio_sw_reset
+    #define mcu_radio_spi_wait_for_miso_low     cc2541_radio_spi_wait_for_miso_low
+    #define mcu_radio_spi_init                  cc2541_radio_spi_init
+    #define mcu_radio_gpio_init                 cc2541_radio_gpio_init
+
+    #define mcu_init                            cc2541_init
+    #define mcu_enable_interrupts               cc2541_enable_interrupts
+    #define mcu_demo                            cc2541_demo
+
+    #define gpio_init                           cc2541_gpio_init
+    #define clocks_init                         cc2541_clocks_init
+    #define timers_init                         cc2541_timers_init
+#endif
+
+
 
 
 //Globals
