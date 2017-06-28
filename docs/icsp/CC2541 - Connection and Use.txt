@@ -1,0 +1,34 @@
+@brief 		discussion & record of how to connect the CC-Debugger to the CC2541
+@details	specific example to CC2541EMK on TrxEB provided
+@author		Justin Reina
+@date 		6/27/17
+
+@note 		this is non-trivial and has huge amounts of risk for wasted time, careful!!
+
+@target     CC2541F128 (CC2541EM Rev 1.1.0.1)
+@board      TrxEB-1    (SmartRF TrxEB Rev 1.7.0.5) 
+
+@section 	Debug Connection
+		DD		- CC.4 / EMK.P1.10 / TrxEB.P7.8    (P2.1)
+		DC		- CC.3 / EMK.P1.12 / TrxEB.P7.4	   (P2.2)
+		RSTn	- CC.7 / EMK.P2.15 / TrxEB.P7.10		
+		Vs		- CC.2 / EMK.P2.7* / TrxEB.RF_PWR
+		GND		- CC.1 / EMK.P1.1* / TrxEB.P7.20
+		
+		
+@section 	Connection Procedure
+	1. Flast FullStop_r1 to TrxEB (CC1200 WS or misc/FullStop.zip)
+	2. Disconnect MSP-FET
+	3. Connect CC-Debugger (see 'Firmware' in 'CC-Debugger Connection.txt')
+		*Debugger only monitors Vcc
+	4. Validate CC2541 in SmartRF Studio
+		Insert EMK
+		Apply PSU=3.3V
+		Press 'Reset' on CC-Debugger (Green light should illuminate)
+		Press 'Refresh' in SmartRF Studio ('CC Debugger () - CC2541' should appear)
+		Open CC2541 Device Control Panel
+		Validate you can Tx Packets ('Start' -> Sent Packets)
+	5. Debug & Validate ref_gpio 
+		CC2541-P0.7 recommended, on TrxEB-P7.19
+		
+	@post	You can now successfully debug & deploy FW to CC2541

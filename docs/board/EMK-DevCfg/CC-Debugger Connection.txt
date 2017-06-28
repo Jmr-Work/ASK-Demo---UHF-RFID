@@ -1,0 +1,36 @@
+@brief 		Outline and specify how to connect the CC-Debugger for ICSP to CC2541
+
+@section 	TrxEB Connection 
+	DD - P2.1 -       (P1.10) / (P7.8)		- Purple
+	DC - P2.2 -       (P1.12) / (P7.4) 		- Orange
+	RESET_N - RESET_N (P2.15) / (P7.10)		- Brown
+	
+	VCC - V_RF
+	GND - (P7.20)
+
+@section 	Initial Procedure
+	Load 'FullStop_r1' to TrxEB
+	All Jumpers on, S2:Enable, S1:SmartRF
+	Remove V_RF Jumper (P15)
+	Power Off (MAIN POWER->OFF)
+	Change P17 to 'USB'
+	Connect USB	
+	Power On (MAIN POWER->ON)
+	Apply 'RESET MCU' & 'RESET USB'
+	Open SmartRF Studio7
+	Navigate to '2.4 GHz'
+	should appear within 1-2 seconds after power on
+	Close SmartRF Studio
+	Unplug USB
+
+
+@section 	Deploy Firmware
+	Load 'FullStop_r1' to TrxEB
+	All Jumpers on, S2:Enable, S1:SmartRF
+	Remove V_RF Jumper (P15)
+	Power On (MAIN POWER->ON)
+	Apply Vcc=3.3V to V_RF]
+	Connect CC-Debugger (see section CC-Debugger wiring in -
+		docs\board\EMK-DevCfg\CC-Debugger Connection.txt
+	Validate SmartRF Studio reads the CC2541 (should be immediate on connection)
+	Run ref_gpio to validate connection, debug & GPIO access

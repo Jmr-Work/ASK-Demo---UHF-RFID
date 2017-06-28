@@ -1,18 +1,12 @@
 @section 	Rules
-	headers are jointly shared for local (e.g cc2541.c) & external (e.g. mcu.h) use, for simplicity of display and generation
-
+	x
 
 @section 	Opens
-	generation of new demo arch
+	x
 
 
 @section 	Demo Structure
-	The goal of the demo is to illustrate and use the RFID signal generation and RFID signal detection APIs
-	You should be able to select which MCU & Radio are used
-
-	The general arch of demo is sys_init (mcu, radio, board & var), signal_prep then signal_gen, with Rx placeholders inserted where
-	forecast
-
+	x
 
 @section 	MSP430F5438A Compilation Config
 	MSP430F5438A (Empty Project w/main.c)
@@ -22,3 +16,12 @@
 	Speed vs. Size: '1'
 	ULP+Advice: Off
 
+@section	CC2541 Compilation Config
+	New 8051 Project
+	Target CC2541F128
+		*Device -> Texas Instruments -> CC25xx -> 4x -> CC2541F128
+		*Default settings
+	Debugger
+		*Driver -> Texas Instruments
+		*Device Descriptor File->Override default:
+			"$TOOLKIT_DIR$\config\devices\Texas Instruments\ioCC2541F128.ddf"
