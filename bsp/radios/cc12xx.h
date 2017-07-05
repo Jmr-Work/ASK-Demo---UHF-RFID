@@ -13,6 +13,11 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+
+//CC12xx
+#include "cc12xx_reg_lib.h"
+
+
 //Typedefs
 typedef uint8_t rfStatus_t;
 

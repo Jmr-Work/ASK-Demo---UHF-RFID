@@ -21,8 +21,11 @@
  *          Misc. Company. Do not distribute. Do not copy.
  */
 /************************************************************************************************************************************/
-#include "msp430f5438a_demo.h"
+#include   "msp430f5438a_demo.h"
 
+//Globals
+extern void radio_reg_lib_test(void);                                       /* bug, direct copy from radio_test.h, not able to      */
+                                                                            /* #include "../../sys/test/radio_test.h", grrr....     */
 
 /************************************************************************************************************************************/
 /** @fcn        void msp430f5438a_demo(void)
@@ -44,6 +47,7 @@
 void msp430f5438a_demo(void) {
 
     uint16_t loop_ct = 0;
+    uint16_t i = 0;
 
     //Generate Waveform
     signal_generate();
@@ -52,7 +56,6 @@ void msp430f5438a_demo(void) {
     radio_run_init();
 
     for(;;) {
-
         P4OUT |= BIT7;                                                      /* BIT7 pulse: 101ms                                    */
 
         radio_run_loop();
@@ -66,6 +69,11 @@ void msp430f5438a_demo(void) {
         radio_run_prepForNext();
 
         loop_ct++;
+
+        if(i++ == 2) {
+            radio_reg_lib_test();
+            asm(" NOP");                                                    /* breakpoint loc                                       */
+        }
 
         P4OUT ^= BIT6;
     } /* end for(;;)            */

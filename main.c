@@ -30,12 +30,21 @@
  *      [8] - CC1200 EMK Design Files
  *
  *  @section    Opens
- *          deprecate temp_radio.h                          (correct header format in consideration)
+ *          deprecate temp_radio.h                              (correct header format in consideration)
+ *          code handles TX_FIFO open count correct             (15 is max val reported)
+ *          memory maps are not identical, config to support    (e.g. REG_PA_CFG1 in diff spots on CC1200 & CC1175)
+ *          reads the tx_fifo contents directly!                (at 0x3Fnn!)
+ *              also uses cc12xx_txFifoInfo.first & last to do reads of these vals
+ *              provides a 'read whole FIFO' fcn
  *          merge & squash radio api, and main() routines
  *          cleanup cc12xx.h header '<TEMP>' section
  *          validate packet contents
  *          validate symbol timing
- *          move msp linker file permanently to sys/        (ccs appears to require root)
+ *          move msp linker file permanently to sys/            (ccs appears to require root)
+ *          condense CC120X & CC112X defs in cc12xx.c into CC12XX final form
+ *          make sense of reported values in cc12xx_get_txFifoInfo()
+ *          disable frequency offset correction FREQOFF_CFG, or at least understand it fully
+ *          understand FS Out-of-lock detector & determine if in right config
  *
  *  @section    Legal Disclaimer
  *          All contents of this source file and/or any other Misc. Product related source files are the explicit property of

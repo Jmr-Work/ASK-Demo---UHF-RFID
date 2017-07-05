@@ -131,6 +131,16 @@
 			<locationURI>PARENT-2-PROJECT_LOC/bsp/radios/cc12xx.h</locationURI>
 		</link>
 		<link>
+			<name>bsp/radios/cc12xx_reg_lib.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/bsp/radios/cc12xx_reg_lib.c</locationURI>
+		</link>
+		<link>
+			<name>bsp/radios/cc12xx_reg_lib.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/bsp/radios/cc12xx_reg_lib.h</locationURI>
+		</link>
+		<link>
 			<name>bsp/radios/temp_radio.h</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/bsp/radios/temp_radio.h</locationURI>
