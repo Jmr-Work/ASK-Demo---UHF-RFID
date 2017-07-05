@@ -31,9 +31,11 @@
  *
  *  @section    Opens
  *          deprecate temp_radio.h                          (correct header format in consideration)
+ *          merge & squash radio api, and main() routines
  *          cleanup cc12xx.h header '<TEMP>' section
  *          validate packet contents
  *          validate symbol timing
+ *          move msp linker file permanently to sys/        (ccs appears to require root)
  *
  *  @section    Legal Disclaimer
  *          All contents of this source file and/or any other Misc. Product related source files are the explicit property of

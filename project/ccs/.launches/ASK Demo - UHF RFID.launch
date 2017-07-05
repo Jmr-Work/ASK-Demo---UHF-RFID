@@ -5,7 +5,7 @@
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROGRAM.TI MSP430 USB1/MSP430" value="${build_artifact:ASK Demo - UHF RFID}"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT.TI MSP430 USB1/MSP430" value="ASK Demo - UHF RFID"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_TARGET_CONFIG" value="${target_config_active_default:ASK Demo - UHF RFID}"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.TI MSP430 USB1/MSP430" value="D:/Documents\Ref\Platforms\TI\CC-Series\CC1200\Examples\workshop\ASK Demo - UHF RFID\Debug\ASK Demo - UHF RFID.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.TI MSP430 USB1/MSP430" value="D:/Documents\Ref\Platforms\TI\CC-Series\CC1200\Examples\workshop\ASK Demo - UHF RFID\project\ccs\Debug\ASK Demo - UHF RFID.out"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/ASK Demo - UHF RFID"/>
 </listAttribute>
