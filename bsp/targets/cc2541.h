@@ -1,9 +1,20 @@
 #ifndef TARGETS_CC2541_H_
 #define TARGETS_CC2541_H_
 
+//Project Definitions
+#define chip    (2541)                                                      /* required for IAR headers                             */
+
 
 //Libraries
 #include <stdint.h>
+
+//Processor
+#include "ioCC2541.h"                   /* @src C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\8051\inc\ioCC2541.h       */
+#include "support/ioCC254x_bitdef.h"
+#include "support/hal_types.h"
+
+//Radio
+#include "../radios/cc12xx.h"
 
 
 //Definitions
@@ -24,8 +35,31 @@
 #define BITE                   (0x4000)
 #define BITF                   (0x8000)
 
+//Radio Pins
+#define RADIO_PORT              (P0)
+#define RADIO_PORT_DIR          (P0DIR)
+#define RADIO_PORT_SEL          (P0SEL)
+#define RADIO_PIN_SCLK          (BIT5)
+#define RADIO_PIN_MOSI          (BIT3)
+#define RADIO_PIN_MISO          (BIT2)
+#define RADIO_PIN_CS_N          (BIT4)
+
+#define RADIO_RESET_PORT        (P1)
+#define RADIO_RESET_PDIR        (P1DIR)
+#define RADIO_RESET_PIN         (BIT2)
+
+//SPI Config
+#define SPI_BAUD_M              (0)                                         /* These values will give a baud rate of approx. 1.00   */
+#define SPI_BAUD_E              (15)                                        /* Mbps at 32 MHz system clock                          */
+
 
 //Globals
+extern void cc2541_init(void);
+extern void cc2541_clocks_init(void);
+extern void cc2541_gpio_init(void);
+extern void cc2541_timers_init(void);
+extern void cc2541_enable_interrupts(void);
+
 extern void cc2541_radio_spi_begin(void);
 extern void cc2541_radio_spi_tx(uint8_t x);
 extern void cc2541_radio_spi_wait_done(void);
@@ -37,11 +71,6 @@ extern void cc2541_radio_sw_reset(void);
 extern void cc2541_radio_spi_wait_for_miso_low(void);
 extern void cc2541_radio_spi_init(void);
 extern void cc2541_radio_gpio_init(void);
-extern void cc2541_init(void);
-extern void cc2541_enable_interrupts(void);
-extern void cc2541_gpio_init(void);
-extern void cc2541_clocks_init(void);
-extern void cc2541_timers_init(void);
 
 
 

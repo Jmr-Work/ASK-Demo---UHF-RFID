@@ -817,7 +817,7 @@
                 </option>
                 <option>
                     <name>XclFile</name>
-                    <state>$TOOLKIT_DIR$\config\devices\_generic\lnk51ew_8052.xcl</state>
+                    <state>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_CC2541F128_banked.xcl</state>
                 </option>
                 <option>
                     <name>XclFileSlave</name>
@@ -945,7 +945,7 @@
                 </option>
                 <option>
                     <name>ExtraOutputFile</name>
-                    <state>templproj.sim</state>
+                    <state>ask_demo.sim</state>
                 </option>
                 <option>
                     <name>ExtraOutputFormat</name>
@@ -2272,7 +2272,16 @@
             <group>
                 <name>support</name>
                 <file>
+                    <name>$PROJ_DIR$\..\..\bsp\targets\support\hal_types.h</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\..\bsp\targets\support\iar_bits.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\bsp\targets\support\iocc2541_jmr.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\bsp\targets\support\ioCC254x_bitdef.h</name>
                 </file>
             </group>
             <file>

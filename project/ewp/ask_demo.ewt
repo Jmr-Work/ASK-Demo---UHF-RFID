@@ -2146,7 +2146,16 @@
             <group>
                 <name>support</name>
                 <file>
+                    <name>$PROJ_DIR$\..\..\bsp\targets\support\hal_types.h</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\..\bsp\targets\support\iar_bits.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\bsp\targets\support\iocc2541_jmr.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\bsp\targets\support\ioCC254x_bitdef.h</name>
                 </file>
             </group>
             <file>
