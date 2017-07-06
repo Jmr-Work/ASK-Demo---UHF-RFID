@@ -3,8 +3,8 @@
  *  @brief      x
  *  @details    x
  *
- *  @target     MSP430F5438A/CC2541/MSP430F5529
- *  @board      TrxEB/CC2541EMK/5529-Launchpad
+ *  @target     CC2541
+ *  @board      CC2541EMK
  *
  *  @author     Justin Reina, Firmware Engineer, Misc. Company
  *  @created    6/19/17
@@ -25,7 +25,7 @@
 
 
 /************************************************************************************************************************************/
-/** @fcn        void msp430f5438a_init(void)
+/** @fcn        void cc2541_radio_spi_begin(void)
  *  @brief      x
  *  @details    x
  */
@@ -36,7 +36,7 @@ void cc2541_radio_spi_begin(void) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        void msp430f5438a_init(void)
+/** @fcn        void cc2541_radio_spi_tx(uint8_t x)
  *  @brief      x
  *  @details    x
  */
@@ -47,7 +47,7 @@ void cc2541_radio_spi_tx(uint8_t x) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        void msp430f5438a_init(void)
+/** @fcn        void cc2541_radio_spi_wait_done(void)
  *  @brief      x
  *  @details    x
  */
@@ -58,7 +58,7 @@ void cc2541_radio_spi_wait_done(void) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        void msp430f5438a_init(void)
+/** @fcn        uint8_t cc2541_radio_spi_rx(void)
  *  @brief      x
  *  @details    x
  */
@@ -69,7 +69,7 @@ uint8_t cc2541_radio_spi_rx(void) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        void msp430f5438a_init(void)
+/** @fcn        void cc2541_radio_spi_wait_miso_low(void)
  *  @brief      x
  *  @details    x
  */
@@ -80,7 +80,7 @@ void cc2541_radio_spi_wait_miso_low(void) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        void msp430f5438a_init(void)
+/** @fcn        void cc2541_radio_spi_end(void)
  *  @brief      x
  *  @details    x
  */
@@ -91,7 +91,7 @@ void cc2541_radio_spi_end(void) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        void msp430f5438a_init(void)
+/** @fcn        void cc2541_radio_hw_reset(void)
  *  @brief      x
  *  @details    x
  */
@@ -102,7 +102,7 @@ void cc2541_radio_hw_reset(void) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        void msp430f5438a_init(void)
+/** @fcn        void cc2541_radio_sw_reset(void)
  *  @brief      x
  *  @details    x
  */
@@ -113,7 +113,7 @@ void cc2541_radio_sw_reset(void) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        void msp430f5438a_init(void)
+/** @fcn        void cc2541_radio_spi_wait_for_miso_low(void)
  *  @brief      x
  *  @details    x
  */
@@ -124,7 +124,7 @@ void cc2541_radio_spi_wait_for_miso_low(void) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        void msp430f5438a_init(void)
+/** @fcn        void cc2541_radio_spi_init(void)
  *  @brief      x
  *  @details    x
  */
@@ -135,7 +135,7 @@ void cc2541_radio_spi_init(void) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        void msp430f5438a_init(void)
+/** @fcn        void cc2541_radio_gpio_init(void)
  *  @brief      x
  *  @details    x
  */
@@ -146,7 +146,7 @@ void cc2541_radio_gpio_init(void) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        void msp430f5438a_init(void)
+/** @fcn        void cc2541_init(void)
  *  @brief      x
  *  @details    x
  */
@@ -157,7 +157,7 @@ void cc2541_init(void) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        void msp430f5438a_init(void)
+/** @fcn        void cc2541_enable_interrupts(void)
  *  @brief      x
  *  @details    x
  */
@@ -168,7 +168,7 @@ void cc2541_enable_interrupts(void) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        void msp430f5438a_init(void)
+/** @fcn        void cc2541_gpio_init(void)
  *  @brief      x
  *  @details    x
  */
@@ -179,7 +179,7 @@ void cc2541_gpio_init(void) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        void msp430f5438a_init(void)
+/** @fcn        void cc2541_clocks_init(void)
  *  @brief      x
  *  @details    x
  */
@@ -190,7 +190,7 @@ void cc2541_clocks_init(void) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        void msp430f5438a_init(void)
+/** @fcn        void cc2541_timers_init(void)
  *  @brief      x
  *  @details    x
  */

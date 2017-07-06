@@ -420,7 +420,7 @@ rfStatus_fields cc12xx_getRFStatusFields(uint8_t rfStatus_u8) {
 
     fields.chip_rdy = (rfStatus_u8 & 0x80) >> 7;
 
-    fields.state    = (chip_state) (rfStatus_u8 & 0x70) >> 4;
+    fields.state    = (chip_state) ((rfStatus_u8 & 0x70) >> 4);
 
     return fields;
 }

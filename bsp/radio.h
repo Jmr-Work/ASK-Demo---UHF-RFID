@@ -18,6 +18,12 @@
     #define CHIP_PARTNUMBER_UHF_ID      CHIP_PARTNUMBER_CC1200
     #define preferredSettings           preferredSettings_cc1200
     #define NUM_PREFERRED_SETTINGS      NUM_PREFERRED_SETTINGS_CC1200
+
+    #define radio_init                  cc1200_init
+    #define radio_run_init              cc1200_run_init
+    #define radio_run_loop              cc1200_run_loop
+    #define radio_run_waitForRoom       cc1200_run_waitForRoom
+    #define radio_run_prepForNext       cc1200_run_prepForNext
 #endif
 #ifdef RADIO_SEL_CC1175
     #include "radios/cc1175.h"
@@ -25,6 +31,12 @@
     #define CHIP_PARTNUMBER_UHF_ID      CHIP_PARTNUMBER_CC1175
     #define preferredSettings           preferredSettings_cc1175
     #define NUM_PREFERRED_SETTINGS      NUM_PREFERRED_SETTINGS_CC1175
+
+    #define radio_init                  cc1175_init
+    #define radio_run_init              cc1175_run_init
+    #define radio_run_loop              cc1175_run_loop
+    #define radio_run_waitForRoom       cc1175_run_waitForRoom
+    #define radio_run_prepForNext       cc1175_run_prepForNext
 #endif
 
 

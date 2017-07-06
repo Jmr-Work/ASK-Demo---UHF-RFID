@@ -201,6 +201,11 @@
 			<locationURI>PARENT-2-PROJECT_LOC/bsp/targets/msp430f5529.h</locationURI>
 		</link>
 		<link>
+			<name>project/ewp/ask_demo.eww</name>
+			<type>1</type>
+			<location>D:/Documents/Ref/Platforms/TI/CC-Series/CC1200/Examples/workshop/ASK Demo - UHF RFID/project/ewp/ask_demo.eww</location>
+		</link>
+		<link>
 			<name>sys/ref/stdcomments.h</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/sys/ref/stdcomments.h</locationURI>
