@@ -37,6 +37,7 @@
  *              also uses cc12xx_txFifoInfo.first & last to do reads of these vals
  *              provides a 'read whole FIFO' fcn
  *          merge main demo routines
+ *          abstract all GPIO debug toggles to mcu.c&h
  *          merge & squash radio api, and main() routines
  *          cleanup cc12xx.h header '<TEMP>' section
  *          validate packet contents

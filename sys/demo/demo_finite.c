@@ -61,7 +61,7 @@ void demo_finite(void) {
 
     //------------------------------------Loop Finite Length Transmissions----------------------------------------------------------//
     for(;;) {
-        P4OUT |= BIT7;                                                      /* BIT7 pulse: ?ms                                      */
+//!     P4OUT |= BIT7;                                                      /* BIT7 pulse: ?ms                                      */
 
         //Delay (makes scope easier read)
         for(i=42000; i>0; i--) {
@@ -80,7 +80,7 @@ void demo_finite(void) {
         trxSpiCmdStrobe(CC120X_STX);                                        /* Send packet                                          */
         cc12xxSpiReadReg(CC120X_NUM_TXBYTES, &fill_ct[2], 1);               /* Grab FIFO Fill                                       */
 
-        P4OUT &= ~BIT7;
+//!     P4OUT &= ~BIT7;
 
         //Wait for completion
         do {
@@ -91,7 +91,7 @@ void demo_finite(void) {
         } while(fill_ct[3] > 0);
 
         loop_ct++;
-        P4OUT ^= BIT6;
+//!     P4OUT ^= BIT6;
 
         //Delay (makes scope easier read)
         for(i=4000; i>0; i--) {

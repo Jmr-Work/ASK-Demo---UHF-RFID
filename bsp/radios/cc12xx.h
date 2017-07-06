@@ -12,7 +12,7 @@
 //Libraries
 #include <stdint.h>
 #include <stdbool.h>
-
+#include "../targets/support/iar_bits.h"
 
 //CC12xx
 #include "cc12xx_reg_lib.h"
@@ -23,14 +23,14 @@ typedef uint8_t rfStatus_t;
 
 //@src [4] Table 2
 typedef enum {
-    CS_IDLE      = 0b000,
-    CS_RX        = 0b001,
-    CS_TX        = 0b010,
-    CS_FSTXON    = 0b011,
-    CS_CALIBRATE = 0b100,
-    CS_SETTLING  = 0b101,
-    CS_RX_ERR    = 0b110,
-    CS_TX_ERR    = 0b111,
+    CS_IDLE      = b000,
+    CS_RX        = b001,
+    CS_TX        = b010,
+    CS_FSTXON    = b011,
+    CS_CALIBRATE = b100,
+    CS_SETTLING  = b101,
+    CS_RX_ERR    = b110,
+    CS_TX_ERR    = b111,
 } chip_state;
 
 /**

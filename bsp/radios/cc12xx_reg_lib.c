@@ -101,7 +101,7 @@ cc12xx_marcInfo cc12xx_get_marcInfo(void) {
 
     //Store Values
     info.pinState   = (info.reg_marcstate && 0x60) >> 5;
-    info.marcState  = (marc_state_t) (info.reg_marcstate && 0x1F) >> 0;     /* @note    typedef for marc_state_t matches bitwise    */
+    info.marcState  = (marc_state_t) ((info.reg_marcstate && 0x1F) >> 0);   /* @note    typedef for marc_state_t matches bitwise    */
     info.marcStatus = (info.reg_marcstatus1);
 
     return info;
