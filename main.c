@@ -31,11 +31,12 @@
  *
  *  @section    Opens
  *          deprecate temp_radio.h                              (correct header format in consideration)
- *          code handles TX_FIFO open count correct             (15 is max val reported)
+ *          code handles TX_FIFO open count correct             (15 is max val reported, cc1200_run_waitForRoom()&c12xx_queryTxFifo() done right!)
  *          memory maps are not identical, config to support    (e.g. REG_PA_CFG1 in diff spots on CC1200 & CC1175)
  *          reads the tx_fifo contents directly!                (at 0x3Fnn!)
  *              also uses cc12xx_txFifoInfo.first & last to do reads of these vals
  *              provides a 'read whole FIFO' fcn
+ *          merge main demo routines
  *          merge & squash radio api, and main() routines
  *          cleanup cc12xx.h header '<TEMP>' section
  *          validate packet contents
@@ -45,6 +46,7 @@
  *          make sense of reported values in cc12xx_get_txFifoInfo()
  *          disable frequency offset correction FREQOFF_CFG, or at least understand it fully
  *          understand FS Out-of-lock detector & determine if in right config
+ *          make a cleaner cc12xx_reg_write implementation, with u8 writes just passing value directly
  *
  *  @section    Legal Disclaimer
  *          All contents of this source file and/or any other Misc. Product related source files are the explicit property of
@@ -52,6 +54,7 @@
  */
 /************************************************************************************************************************************/
 #include "globals.h"
+#include "sys/demo/demo_finite.h"
 
 
 uint8_t tx_buff[TX_BUFF_SIZE] = {0};
@@ -71,7 +74,7 @@ int main(void) {
 	sys_init();
 	
 	//Run Demo
-	mcu_demo();
+	demo_finite();                                                          /*  	mcu_demo();                                     */
 }
 
 

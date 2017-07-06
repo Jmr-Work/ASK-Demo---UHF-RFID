@@ -99,11 +99,17 @@ void cc1200_run_init(void) {
 /************************************************************************************************************************************/
 /** @fcn        void cc1200_run_loop(void)
  *  @brief      x
+ *
+ *  @details    NUM_TXBYTES tracking example            (for illustration)
+ *              pre              - NUM_TXBYTES = 0
+ *              tx_buf write     - NUM_TXBYTES = 100
+ *              send packet(STX) - NUM_TXBYTES = 100
+ *              post 30k cycles  - NUM_TXBYTES = 78      (while(i--) {NOP})
  */
 /************************************************************************************************************************************/
 void cc1200_run_loop(void) {
     //Load the buffer into the TX_FIFO
-    cc112xSpiWriteTxFifo(tx_buff, TX_BUFF_SIZE);                        /* Send the message                                     */
+    cc112xSpiWriteTxFifo(tx_buff, TX_BUFF_SIZE);                        /* Send the message                                     	*/
 
     // Send packet
     trxSpiCmdStrobe(CC120X_STX);

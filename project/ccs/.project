@@ -81,6 +81,11 @@
 			<locationURI>PARENT-2-PROJECT_LOC/lib/signal.h</locationURI>
 		</link>
 		<link>
+			<name>sys/demo</name>
+			<type>2</type>
+			<locationURI>PARENT-2-PROJECT_LOC/sys/demo</locationURI>
+		</link>
+		<link>
 			<name>bsp/radios/cc1175.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/bsp/radios/cc1175.c</locationURI>
