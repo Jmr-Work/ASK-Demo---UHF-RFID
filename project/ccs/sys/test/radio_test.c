@@ -1,23 +1,25 @@
 #include "radio_test.h"
 
-//Test Vars (volatile to avoid silly debug inspect...)
-volatile cc12xx_partInfo            info;
-volatile cc12xx_marcInfo            marc;
-volatile cc12xx_txFifoInfo          fifo;
-volatile cc12xx_fifoCfgInfo         cfg;
-volatile cc12xx_freqCfgInfo         freq;
-volatile cc12xx_freqSynthInfo       synth;
-volatile cc12xx_paCfgInfo           paCfg;
-volatile cc12xx_extCtrlInfo         extCtrl;
-volatile cc12xx_extClockInfo        extClk;
-volatile cc12xx_rfEndInfo           rfend;
-volatile cc12xx_modemStatusInfo     modem;
-volatile cc12xx_rngValInfo          rng[3];
-volatile cc12xx_modCfgInfo          mod;
-volatile cc12xx_symbolInfo          sym;
-volatile cc12xx_pktCfgInfo          pkt;
-volatile cc12xx_gpioCfgInfo         gpio;
-volatile cc12xx_xoscCfgInfo         xosc;
+
+//Test Vars
+cc12xx_partInfo            info;
+cc12xx_marcInfo            marc;
+cc12xx_txFifoInfo          fifo;
+cc12xx_fifoCfgInfo         cfg;
+cc12xx_freqCfgInfo         freq;
+cc12xx_freqSynthInfo       synth;
+cc12xx_paCfgInfo           paCfg;
+cc12xx_extCtrlInfo         extCtrl;
+cc12xx_extClockInfo        extClk;
+cc12xx_rfEndInfo           rfend;
+cc12xx_modemStatusInfo     modem;
+cc12xx_rngValInfo          rng[3];
+cc12xx_modCfgInfo          mod;
+cc12xx_symbolInfo          sym;
+cc12xx_pktCfgInfo          pkt;
+cc12xx_gpioCfgInfo         gpio;
+cc12xx_xoscCfgInfo         xosc;
+rfStatus_fields            report;
 
 
 /************************************************************************************************************************************/
@@ -63,6 +65,11 @@ void radio_reg_lib_test(void) {
     gpio = cc12xx_get_gpioCfgInfo();
 
     xosc = cc12xx_get_xoscCfgInfo();
+
+    report = cc12xx_getRFStatusFields(0x80);
+    report = cc12xx_getRFStatusFields(0xF0);
+    report = cc12xx_getRFStatusFields(0x00);
+    report = cc12xx_getRFStatusFields(0x30);
 
     return;
 }

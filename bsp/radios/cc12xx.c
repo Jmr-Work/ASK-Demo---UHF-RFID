@@ -404,3 +404,24 @@ void trxReadWriteBurstSingle(uint8_t addr, uint8_t *pData, uint16_t len) {
     return;
 }
 
+
+/************************************************************************************************************************************/
+/** @fcn        rfStatus_fields cc12xx_getRFStatusFields(uint8_t rfStatus_u8)
+ *  @brief      Get the individual fields from the chip status byte
+ *
+ *  @param      [in]    (uint8_t) rfStatus_u8 - Chip Status Byte returned in response by cc12xx radio
+ *
+ *  @param      [out]   (rfStatus_fields)  field defs of status byte
+ */
+/************************************************************************************************************************************/
+rfStatus_fields cc12xx_getRFStatusFields(uint8_t rfStatus_u8) {
+
+    rfStatus_fields fields;
+
+    fields.chip_rdy = (rfStatus_u8 & 0x80) >> 7;
+
+    fields.state    = (chip_state) (rfStatus_u8 & 0x70) >> 4;
+
+    return fields;
+}
+

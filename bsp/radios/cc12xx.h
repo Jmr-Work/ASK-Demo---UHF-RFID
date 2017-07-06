@@ -21,6 +21,28 @@
 //Typedefs
 typedef uint8_t rfStatus_t;
 
+//@src [4] Table 2
+typedef enum {
+    CS_IDLE      = 0b000,
+    CS_RX        = 0b001,
+    CS_TX        = 0b010,
+    CS_FSTXON    = 0b011,
+    CS_CALIBRATE = 0b100,
+    CS_SETTLING  = 0b101,
+    CS_RX_ERR    = 0b110,
+    CS_TX_ERR    = 0b111,
+} chip_state;
+
+/**
+ * @note     bit-packing is avoided to minimize compiler errors (CCS/IAR)
+ * @ref      [4] Sec 3.1.2 - Chip Status Byte (Table 2)
+ */
+typedef struct {
+    uint8_t chip_rdy;                                                       /* b7                                                   */
+    chip_state state;                                                       /* b6:b4                                                */
+} rfStatus_fields;
+
+
 
 //CC-Series PARTNUMBER Register Values
 #define CHIP_PARTNUMBER_CC1175          (0x5A)                              /* see [4]  p.105 PARTNUMBER                            */
@@ -497,6 +519,8 @@ extern void cc12xx_configure(void);
 extern void cc12xx_reg_write(uint16_t addr, uint8_t data);
 extern void cc12xx_reg_read(uint16_t addr, uint8_t *dataPtr);
 extern bool cc12xx_verifyPartNumber(void);
+
+extern rfStatus_fields cc12xx_getRFStatusFields(uint8_t rfStatus_u8);
 
 
 //Locals
