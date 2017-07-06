@@ -1,13 +1,3 @@
-@section 	Rules
-	x
-
-@section 	Opens
-	x
-
-
-@section 	Demo Structure
-	x
-
 @section 	MSP430F5438A Compilation Config
 	MSP430F5438A (Empty Project w/main.c)
 	output: ELF
@@ -17,7 +7,8 @@
 	ULP+Advice: Off
 
 @section	CC2541 Compilation Config
-	New 8051 Project
+	New Workspace  		(in project/ewp/)
+	New 8051 Project 	(C project)
 	Target CC2541F128
 		*Device -> Texas Instruments -> CC25xx -> 4x -> CC2541F128
 		*Default settings
@@ -25,3 +16,27 @@
 		*Driver -> Texas Instruments
 		*Device Descriptor File->Override default:
 			"$TOOLKIT_DIR$\config\devices\Texas Instruments\ioCC2541F128.ddf"
+
+@section 	MSP430->CC2541 Swap Procedure
+	Config:
+		- (1) TrxEB('A-MCU')  : CC2541
+		- (1) TrxEB('B-Radio'): CC1175
+		
+	Flash both TrxEB's MSP with FullStop (#FullStop_r1)
+	unplug MSP-FET JTAG (P3)
+	MAIN POWER: Off
+	S1: SmartRF, S2: Enable?
+	RF_PWR (P15): Off
+	EMK removed from both
+	
+	Apply +3.3V to P15.2 (closest to EMK) on both
+	Apply CC-Debugger JTAG to P7 (see 'icsp/CC2541 - Connection and Use.txt:Debug Connection')
+	Press CC-Debugger's RESET button (green LED illuminates)
+	
+	Validate connection in SmartRF Studio 7 (2.4 GHz->CC2541 is highlighted in orange & listed in 'List of Connected Devices' under the 'CC Debugger')
+	
+	Confirm you can deploy empty project to CC2541 in IAR (ensure CC-Debugger is selected for Debug!)
+
+@section 	CC2541->MSP430 Swap Procedure
+	x
+
