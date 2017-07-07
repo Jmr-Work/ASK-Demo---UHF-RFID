@@ -49,7 +49,7 @@
         <FreqHi>0</FreqHi>
     </Simulator>
     <DebugChecksum>
-        <Checksum>1873429295</Checksum>
+        <Checksum>1434115760</Checksum>
     </DebugChecksum>
     <CallStack>
         <ShowArgs>0</ShowArgs>
@@ -58,8 +58,7 @@
         <Fmt0>{W}1:partnum_reg	4	0</Fmt0>
     </watch_formats>
     <Breakpoints>
-        <Bp0>_ "STD_CODE" "{$PROJ_DIR$\..\..\sys\demo\demo_register.c}.47.9" 1 0 0 0 "" 0 ""</Bp0>
-        <Count>1</Count>
+        <Count>0</Count>
     </Breakpoints>
     <ChipconEmu>
         <StopTimersOnHalt>0</StopTimersOnHalt>
@@ -78,4 +77,7 @@
         <Count>0</Count>
         <SuppressDialog>0</SuppressDialog>
     </Aliases>
+    <Disassembly>
+        <MixedMode>1</MixedMode>
+    </Disassembly>
 </settings>

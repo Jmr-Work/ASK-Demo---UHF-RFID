@@ -94,13 +94,28 @@ void signal_generate(void) {
 /** @fcn        void signal_grab_next(void)
  *  @brief      grab next tx buffer segment
  *  @details    x
+ *
+ *  @section    Opens
+ *      re-enable memcpy (jmr disabled to meet free license compile restrictions)
  */
 /************************************************************************************************************************************/
 void signal_grab_next(void) {
 
-    memcpy(&tx_buff[0], &data_arr[next_grab_ind], TX_BUFF_SIZE*sizeof(uint8_t));      /* @open   validate in depth                  */
+//! memcpy(&tx_buff[0], &data_arr[next_grab_ind], TX_BUFF_SIZE*sizeof(uint8_t));      /* @open   validate in depth                  */
 
-    next_grab_ind = (next_grab_ind + TX_BUFF_SIZE) % signal_size;
+//! next_grab_ind = (next_grab_ind + TX_BUFF_SIZE) % signal_size;
+    
+  uint16_t i;
+  
+  //All Empty 
+  for(i=0; i< TX_BUFF_SIZE; i++) {
+    tx_buff[i] = 0x00;
+  }
+  
+  //Add 25% Pulse (of bits)
+  for(i=0; i< TX_BUFF_SIZE/4; i++) {
+    tx_buff[i] = 0x55;
+  }  
 
     return;
 }

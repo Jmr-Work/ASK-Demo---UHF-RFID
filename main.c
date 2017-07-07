@@ -55,7 +55,9 @@
  */
 /************************************************************************************************************************************/
 #include "globals.h"
+#include "sys/demo/demo_register.h"
 #include "sys/demo/demo_finite.h"
+#include "sys/demo/demo_cont.h"
 
 
 uint8_t tx_buff[TX_BUFF_SIZE] = {0};
@@ -75,7 +77,9 @@ int main(void) {
 	sys_init();
 	
 	//Run Demo
-	demo_finite();                                                          /*  	mcu_demo();                                     */
+//	demo_register();
+//	demo_finite();
+	demo_cont();                                                            /*  	mcu_demo();                                     */
 }
 
 

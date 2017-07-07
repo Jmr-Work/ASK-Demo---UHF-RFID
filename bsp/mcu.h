@@ -10,7 +10,6 @@
 //Project
 #ifdef TARGET_SEL_MSP430F5438A
     #include "targets/msp430f5438a.h"
-    #include "targets/msp430f5438a_demo.h"
     #define mcu_radio_spi_begin                 msp430f5438a_radio_spi_begin
     #define mcu_radio_spi_tx                    msp430f5438a_radio_spi_tx
     #define mcu_radio_spi_wait_done             msp430f5438a_radio_spi_wait_done
@@ -33,7 +32,6 @@
 #endif
 #ifdef TARGET_SEL_CC2541
     #include "targets/cc2541.h"
-    #include "targets/cc2541_demo.h"
     #define mcu_radio_spi_begin                 cc2541_radio_spi_begin
     #define mcu_radio_spi_tx                    cc2541_radio_spi_tx
     #define mcu_radio_spi_wait_done             cc2541_radio_spi_wait_done

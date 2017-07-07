@@ -2290,12 +2290,6 @@
             <file>
                 <name>$PROJ_DIR$\..\..\bsp\targets\cc2541.h</name>
             </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\bsp\targets\cc2541_demo.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\..\bsp\targets\cc2541_demo.h</name>
-            </file>
         </group>
         <file>
             <name>$PROJ_DIR$\..\..\bsp\mcu.c</name>
@@ -2338,6 +2332,12 @@
         <name>sys</name>
         <group>
             <name>demo</name>
+            <file>
+                <name>$PROJ_DIR$\..\..\sys\demo\demo_cont.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\sys\demo\demo_cont.h</name>
+            </file>
             <file>
                 <name>$PROJ_DIR$\..\..\sys\demo\demo_finite.c</name>
             </file>

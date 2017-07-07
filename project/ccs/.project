@@ -151,26 +151,6 @@
 			<locationURI>PARENT-2-PROJECT_LOC/bsp/radios/temp_radio.h</locationURI>
 		</link>
 		<link>
-			<name>bsp/targets/cc2541.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/bsp/targets/cc2541.c</locationURI>
-		</link>
-		<link>
-			<name>bsp/targets/cc2541.h</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/bsp/targets/cc2541.h</locationURI>
-		</link>
-		<link>
-			<name>bsp/targets/cc2541_demo.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/bsp/targets/cc2541_demo.c</locationURI>
-		</link>
-		<link>
-			<name>bsp/targets/cc2541_demo.h</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/bsp/targets/cc2541_demo.h</locationURI>
-		</link>
-		<link>
 			<name>bsp/targets/msp430f5438a.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/bsp/targets/msp430f5438a.c</locationURI>
@@ -179,26 +159,6 @@
 			<name>bsp/targets/msp430f5438a.h</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/bsp/targets/msp430f5438a.h</locationURI>
-		</link>
-		<link>
-			<name>bsp/targets/msp430f5438a_demo.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/bsp/targets/msp430f5438a_demo.c</locationURI>
-		</link>
-		<link>
-			<name>bsp/targets/msp430f5438a_demo.h</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/bsp/targets/msp430f5438a_demo.h</locationURI>
-		</link>
-		<link>
-			<name>bsp/targets/msp430f5529.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/bsp/targets/msp430f5529.c</locationURI>
-		</link>
-		<link>
-			<name>bsp/targets/msp430f5529.h</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/bsp/targets/msp430f5529.h</locationURI>
 		</link>
 		<link>
 			<name>project/ewp/ask_demo.eww</name>
