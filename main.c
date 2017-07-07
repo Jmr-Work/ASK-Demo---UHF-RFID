@@ -95,6 +95,7 @@ void sys_init(void) {
 
     //GPIO
     gpio_init();
+    mcu_radio_gpio_init();
 
     //Periphs
     timers_init();
