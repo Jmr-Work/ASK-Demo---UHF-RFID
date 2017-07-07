@@ -1,119 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
     <fileVersion>2</fileVersion>
-    <fileChecksum>608922587</fileChecksum>
+    <fileChecksum>3709664866</fileChecksum>
     <configuration>
         <name>Debug</name>
         <outputs>
-            <file>$PROJ_DIR$\Debug\Obj\cc12xx.r51</file>
-            <file>$PROJ_DIR$\Debug\Obj\cc1200.pbi</file>
-            <file>$TOOLKIT_DIR$\inc\clib\string.h</file>
+            <file>$PROJ_DIR$\..\..\bsp\radios\cc12xx_reg_lib.c</file>
+            <file>$PROJ_DIR$\..\..\bsp\radios\cc1175.h</file>
+            <file>$PROJ_DIR$\..\..\bsp\radios\cc1200_reg_config.h</file>
+            <file>$PROJ_DIR$\..\..\bsp\radios\temp_radio.h</file>
+            <file>$PROJ_DIR$\..\..\bsp\radios\cc1175.c</file>
+            <file>$PROJ_DIR$\..\..\sys\demo\demo_finite.h</file>
+            <file>$PROJ_DIR$\..\..\lib\rfid.h</file>
+            <file>$PROJ_DIR$\..\..\bsp\radios\cc1200.h</file>
+            <file>$PROJ_DIR$\..\..\bsp\radios\cc1200_reg_config.c</file>
+            <file>$PROJ_DIR$\..\..\bsp\targets\support\iar_bits.h</file>
+            <file>$PROJ_DIR$\..\..\bsp\targets\support\ioCC254x_bitdef.h</file>
+            <file>$PROJ_DIR$\..\..\bsp\targets\cc2541.c</file>
+            <file>$PROJ_DIR$\..\..\lib\commands.h</file>
+            <file>$PROJ_DIR$\..\..\bsp\targets\cc2541.h</file>
+            <file>$PROJ_DIR$\..\..\bsp\radios\cc12xx.c</file>
+            <file>$PROJ_DIR$\..\..\bsp\targets\cc2541_demo.h</file>
+            <file>$PROJ_DIR$\..\..\lib\rfid.c</file>
+            <file>$PROJ_DIR$\..\..\bsp\radios\cc1175_reg_config.c</file>
+            <file>$PROJ_DIR$\..\..\lib\signal.h</file>
+            <file>$PROJ_DIR$\..\..\bsp\targets\support\hal_types.h</file>
+            <file>$PROJ_DIR$\..\..\bsp\mcu.c</file>
+            <file>$PROJ_DIR$\..\..\sys\demo\demo_finite.c</file>
+            <file>$PROJ_DIR$\..\..\bsp\radios\cc12xx.h</file>
+            <file>$PROJ_DIR$\..\..\bsp\radios\cc1175_reg_config.h</file>
+            <file>$PROJ_DIR$\..\..\bsp\radios\cc12xx_reg_lib.h</file>
+            <file>$PROJ_DIR$\..\..\bsp\targets\cc2541_demo.c</file>
+            <file>$PROJ_DIR$\..\..\bsp\mcu.h</file>
+            <file>$PROJ_DIR$\..\..\bsp\radios\cc1200.c</file>
+            <file>$PROJ_DIR$\..\..\bsp\radio.c</file>
+            <file>$PROJ_DIR$\..\..\bsp\radio.h</file>
+            <file>$PROJ_DIR$\..\..\lib\signal.c</file>
+            <file>$PROJ_DIR$\Debug\Obj\cc2541.r51</file>
+            <file>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_cc2541F128_banked.xcl</file>
+            <file>$TOOLKIT_DIR$\inc\clib\stdio.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\ask_demo.pbd</file>
+            <file>$PROJ_DIR$\Debug\Obj\demo_finite.r51</file>
+            <file>$PROJ_DIR$\Debug\Obj\radio.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\mcu.pbi</file>
+            <file>$TOOLKIT_DIR$\inc\clib\stdarg.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\demo_finite.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\cc1175_reg_config.r51</file>
+            <file>$PROJ_DIR$\Debug\Obj\main.r51</file>
+            <file>$TOOLKIT_DIR$\inc\clib\stdint.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\cc12xx_reg_lib.r51</file>
+            <file>$TOOLKIT_DIR$\inc\ioCC2541.h</file>
+            <file>$TOOLKIT_DIR$\inc\clib\stdlib.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\cc1175_reg_config.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\rfid_test.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\cc2541.pbi</file>
+            <file>$PROJ_DIR$\Debug\Exe\ask_demo.d51</file>
+            <file>$PROJ_DIR$\..\..\globals.h</file>
             <file>$PROJ_DIR$\Debug\Obj\rfid.r51</file>
+            <file>$PROJ_DIR$\Debug\Obj\cc1200.r51</file>
+            <file>$PROJ_DIR$\Debug\List\ask_demo.map</file>
+            <file>$PROJ_DIR$\Debug\Obj\cc1200.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\signal.r51</file>
             <file>$PROJ_DIR$\Debug\Obj\cc1200_reg_config.r51</file>
-            <file>$PROJ_DIR$\Debug\Obj\mcu.r51</file>
+            <file>$PROJ_DIR$\Debug\Obj\rfid.pbi</file>
             <file>$PROJ_DIR$\Debug\Obj\cc1200_reg_config.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\cc2541_demo.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\signal.pbi</file>
+            <file>$PROJ_DIR$\..\..\sys\test\rfid_test.h</file>
+            <file>$PROJ_DIR$\..\..\sys\test\rfid_test.c</file>
+            <file>$PROJ_DIR$\Debug\Obj\cc1175.r51</file>
+            <file>$TOOLKIT_DIR$\inc\clib\stdbool.h</file>
+            <file>$TOOLKIT_DIR$\lib\clib\cl-pli-blxd-1e16x01.r51</file>
+            <file>$PROJ_DIR$\Debug\Obj\mcu.r51</file>
+            <file>$TOOLKIT_DIR$\inc\clib\string.h</file>
+            <file>$PROJ_DIR$\..\..\main.c</file>
+            <file>$PROJ_DIR$\Debug\Obj\rfid_test.r51</file>
+            <file>$PROJ_DIR$\Debug\Obj\cc12xx.pbi</file>
+            <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\cc12xx.r51</file>
             <file>$PROJ_DIR$\Debug\Obj\cc12xx_reg_lib.pbi</file>
             <file>$PROJ_DIR$\Debug\Obj\cc2541_demo.r51</file>
             <file>$PROJ_DIR$\Debug\Obj\radio.r51</file>
-            <file>$PROJ_DIR$\Debug\Obj\cc1200.r51</file>
-            <file>$PROJ_DIR$\Debug\Obj\cc1175.r51</file>
-            <file>$PROJ_DIR$\..\..\bsp\radios\cc1200.c</file>
-            <file>$PROJ_DIR$\..\..\bsp\targets\cc2541.h</file>
-            <file>$PROJ_DIR$\..\..\bsp\radios\cc1200_reg_config.c</file>
-            <file>$PROJ_DIR$\..\..\bsp\radios\cc1175_reg_config.h</file>
-            <file>$PROJ_DIR$\..\..\bsp\targets\cc2541_demo.c</file>
-            <file>$PROJ_DIR$\..\..\lib\commands.h</file>
-            <file>$PROJ_DIR$\..\..\lib\rfid.c</file>
-            <file>$PROJ_DIR$\..\..\bsp\radios\cc12xx.h</file>
-            <file>$PROJ_DIR$\..\..\bsp\mcu.c</file>
-            <file>$PROJ_DIR$\..\..\bsp\radios\cc12xx_reg_lib.c</file>
-            <file>$PROJ_DIR$\..\..\bsp\targets\support\iar_bits.h</file>
-            <file>$PROJ_DIR$\..\..\bsp\radio.c</file>
-            <file>$PROJ_DIR$\..\..\bsp\radios\cc12xx.c</file>
-            <file>$PROJ_DIR$\..\..\bsp\targets\cc2541.c</file>
-            <file>$PROJ_DIR$\..\..\bsp\radios\cc1200_reg_config.h</file>
-            <file>$PROJ_DIR$\..\..\bsp\targets\cc2541_demo.h</file>
-            <file>$PROJ_DIR$\..\..\bsp\mcu.h</file>
-            <file>$PROJ_DIR$\..\..\bsp\radio.h</file>
-            <file>$PROJ_DIR$\..\..\lib\signal.c</file>
-            <file>$PROJ_DIR$\..\..\lib\signal.h</file>
-            <file>$PROJ_DIR$\..\..\bsp\radios\cc1175.h</file>
-            <file>$PROJ_DIR$\..\..\sys\demo\demo_finite.c</file>
-            <file>$PROJ_DIR$\..\..\lib\rfid.h</file>
-            <file>$PROJ_DIR$\..\..\sys\demo\demo_finite.h</file>
-            <file>$PROJ_DIR$\..\..\sys\test\rfid_test.c</file>
-            <file>$PROJ_DIR$\..\..\bsp\radios\cc1200.h</file>
-            <file>$PROJ_DIR$\..\..\sys\test\rfid_test.h</file>
-            <file>$PROJ_DIR$\..\..\bsp\radios\temp_radio.h</file>
-            <file>$PROJ_DIR$\..\..\globals.h</file>
-            <file>$PROJ_DIR$\..\..\bsp\radios\cc1175_reg_config.c</file>
-            <file>$PROJ_DIR$\..\..\bsp\radios\cc12xx_reg_lib.h</file>
-            <file>$PROJ_DIR$\..\..\bsp\radios\cc1175.c</file>
-            <file>$TOOLKIT_DIR$\inc\clib\stdbool.h</file>
-            <file>$TOOLKIT_DIR$\lib\clib\cl-pli-blxd-1e16x01.r51</file>
-            <file>$PROJ_DIR$\Debug\Obj\rfid.pbi</file>
-            <file>$PROJ_DIR$\Debug\Obj\rfid_test.r51</file>
-            <file>$PROJ_DIR$\Debug\Exe\ask_demo.d51</file>
-            <file>$PROJ_DIR$\Debug\List\ask_demo.map</file>
             <file>$PROJ_DIR$\Debug\Obj\cc1175.pbi</file>
-            <file>$PROJ_DIR$\Debug\Obj\cc12xx.pbi</file>
             <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
-            <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\cc2541.pbi</file>
-            <file>$PROJ_DIR$\Debug\Obj\signal.r51</file>
-            <file>$PROJ_DIR$\Debug\Obj\cc2541_demo.pbi</file>
-            <file>$PROJ_DIR$\Debug\Obj\signal.pbi</file>
-            <file>$TOOLKIT_DIR$\inc\clib\stdio.h</file>
-            <file>$TOOLKIT_DIR$\inc\clib\stdlib.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\radio.pbi</file>
-            <file>$PROJ_DIR$\Debug\Obj\ask_demo.pbd</file>
-            <file>$PROJ_DIR$\Debug\Obj\main.r51</file>
-            <file>$TOOLKIT_DIR$\inc\clib\stdarg.h</file>
-            <file>$TOOLKIT_DIR$\inc\clib\stdint.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\rfid_test.pbi</file>
-            <file>$PROJ_DIR$\..\..\main.c</file>
-            <file>$PROJ_DIR$\Debug\Obj\cc1175_reg_config.pbi</file>
-            <file>$PROJ_DIR$\Debug\Obj\cc12xx_reg_lib.r51</file>
-            <file>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_cc2541F128_banked.xcl</file>
-            <file>$PROJ_DIR$\Debug\Obj\cc2541.r51</file>
-            <file>$PROJ_DIR$\Debug\Obj\demo_finite.pbi</file>
-            <file>$PROJ_DIR$\Debug\Obj\mcu.pbi</file>
-            <file>$PROJ_DIR$\Debug\Obj\cc1175_reg_config.r51</file>
-            <file>$PROJ_DIR$\Debug\Obj\demo_finite.r51</file>
-            <file>$TOOLKIT_DIR$\inc\ioCC2541.h</file>
-            <file>$PROJ_DIR$\..\..\bsp\targets\support\ioCC254x_bitdef.h</file>
-            <file>$PROJ_DIR$\..\..\bsp\targets\support\hal_types.h</file>
-            <file>$PROJ_DIR$\..\..\bsp\targets\support\iocc2541_jmr.h</file>
+            <file>$PROJ_DIR$\..\..\sys\demo\demo_register.h</file>
+            <file>$PROJ_DIR$\..\..\sys\demo\demo_register.c</file>
+            <file>$PROJ_DIR$\Debug\Obj\demo_register.pbi</file>
+            <file>$PROJ_DIR$\Debug\Obj\demo_register.r51</file>
         </outputs>
         <file>
             <name>[ROOT_NODE]</name>
             <outputs>
                 <tool>
                     <name>XLINK</name>
-                    <file> 48 49</file>
+                    <file> 49 53</file>
                 </tool>
             </outputs>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\bsp\radios\cc1200.c</name>
+            <name>$PROJ_DIR$\..\..\bsp\radios\cc12xx_reg_lib.c</name>
             <outputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 10</file>
+                    <file> 43</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 1</file>
+                    <file> 73</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 37 64 28 13 75 76 77 19 26 40 59 53 44 29 31 58 63 2 34 17 38 39 15 22 42 27</file>
+                    <file> 24 42 22 2 50 45 71 64 26 13 44 10 19 15 29 7 18 33 38 67 6 12 61 3 23 9</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 44 28 31 64 13 76 53 19 26 38 27 75 77 15 42 39 37 59 40 22 29 34 58 2 63 17</file>
+                    <file> 42 23 3 13 24 15 45 50 64 18 19 26 22 2 9 61 71 44 7 29 6 10 33 67 38 12</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\bsp\radios\cc1175.c</name>
+            <outputs>
+                <tool>
+                    <name>ICC8051</name>
+                    <file> 63</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 76</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICC8051</name>
+                    <file> 1 22 2 42 50 45 71 64 26 13 44 10 19 15 29 7 18 33 38 67 6 12 61 3 23 9 24</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 29 15 45 24 3 50 23 13 22 64 42 6 19 26 2 9 18 61 71 44 7 1 10 33 67 38 12</file>
                 </tool>
             </inputs>
         </file>
@@ -122,44 +148,67 @@
             <outputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 4</file>
+                    <file> 56</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 6</file>
+                    <file> 58</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 26 64 40 59 53 44 28 13 75 76 77 19 15 39 22 42 27 29 37 31 58 63 2 34 17 38</file>
+                    <file> 2 42 50 45 71 64 26 13 44 10 19 22 23 3 9 24 15 29 7 18 33 38 67 6 12 61</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 44 29 77 64 27 59 28 31 39 34 53 75 40 38 13 76 19 15 42 37 26 22 58 2 63 17</file>
+                    <file> 64 29 19 42 15 45 26 18 3 6 71 44 50 61 13 10 22 23 24 7 2 9 33 67 38 12</file>
                 </tool>
             </inputs>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\bsp\targets\cc2541_demo.c</name>
+            <name>$PROJ_DIR$\..\..\bsp\targets\cc2541.c</name>
             <outputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 8</file>
+                    <file> 31</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 56</file>
+                    <file> 48</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 27 13 64 75 76 77 19 26 40 59 53 44 28 29 37 31 58 63 2 34 17 38 39 15 22 42</file>
+                    <file> 13 42 44 10 19 22 2 50 45 71 64 26 15 29 7 18 33 38 67 6 12 61 3 23 9 24</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 59 75 40 64 34 77 44 28 39 13 76 19 26 22 29 37 31 27 15 42 38 53 58 2 63 17</file>
+                    <file> 42 45 15 22 50 24 3 13 10 23 18 26 44 19 64 61 71 7 2 9 29 6 33 67 38 12</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\bsp\radios\cc12xx.c</name>
+            <outputs>
+                <tool>
+                    <name>ICC8051</name>
+                    <file> 72</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 70</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICC8051</name>
+                    <file> 22 2 42 50 45 71 64 26 13 44 10 19 15 29 7 18 33 38 67 6 12 61 3 23 9 24</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 15 45 18 50 42 13 2 9 26 61 71 19 3 23 64 24 29 6 44 7 22 10 33 67 38 12</file>
                 </tool>
             </inputs>
         </file>
@@ -168,7 +217,30 @@
             <outputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 3</file>
+                    <file> 51</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 57</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICC8051</name>
+                    <file> 6 42 64 50 45 71 26 13 44 10 19 22 2 3 23 9 24 15 29 7 18 33 38 67 61 12</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 50 29 64 3 42 26 38 45 22 33 18 6 71 13 10 67 12 61 15 44 19 23 24 7 2 9</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\bsp\radios\cc1175_reg_config.c</name>
+            <outputs>
+                <tool>
+                    <name>ICC8051</name>
+                    <file> 40</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
@@ -178,11 +250,11 @@
             <inputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 34 64 44 40 59 53 28 13 75 76 77 19 26 39 15 22 42 27 29 37 31 58 63 2 38 17</file>
+                    <file> 23 42 50 45 71 64 26 13 44 10 19 22 2 3 9 24 15 29 7 18 33 38 67 6 12 61</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 40 29 44 39 64 28 63 59 19 58 31 34 53 13 76 2 17 38 27 75 77 15 42 37 26 22</file>
+                    <file> 64 61 26 13 10 18 50 42 22 3 45 29 6 71 15 44 19 23 24 7 2 9 33 67 38 12</file>
                 </tool>
             </inputs>
         </file>
@@ -191,99 +263,76 @@
             <outputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 5</file>
+                    <file> 66</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 72</file>
+                    <file> 37</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 28 13 64 75 76 77 19 26 40 59 53 44 29 37 31 58 63 2 34 17 38 39 15 22 42 27</file>
+                    <file> 26 13 42 44 10 19 22 2 50 45 71 64 29 7 18 33 38 67 6 12 61 3 23 9 24 15</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 15 44 31 64 75 19 27 77 42 39 37 13 76 28 38 53 59 40 26 22 29 34 58 2 63 17</file>
+                    <file> 23 64 18 42 44 22 15 19 24 3 7 13 10 26 61 71 45 50 2 9 29 6 33 67 38 12</file>
                 </tool>
             </inputs>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\bsp\radios\cc12xx_reg_lib.c</name>
+            <name>$PROJ_DIR$\..\..\sys\demo\demo_finite.c</name>
             <outputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 68</file>
+                    <file> 35</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 7</file>
+                    <file> 39</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 42 64 19 26 40 59 53 44 28 13 75 76 77 27 29 37 31 58 63 2 34 17 38 39 15 22</file>
+                    <file> 5 42 26 13 44 10 19 22 2 50 45 71 64 29 7 18 33 38 67 6 12 61 3 23 9 24 15</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 64 15 39 13 42 27 59 40 44 31 77 28 19 26 22 38 53 75 37 29 34 76 58 2 63 17</file>
+                    <file> 23 64 18 44 42 22 50 15 19 24 3 7 26 29 13 10 61 71 45 5 2 9 6 33 67 38 12</file>
                 </tool>
             </inputs>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\bsp\radio.c</name>
+            <name>$PROJ_DIR$\..\..\bsp\targets\cc2541_demo.c</name>
             <outputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 9</file>
+                    <file> 74</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 60</file>
+                    <file> 59</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 29 28 13 64 75 76 77 19 26 40 59 53 44 31 58 63 2 34 17 38 39 15 22 42 27 37</file>
+                    <file> 15 13 42 44 10 19 22 2 50 45 71 64 26 29 7 18 33 38 67 6 12 61 3 23 9 24</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 64 53 38 28 19 58 44 37 13 76 2 63 40 26 27 75 77 22 39 31 34 17 29 15 42 59</file>
+                    <file> 45 44 50 42 6 19 64 26 3 13 10 22 2 9 29 7 18 15 23 24 61 71 33 67 38 12</file>
                 </tool>
             </inputs>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\..\bsp\radios\cc12xx.c</name>
+            <name>$PROJ_DIR$\..\..\bsp\radios\cc1200.c</name>
             <outputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 0</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 51</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICC8051</name>
-                    <file> 19 26 64 40 59 53 44 28 13 75 76 77 27 29 37 31 58 63 2 34 17 38 39 15 22 42</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 27 59 31 40 64 13 26 22 28 38 53 77 39 15 44 42 29 34 75 37 19 76 58 2 63 17</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\bsp\targets\cc2541.c</name>
-            <outputs>
-                <tool>
-                    <name>ICC8051</name>
-                    <file> 70</file>
+                    <file> 52</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
@@ -293,11 +342,34 @@
             <inputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 13 64 75 76 77 19 26 40 59 53 44 28 27 29 37 31 58 63 2 34 17 38 39 15 22 42</file>
+                    <file> 7 42 26 13 44 10 19 22 2 50 45 71 64 29 18 33 38 67 6 12 61 3 23 9 24 15</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 64 59 27 19 40 42 39 13 76 15 31 28 75 77 44 38 53 37 26 22 29 34 58 2 63 17</file>
+                    <file> 64 26 18 42 13 10 71 22 2 61 15 44 19 23 24 3 7 45 50 9 29 6 33 67 38 12</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\bsp\radio.c</name>
+            <outputs>
+                <tool>
+                    <name>ICC8051</name>
+                    <file> 75</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 36</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICC8051</name>
+                    <file> 29 26 13 42 44 10 19 22 2 50 45 71 64 18 33 38 67 6 12 61 3 23 9 24 15 7</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 42 71 61 26 22 33 64 7 13 10 67 38 50 2 15 44 19 9 3 18 6 12 29 23 24 45</file>
                 </tool>
             </inputs>
         </file>
@@ -310,109 +382,17 @@
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 57</file>
+                    <file> 60</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 31 58 63 53 59 64 44 2 40 28 13 75 76 77 19 26 39 15 22 42 27 29 37 34 17 38</file>
+                    <file> 18 33 38 71 45 42 64 67 50 26 13 44 10 19 22 2 3 23 9 24 15 29 7 6 12 61</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 28 44 38 75 31 59 40 53 64 27 77 39 58 2 34 63 29 13 76 19 15 42 37 26 22 17</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\sys\demo\demo_finite.c</name>
-            <outputs>
-                <tool>
-                    <name>ICC8051</name>
-                    <file> 74</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 71</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICC8051</name>
-                    <file> 35 64 28 13 75 76 77 19 26 40 59 53 44 29 37 31 58 63 2 34 17 38 39 15 22 42 27</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 15 44 31 75 64 19 40 27 77 42 39 37 28 29 13 76 38 53 59 35 26 22 34 58 2 63 17</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\sys\test\rfid_test.c</name>
-            <outputs>
-                <tool>
-                    <name>ICC8051</name>
-                    <file> 47</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 65</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICC8051</name>
-                    <file> 38 34 64 44 40 59 53 28 13 75 76 77 19 26 39 15 22 42 27 29 37 31 58 63 2 17</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 64 40 17 31 75 44 28 38 27 77 26 34 59 29 53 13 76 19 22 39 15 42 37 58 2 63</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\bsp\radios\cc1175_reg_config.c</name>
-            <outputs>
-                <tool>
-                    <name>ICC8051</name>
-                    <file> 73</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 67</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICC8051</name>
-                    <file> 15 64 40 59 53 44 28 13 75 76 77 19 26 39 22 42 27 29 37 31 58 63 2 34 17 38</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 44 38 28 13 76 31 40 64 19 39 59 29 34 53 27 75 77 15 42 37 26 22 58 2 63 17</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\..\bsp\radios\cc1175.c</name>
-            <outputs>
-                <tool>
-                    <name>ICC8051</name>
-                    <file> 11</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 50</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICC8051</name>
-                    <file> 32 19 26 64 40 59 53 44 28 13 75 76 77 27 29 37 31 58 63 2 34 17 38 39 15 22 42</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 29 27 59 42 39 40 15 13 19 44 64 34 77 28 26 22 31 38 53 75 37 32 76 58 2 63 17</file>
+                    <file> 26 64 61 44 18 45 50 71 42 15 19 3 33 67 6 38 29 13 10 22 23 24 7 2 9 12</file>
                 </tool>
             </inputs>
         </file>
@@ -421,13 +401,36 @@
             <outputs>
                 <tool>
                     <name>XLINK</name>
-                    <file> 49</file>
+                    <file> 53</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>XLINK</name>
-                    <file> 69 11 73 10 4 0 68 70 8 74 62 5 9 3 47 55 45</file>
+                    <file> 32 63 40 52 56 72 43 31 74 35 81 41 66 75 51 69 55 65</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\sys\test\rfid_test.c</name>
+            <outputs>
+                <tool>
+                    <name>ICC8051</name>
+                    <file> 69</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 47</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICC8051</name>
+                    <file> 61 6 42 64 50 45 71 26 13 44 10 19 22 2 3 23 9 24 15 29 7 18 33 38 67 12</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 42 50 12 18 44 64 26 61 15 19 2 6 45 29 71 13 10 22 9 3 23 24 7 33 67 38</file>
                 </tool>
             </inputs>
         </file>
@@ -436,21 +439,44 @@
             <outputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 62</file>
+                    <file> 41</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 52</file>
+                    <file> 77</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICC8051</name>
-                    <file> 40 59 53 64 44 28 13 75 76 77 19 26 39 15 22 42 27 29 37 31 58 63 2 34 17 38 35</file>
+                    <file> 50 45 71 42 64 26 13 44 10 19 22 2 3 23 9 24 15 29 7 18 33 38 67 6 12 61 78</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 63 39 28 22 44 38 75 58 64 31 27 77 26 13 19 2 35 59 29 34 53 76 40 17 15 42 37</file>
+                    <file> 22 38 3 64 9 6 71 42 33 45 29 13 10 2 67 78 26 18 61 15 44 19 50 12 23 24 7</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\sys\demo\demo_register.c</name>
+            <outputs>
+                <tool>
+                    <name>ICC8051</name>
+                    <file> 81</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 80</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICC8051</name>
+                    <file> 78 42 26 13 44 10 19 22 2 50 45 71 64 29 7 18 33 38 67 6 12 61 3 23 9 24 15</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 23 64 10 18 13 42 26 22 29 24 3 7 50 15 44 19 61 71 45 78 2 9 6 33 67 38 12</file>
                 </tool>
             </inputs>
         </file>

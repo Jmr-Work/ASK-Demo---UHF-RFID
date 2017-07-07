@@ -2218,6 +2218,12 @@
             <file>
                 <name>$PROJ_DIR$\..\..\sys\demo\demo_finite.h</name>
             </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\sys\demo\demo_register.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\sys\demo\demo_register.h</name>
+            </file>
         </group>
         <group>
             <name>ref</name>
