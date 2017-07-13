@@ -55,8 +55,6 @@
  */
 /************************************************************************************************************************************/
 #include "globals.h"
-#include "sys/demo/demo_register.h"
-#include "sys/demo/demo_finite.h"
 #include "sys/demo/demo_cont.h"
 
 
@@ -77,8 +75,6 @@ int main(void) {
 	sys_init();
 	
 	//Run Demo
-//	demo_register();
-//	demo_finite();
 	demo_cont();                                                            /*  	mcu_demo();                                     */
 }
 

@@ -3,8 +3,8 @@
 
 
 //Radio Selection
-//#define RADIO_SEL_CC1175                                                  /* Uhf-Id's target radio                                */
-#define RADIO_SEL_CC1200                                                    /* Entry-level radio with similar features              */
+#define RADIO_SEL_CC1175                                                  /* Uhf-Id's target radio                                */
+//#define RADIO_SEL_CC1200                                                    /* Entry-level radio with similar features              */
 
 
 //Project

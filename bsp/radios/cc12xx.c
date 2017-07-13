@@ -4,17 +4,10 @@
  *  @details    this is the working configuration & control code developed by Justin for CC1200 use. This is targeted for extension
  *              to use with the CC1175 but has not been yet verified
  *
- *  @supported  CC1200
- *  @open       CC1175
+ *  @supported  CC1175, CC1200
  *
  *  @vocab
- *          The vocabulary 'cc12xx' here denotes this library, not the TI part family (e.g. CC1200)
- *
- *  @section    Unverified Routines
- *          All
- *
- *  @section    Verified Routines
- *          x
+ *          The vocabulary 'cc12xx' here denotes this library, not the TI part family (e.g. 'cc12xx' supports both CC1175 & CC1200)
  *
  *  @section    Opens
  *          x
@@ -99,7 +92,7 @@ rfStatus_t cc12xxSpiReadReg(uint16_t addr, uint8_t *pData, uint8_t len) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        rfStatus_t cc112xSpiWriteReg(uint16_t addr, uint8_t*pData, uint8_t len)
+/** @fcn        rfStatus_t cc12xxSpiWriteReg(uint16_t addr, uint8_t*pData, uint8_t len)
  *  @brief      Write value(s) to config/status/extended radio register(s).
  *              If len  = 1: Writes a single register
  *              if len  > 1: Writes len register values in burst mode
@@ -111,7 +104,7 @@ rfStatus_t cc12xxSpiReadReg(uint16_t addr, uint8_t *pData, uint8_t len) {
  *  @return     rfStatus_t
  */
 /************************************************************************************************************************************/
-rfStatus_t cc112xSpiWriteReg(uint16_t addr, uint8_t*pData, uint8_t len) {
+rfStatus_t cc12xxSpiWriteReg(uint16_t addr, uint8_t*pData, uint8_t len) {
 
     uint8_t tempExt  = (uint8_t)(addr>>8);
     uint8_t tempAddr = (uint8_t)(addr & 0x00FF);
@@ -133,7 +126,7 @@ rfStatus_t cc112xSpiWriteReg(uint16_t addr, uint8_t*pData, uint8_t len) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        rfStatus_t cc112xSpiWriteTxFifo(uint8 *pData, uint8 len)
+/** @fcn        rfStatus_t cc12xxSpiWriteTxFifo(uint8 *pData, uint8 len)
  *  @brief       Write pData to radio transmit FIFO.
  *
  *  @param       *pData - pointer to data array that is written to TX FIFO
@@ -142,7 +135,7 @@ rfStatus_t cc112xSpiWriteReg(uint16_t addr, uint8_t*pData, uint8_t len) {
  *  @return      rfStatus_t
  */
 /************************************************************************************************************************************/
-rfStatus_t cc112xSpiWriteTxFifo(uint8_t *pData, uint8_t len) {
+rfStatus_t cc12xxSpiWriteTxFifo(uint8_t *pData, uint8_t len) {
 
     uint8_t rc;
 
@@ -189,7 +182,7 @@ void cc12xx_configure(void) {
 
     uint16_t i;
 
-    for(i=0; i<NUM_PREFERRED_SETTINGS_CC1200; i++) {
+    for(i=0; i<NUM_PREFERRED_SETTINGS; i++) {
 
         uint8_t data = preferredSettings[i].data;
 
@@ -219,7 +212,7 @@ void cc12xx_reg_write(uint16_t addr, uint8_t data) {
     cc12xxSpiReadReg(addr, &rd[0], 1);
 
     //Write
-    cc112xSpiWriteReg(addr, &data, 1);
+    cc12xxSpiWriteReg(addr, &data, 1);
 
     //Read
     cc12xxSpiReadReg(addr, &rd[1], 1);
@@ -251,7 +244,7 @@ void cc12xx_reg_read(uint16_t addr, uint8_t *dataPtr) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        bool cc1200_verifyPartNumber(void)
+/** @fcn        bool cc12xx_verifyPartNumber(void)
  *  @brief      is the register value for [PARTNUMBER] match the CC1200?
  *
  *  @return     (bool) if Part Number is valid for CC1200

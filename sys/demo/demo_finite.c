@@ -52,11 +52,11 @@ void demo_finite(void) {
     //----------------------Setup for Finite Mode (Mode Bit & Packet Length, that's it :) )-----------------------------------------//
     //PKT_CFG0
     write_val = 0x00;                                                       /* LENGTH_CONFIG(b7:b0) :  0b00, ELSE: 0                */
-    cc112xSpiWriteReg(CC120X_PKT_CFG0, &write_val, 1);
+    cc12xxSpiWriteReg(CC120X_PKT_CFG0, &write_val, 1);
 
     //PKT_LEN
     write_val = 110;                                                        /* PACKET_LENGTH(b7:b0) : 100 (0xFF is max)             */
-    cc112xSpiWriteReg(CC120X_PKT_LEN, &write_val, 1);
+    cc12xxSpiWriteReg(CC120X_PKT_LEN, &write_val, 1);
 
 
     //------------------------------------Loop Finite Length Transmissions----------------------------------------------------------//
@@ -75,7 +75,7 @@ void demo_finite(void) {
 
         //Transmit
         cc12xxSpiReadReg(CC120X_NUM_TXBYTES, &fill_ct[0], 1);               /* Grab FIFO Fill                                       */
-        cc112xSpiWriteTxFifo(tx_buff, TX_BUFF_SIZE);                        /* Load the buffer into the TX_FIFO                     */
+        cc12xxSpiWriteTxFifo(tx_buff, TX_BUFF_SIZE);                        /* Load the buffer into the TX_FIFO                     */
         cc12xxSpiReadReg(CC120X_NUM_TXBYTES, &fill_ct[1], 1);               /* Grab FIFO Fill                                       */
         trxSpiCmdStrobe(CC120X_STX);                                        /* Send packet                                          */
         cc12xxSpiReadReg(CC120X_NUM_TXBYTES, &fill_ct[2], 1);               /* Grab FIFO Fill                                       */

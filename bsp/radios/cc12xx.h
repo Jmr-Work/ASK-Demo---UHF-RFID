@@ -512,8 +512,8 @@ extern rfStatus_t trx16BitRegAccess(uint8_t accessType, uint8_t extAddr, uint8_t
 
 extern rfStatus_t trxSpiCmdStrobe(uint8_t cmd);
 extern uint8_t cc12xx_queryTxFifo(void);
-extern rfStatus_t cc112xSpiWriteReg(uint16_t addr, uint8_t*pData, uint8_t len);
-extern rfStatus_t cc112xSpiWriteTxFifo(uint8_t *pData, uint8_t len);
+extern rfStatus_t cc12xxSpiWriteReg(uint16_t addr, uint8_t*pData, uint8_t len);
+extern rfStatus_t cc12xxSpiWriteTxFifo(uint8_t *pData, uint8_t len);
 
 extern void cc12xx_configure(void);
 extern void cc12xx_reg_write(uint16_t addr, uint8_t data);

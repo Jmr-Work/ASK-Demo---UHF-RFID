@@ -109,7 +109,7 @@ void cc1200_run_init(void) {
 /************************************************************************************************************************************/
 void cc1200_run_loop(void) {
     //Load the buffer into the TX_FIFO
-    cc112xSpiWriteTxFifo(tx_buff, TX_BUFF_SIZE);                        /* Send the message                                     	*/
+    cc12xxSpiWriteTxFifo(tx_buff, TX_BUFF_SIZE);                        /* Send the message                                     	*/
 
     // Send packet
     trxSpiCmdStrobe(CC120X_STX);

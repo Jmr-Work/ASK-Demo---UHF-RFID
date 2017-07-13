@@ -505,14 +505,14 @@ cc12xx_rngValInfo cc12xx_get_rngValInfo(void) {
 
     //Enable RNG
     uint8_t write_val = BIT7;
-    cc112xSpiWriteReg(CC120X_RNDGEN, &write_val, 1);
+    cc12xxSpiWriteReg(CC120X_RNDGEN, &write_val, 1);
 
     //Read Registers
     cc12xxSpiReadReg(CC120X_RNDGEN, &info.reg_rndgen, 1);
 
     //Disable RNG
     write_val = 0x00;
-    cc112xSpiWriteReg(CC120X_RNDGEN, &write_val, 1);
+    cc12xxSpiWriteReg(CC120X_RNDGEN, &write_val, 1);
 
     //Store Values
     info.rngVal = (info.reg_rndgen & 0x7F);                                 /* b6:b0                                                */
