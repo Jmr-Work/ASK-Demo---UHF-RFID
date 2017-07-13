@@ -105,17 +105,28 @@ void signal_grab_next(void) {
 
 //! next_grab_ind = (next_grab_ind + TX_BUFF_SIZE) % signal_size;
     
-  uint16_t i;
+    uint16_t i;
   
-  //All Empty 
-  for(i=0; i< TX_BUFF_SIZE; i++) {
-    tx_buff[i] = 0x00;
-  }
+    //All Empty 
+    for(i=0; i< TX_BUFF_SIZE; i++) {
+        tx_buff[i] = 0x00;
+    }
   
-  //Add 25% Pulse (of bits)
-  for(i=0; i< TX_BUFF_SIZE/4; i++) {
-    tx_buff[i] = 0x55;
-  }  
+    //Add 25% Pulse (of bits)
+    for(i=0; i< TX_BUFF_SIZE/4; i++) {
+        tx_buff[i] = 0x55;
+    }
+  
+    //First Char holds 4 chips-low
+    tx_buff[0] = b11000011;
+  
+    //Second Char all high
+    tx_buff[1] = b11111111;
+    
+    //Thirdchar two low
+    tx_buff[2] = b11100111;
 
+    
     return;
 }
+
