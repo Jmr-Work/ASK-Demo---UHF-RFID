@@ -204,6 +204,8 @@
   #define PERCFG_T4CFG                  0x10               // Timer 4 I/O location
   #define PERCFG_U1CFG                  0x02               // USART 1 I/O location
   #define PERCFG_U0CFG                  0x01               // USART 0 I/O location
+    #define PERCFG_U1CFG_ALT1                 0x00          // Alternative 1 location
+    #define PERCFG_U1CFG_ALT2                 0x02          // Alternative 2 location
     #define PERCFG_U0CFG_ALT1                 0x00          // Alternative 1 location
     #define PERCFG_U0CFG_ALT2                 0x01          // Alternative 2 location
 
@@ -1093,6 +1095,42 @@
 // U0DBUF (0xC1) - USART 0 Receive/Transmit Data Buffer
 
 // U0BAUD (0xC2) - USART 0 Baud Rate Control
+
+
+// U1CSR (0xF8) - USART 1 Control and Status
+#define U1CSR_MODE                        0x80
+#define U1CSR_RE                          0x40
+#define U1CSR_SLAVE                       0x20
+#define U1CSR_FE                          0x10
+#define U1CSR_ERR                         0x08
+#define U1CSR_RX_BYTE                     0x04
+#define U1CSR_TX_BYTE                     0x02
+#define U1CSR_ACTIVE                      0x01
+
+// U1UCR (0xFB) - USART 1 UART Control
+#define U1UCR_FLUSH                       0x80
+#define U1UCR_FLOW                        0x40
+#define U1UCR_D9                          0x20
+#define U1UCR_BIT9                        0x10
+#define U1UCR_PARITY                      0x08
+#define U1UCR_SPB                         0x04
+#define U1UCR_STOP                        0x02
+#define U1UCR_START                       0x01
+
+// U1GCR (0xFC) - USART 1 Generic Control
+#define U1GCR_CPOL                        0x80
+#define U1GCR_CPHA                        0x40
+#define U1GCR_ORDER                       0x20
+#define U1GCR_BAUD_E                      0x1F
+  #define U1GCR_BAUD_E0                     0x01
+  #define U1GCR_BAUD_E1                     0x02
+  #define U1GCR_BAUD_E2                     0x04
+  #define U1GCR_BAUD_E3                     0x08
+  #define U1GCR_BAUD_E4                     0x10
+
+// U1DBUF (0xF9) - USART 1 Receive/Transmit Data Buffer
+
+// U1BAUD (0xFA) - USART 1 Baud Rate Control
 
 
 /*******************************************************************************

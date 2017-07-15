@@ -2,8 +2,8 @@
 #define TARGETS_MCU_H_
 
 //Processor Selection                                                         (done this way to make project visually cleanest)
-#define     TARGET_SEL_CC2541                                               /* final target                                         */
-//#define   TARGET_SEL_MSP430F5438A                                         /* starting dev platform                                */
+//#define     TARGET_SEL_CC2541                                               /* final target                                         */
+#define   TARGET_SEL_MSP430F5438A                                         /* starting dev platform                                */
 //#define   TARGET_SEL_MSP430F5529                                          /* shared dev example-platform                          */
 
 
@@ -24,7 +24,7 @@
 
     #define mcu_init                            msp430f5438a_init
     #define mcu_enable_interrupts               msp430f5438a_enable_interrupts
-    #define mcu_demo                            msp430f5438a_demo
+    #define mcu_sleep                           msp430f5438a_sleep
 
     #define gpio_init                           msp430f5438a_gpio_init
     #define clocks_init                         msp430f5438a_clocks_init
@@ -46,7 +46,7 @@
 
     #define mcu_init                            cc2541_init
     #define mcu_enable_interrupts               cc2541_enable_interrupts
-    #define mcu_demo                            cc2541_demo
+    #define mcu_sleep                           cc2541_sleep
 
     #define gpio_init                           cc2541_gpio_init
     #define clocks_init                         cc2541_clocks_init
@@ -59,7 +59,7 @@
 //Globals
 extern void mcu_init(void);
 extern void mcu_enable_interrupts(void);
-extern void mcu_demo(void);
+extern void mcu_sleep(void);
 
 extern void mcu_radio_spi_begin(void);
 extern void mcu_radio_spi_tx(uint8_t x);

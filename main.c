@@ -29,6 +29,14 @@
  *      [7] - CC1175 EMK Design Files
  *      [8] - CC1200 EMK Design Files
  *
+ *  @section    Demos
+ *      Continuous Tx-A - Continuous Transmissions from a pre-computed signal   (demo_cont.c)          (compl)
+ *      Continuous Tx-B - Continuous Transmissions with runtime compute         (demo_slices.c)        (2 - !todo!)
+ *      RFID Demo       - Sliced with RFID, final target                        (demo_rfid.c           (3 - !todo!)
+ *      Finite Tx       - Finite Transmissions                                  (demo_finite.c)        (compl)
+ *      Register Read   - Read a single register value                          (demo_register.c)      (compl)
+ *      Map Read/Print  - Read the full map used to UART                        (demo_map.c)           (compl)
+ *
  *  @section    Opens
  *          deprecate temp_radio.h                              (correct header format in consideration)
  *          code handles TX_FIFO open count correct             (15 is max val reported, cc1200_run_waitForRoom()&c12xx_queryTxFifo() done right!)
@@ -48,6 +56,10 @@
  *          disable frequency offset correction FREQOFF_CFG, or at least understand it fully
  *          understand FS Out-of-lock detector & determine if in right config
  *          make a cleaner cc12xx_reg_write implementation, with u8 writes just passing value directly
+ * 			ensure all msp vocab is dropped from cc2541 files
+ *			ensure all cc2541 vocab is dropped from cc12xx files
+ *			ensure all CC1200/CC1175 #defs are used properly in cc12xx files
+ *	change all EOL character to CRLF for all files & projects
  *
  *  @section    Legal Disclaimer
  *          All contents of this source file and/or any other Misc. Product related source files are the explicit property of
@@ -55,7 +67,7 @@
  */
 /************************************************************************************************************************************/
 #include "globals.h"
-#include "sys/demo/demo_cont.h"
+#include "sys/demo/demo_map.h"
 
 
 uint8_t tx_buff[TX_BUFF_SIZE] = {0};
@@ -75,7 +87,7 @@ int main(void) {
 	sys_init();
 	
 	//Run Demo
-	demo_cont();                                                            /*  	mcu_demo();                                     */
+	demo_map();
 }
 
 

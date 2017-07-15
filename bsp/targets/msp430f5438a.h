@@ -37,6 +37,8 @@
 //Globals
 extern void msp430f5438a_init(void);
 extern void msp430f5438a_enable_interrupts(void);
+extern void msp430f5438a_sleep(void);
+
 extern void msp430f5438a_clocks_init(void);
 extern void msp430f5438a_gpio_init(void);
 extern void msp430f5438a_timers_init(void);

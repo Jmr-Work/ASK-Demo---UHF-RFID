@@ -11,12 +11,17 @@
 #include "mcu.h"
 
 
+//Radios
+#include "radios/cc12xx_reg_config_names.h"
+
+
 //Radio Selection
 #ifdef RADIO_SEL_CC1200
     #include "radios/cc1200.h"
     #include "radios/cc1200_reg_config.h"
     #define CHIP_PARTNUMBER_UHF_ID      CHIP_PARTNUMBER_CC1200
     #define preferredSettings           preferredSettings_cc1200
+    #define radio_reg_names             cc1200_names
     #define NUM_PREFERRED_SETTINGS      NUM_PREFERRED_SETTINGS_CC1200
 
     #define radio_init                  cc1200_init
@@ -30,6 +35,7 @@
     #include "radios/cc1175_reg_config.h"
     #define CHIP_PARTNUMBER_UHF_ID      CHIP_PARTNUMBER_CC1175
     #define preferredSettings           preferredSettings_cc1175
+    #define radio_reg_names             cc1175_names
     #define NUM_PREFERRED_SETTINGS      NUM_PREFERRED_SETTINGS_CC1175
 
     #define radio_init                  cc1175_init
@@ -49,6 +55,9 @@ extern void radio_run_prepForNext(void);
 
 #define radio_spi_init  mcu_radio_spi_init                                  /* for cleanliness of presentation in main.c            */
 
+
+//Global Vars
+extern const char radio_reg_names[][];
 
 #endif /* BSP_RADIO_H_ */
 

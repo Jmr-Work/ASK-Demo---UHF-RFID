@@ -10,8 +10,11 @@
  *  @created    6/19/17
  *  @last rev   6/19/17
  *
- *
- *  @notes      x
+ *  @section    Vocabulary
+ *      Waveform - the full signal defined for transmission (msg[], idle_durations, type)
+ *      Slice    - a component of waveform loaded into the Tx buffer. Size defined by tx_buff size
+ *      Active   - the slice currently in generation
+ *      Chip     - TX FIFO smallest component (i.e. a bit in FIFO)
  *
  *  @section    Opens
  *          none current
@@ -25,35 +28,13 @@
  */
 /************************************************************************************************************************************/
 #include "signal.h"
+  
+//<TEMP>
+uint32_t calc_msg_duration(Command type, uint8_t *cmd);
+//</TEMP>
 
-
-SelectCommand sel_cmd = {
-                        .command  = b1010,
-                        .target   = b011,
-                        .action   = b000,
-                        .membank  = b01,
-                        .pointer  = b00000000,
-                        .length   = b00010000,
-                        .mask     = 0x0000,
-                        .truncate = b0,
-                        .crc16    = 0x0000
-                        };
-
-QueryCommand query_cmd = {
-                          .command = b1000,
-                               .dr = b0,
-                                .m = b00,
-                            .trext = b1,
-                              .sel = b00,
-                          .session = b11,
-                           .target = b1,
-                                .q = b0000,
-                             .crc5 = b00000
-                          };
-
-//Signal Vars
-uint16_t next_grab_ind = 0;                                                 /* where to grab for the next transmission segment      */
-uint16_t signal_size;                                                       /* how big the signal stored is, measured in bytes      */
+//Transmit Waveform
+Waveform wvfm;                                                              /* the meat, this is where the message goes!            */
 
 
 /************************************************************************************************************************************/
