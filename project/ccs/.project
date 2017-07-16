@@ -180,10 +180,5 @@
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/sys/test/rfid_test.h</locationURI>
 		</link>
-		<link>
-			<name>bsp/targets/support/empty.txt</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/bsp/targets/support/empty.txt</locationURI>
-		</link>
 	</linkedResources>
 </projectDescription>

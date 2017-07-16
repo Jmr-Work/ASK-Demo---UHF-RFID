@@ -67,7 +67,7 @@
  */
 /************************************************************************************************************************************/
 #include "globals.h"
-#include "sys/demo/demo_map.h"
+#include "sys/demo/demo_slice.h"
 
 
 uint8_t tx_buff[TX_BUFF_SIZE] = {0};
@@ -87,7 +87,7 @@ int main(void) {
 	sys_init();
 	
 	//Run Demo
-	demo_map();
+	demo_slice();
 }
 
 

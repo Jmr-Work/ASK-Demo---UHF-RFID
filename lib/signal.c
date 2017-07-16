@@ -30,11 +30,11 @@
 #include "signal.h"
   
 //<TEMP>
-uint32_t calc_msg_duration(Command type, uint8_t *cmd);
+//uint32_t calc_msg_duration(Command type, uint8_t *cmd);
 //</TEMP>
 
 //Transmit Waveform
-Waveform wvfm;                                                              /* the meat, this is where the message goes!            */
+//Waveform wvfm;                                                              /* the meat, this is where the message goes!            */
 
 
 /************************************************************************************************************************************/
@@ -49,23 +49,23 @@ Waveform wvfm;                                                              /* t
 /************************************************************************************************************************************/
 void signal_generate(void) {
 
-    dataBitGenLoc loc = {0,0};                                              /* address used in calc for signal                      */
-
-    //Generate Waveform (@note  1600 counts per 100us w/FCPU=16MHz)
-    loc = rfid_sig_idleRF(data_arr, loc, 3200, true);
-
-    loc = rfid_sig_Select(data_arr, loc, sel_cmd);
-
-    loc = rfid_sig_idleRF(data_arr, loc, 3200, true);
-
-    loc = rfid_sig_Query(data_arr, loc, query_cmd);
-
-    loc = rfid_sig_idleRF(data_arr, loc, 6400, true);
-
-    loc = rfid_sig_idleRF(data_arr, loc, 3200, false);
-
-    //Store new signal size
-    signal_size = loc.arr_ind+1;                                            /* e.g. if 3 bytes in array, arr_ind=2, signal_size = 3 */
+//    dataBitGenLoc loc = {0,0};                                              /* address used in calc for signal                      */
+//
+//    //Generate Waveform (@note  1600 counts per 100us w/FCPU=16MHz)
+//    loc = rfid_sig_idleRF(data_arr, loc, 3200, true);
+//
+//    loc = rfid_sig_Select(data_arr, loc, sel_cmd);
+//
+//    loc = rfid_sig_idleRF(data_arr, loc, 3200, true);
+//
+//    loc = rfid_sig_Query(data_arr, loc, query_cmd);
+//
+//    loc = rfid_sig_idleRF(data_arr, loc, 6400, true);
+//
+//    loc = rfid_sig_idleRF(data_arr, loc, 3200, false);
+//
+//    //Store new signal size
+//    signal_size = loc.arr_ind+1;                                            /* e.g. if 3 bytes in array, arr_ind=2, signal_size = 3 */
 
     return;
 }
@@ -86,26 +86,26 @@ void signal_grab_next(void) {
 
 //! next_grab_ind = (next_grab_ind + TX_BUFF_SIZE) % signal_size;
     
-    uint16_t i;
-  
-    //All Empty 
-    for(i=0; i< TX_BUFF_SIZE; i++) {
-        tx_buff[i] = 0x00;
-    }
-  
-    //Add 25% Pulse (of bits)
-    for(i=0; i< TX_BUFF_SIZE/4; i++) {
-        tx_buff[i] = 0x55;
-    }
-  
-    //First Char holds 4 chips-low
-    tx_buff[0] = b11000011;
-  
-    //Second Char all high
-    tx_buff[1] = b11111111;
-    
-    //Thirdchar two low
-    tx_buff[2] = b11100111;
+//    uint16_t i;
+//
+//    //All Empty
+//    for(i=0; i< TX_BUFF_SIZE; i++) {
+//        tx_buff[i] = 0x00;
+//    }
+//
+//    //Add 25% Pulse (of bits)
+//    for(i=0; i< TX_BUFF_SIZE/4; i++) {
+//        tx_buff[i] = 0x55;
+//    }
+//
+//    //First Char holds 4 chips-low
+//    tx_buff[0] = b11000011;
+//
+//    //Second Char all high
+//    tx_buff[1] = b11111111;
+//
+//    //Thirdchar two low
+//    tx_buff[2] = b11100111;
 
     
     return;
