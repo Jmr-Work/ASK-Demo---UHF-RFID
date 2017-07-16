@@ -34,7 +34,7 @@ uint32_t calc_msg_duration(Command type, uint8_t *cmd);
 //</TEMP>
 
 //Transmit Waveform
-Waveform wvfm;                                                              /* the meat, this is where the message goes!            */
+//Waveform wvfm;                                                              /* the meat, this is where the message goes!            */
 
 
 /************************************************************************************************************************************/
@@ -48,24 +48,24 @@ Waveform wvfm;                                                              /* t
  */
 /************************************************************************************************************************************/
 void signal_generate(void) {
-
-    dataBitGenLoc loc = {0,0};                                              /* address used in calc for signal                      */
-
-    //Generate Waveform (@note  1600 counts per 100us w/FCPU=16MHz)
-    loc = rfid_sig_idleRF(data_arr, loc, 3200, true);
-
-    loc = rfid_sig_Select(data_arr, loc, sel_cmd);
-
-    loc = rfid_sig_idleRF(data_arr, loc, 3200, true);
-
-    loc = rfid_sig_Query(data_arr, loc, query_cmd);
-
-    loc = rfid_sig_idleRF(data_arr, loc, 6400, true);
-
-    loc = rfid_sig_idleRF(data_arr, loc, 3200, false);
-
-    //Store new signal size
-    signal_size = loc.arr_ind+1;                                            /* e.g. if 3 bytes in array, arr_ind=2, signal_size = 3 */
+    for(;;);
+//    dataBitGenLoc loc = {0,0};                                              /* address used in calc for signal                      */
+//
+//    //Generate Waveform (@note  1600 counts per 100us w/FCPU=16MHz)
+//    loc = rfid_sig_idleRF(data_arr, loc, 3200, true);
+//
+//    loc = rfid_sig_Select(data_arr, loc, sel_cmd);
+//
+//    loc = rfid_sig_idleRF(data_arr, loc, 3200, true);
+//
+//    loc = rfid_sig_Query(data_arr, loc, query_cmd);
+//
+//    loc = rfid_sig_idleRF(data_arr, loc, 6400, true);
+//
+//    loc = rfid_sig_idleRF(data_arr, loc, 3200, false);
+//
+//    //Store new signal size
+//    signal_size = loc.arr_ind+1;                                            /* e.g. if 3 bytes in array, arr_ind=2, signal_size = 3 */
 
     return;
 }
@@ -85,7 +85,7 @@ void signal_grab_next(void) {
 //! memcpy(&tx_buff[0], &data_arr[next_grab_ind], TX_BUFF_SIZE*sizeof(uint8_t));      /* @open   validate in depth                  */
 
 //! next_grab_ind = (next_grab_ind + TX_BUFF_SIZE) % signal_size;
-    
+
     uint16_t i;
   
     //All Empty 

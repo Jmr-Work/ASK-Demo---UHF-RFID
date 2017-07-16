@@ -32,6 +32,9 @@ const registerSetting_t preferredSettings_cc1200[NUM_PREFERRED_SETTINGS_CC1200] 
   {CC120X_DEVIATION_M,       0x99},                        //(0x000a) frequency deviation configuration
   {CC120X_MODCFG_DEV_E,      0x1D},                        //(0x000b) modulation format and frequency deviation configur..
   {CC120X_DCFILT_CFG,        0x26},                        //(0x000c) digital dc removal configuration
+  {CC120X_PREAMBLE_CFG1,     0x00},                        //(0x000d) preamble configuration reg. 1
+  //	  0b0000 0000 Off
+  //      0b0010 1000 5-Byte Preamble [D]
   {CC120X_PREAMBLE_CFG0,     0x8A},                        //(0x000e) preamble detection configuration reg. 0
   {CC120X_IQIC,              0x00},                        //(0x000f) digital image channel compensation configuration
   {CC120X_CHAN_BW,           0x02},                        //(0x0010) channel filter configuration
@@ -46,14 +49,17 @@ const registerSetting_t preferredSettings_cc1200[NUM_PREFERRED_SETTINGS_CC1200] 
   {CC120X_AGC_CFG0,          0x84},                        //(0x001c) automatic gain control configuration reg. 0
   {CC120X_FIFO_CFG,          0x00},                        //(0x001d) fifo configuration
   {CC120X_FS_CFG,            0x12},                        //(0x0020) frequency synthesizer configuration
-  {CC120X_PKT_CFG2,          0x00},                        //(0x0026) packet configuration reg. 2
+  {CC120X_PKT_CFG2,          0x40},                        //(0x0026) packet configuration reg. 2
+  //      0b0100 0000 Byte Swap Enabled  (b0 first)
+  //      0b0100 0000 Byte Swap Disabled (b7 first)	[D]
   {CC120X_PKT_CFG0,          0x40},                        //(0x0028) packet configuration reg. 0
   //      0b0100 0000 Continuous
-  //      0b0010 0000 Fixed
+  //      0b0010 0000 Fixed [D]
   {CC120X_PA_CFG0,           0x52},                        //(0x002c) power amplifier configuration reg. 0
   {CC120X_ASK_CFG,           0x3F},                        //(0x002d) ask configuration
   {CC120X_PKT_LEN,           0xFF},                        //(0x002e) packet length configuration
-//      255
+  //      0b1111 1111 N=255
+  //      0b0000 0000 N=0/256[D]
   {CC120X_IF_MIX_CFG,        0x18},                        //(0x2f00) if mix configuration
   {CC120X_TOC_CFG,           0x03},                        //(0x2f02) timing offset correction configuration
   {CC120X_MDMCFG2,           0x00},                        //(0x2f05) general modem parameter configuration reg. 2

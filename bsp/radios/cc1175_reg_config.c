@@ -34,7 +34,9 @@ const registerSetting_t preferredSettings_cc1175[NUM_PREFERRED_SETTINGS_CC1175] 
  {CC112X_DEVIATION_M,       0x53},                        //(0x000a) frequency deviation configuration
  {CC112X_MODCFG_DEV_E,      0x1F},                        //(0x000b) modulation format and frequency deviation configur..
  {CC112X_DCFILT_CFG,        0x04},                        //(0x000c) digital dc removal configuration
- {CC112X_PREAMBLE_CFG1,     0x18},                        //(0x000d) preamble length configuration reg. 1
+ {CC120X_PREAMBLE_CFG1,     0x00},                        //(0x000d) preamble configuration reg. 1
+  //	  0b0000 0000 Off
+  //      0b0010 1000 5-Byte Preamble [D]
  {CC112X_FREQ_IF_CFG,       0x00},                        //(0x000f) rx mixer frequency configuration
  {CC112X_IQIC,              0x00},                        //(0x0010) digital image channel compensation configuration
  {CC112X_CHAN_BW,           0x01},                        //(0x0011) channel filter configuration
@@ -51,12 +53,16 @@ const registerSetting_t preferredSettings_cc1175[NUM_PREFERRED_SETTINGS_CC1175] 
  {CC112X_FIFO_CFG,          0x00},                        //(0x001e) fifo configuration
  {CC112X_SETTLING_CFG,      0x03},                        //(0x0020) frequency synthesizer calibration and settling con..
  {CC112X_FS_CFG,            0x12},                        //(0x0021) frequency synthesizer configuration
+ {CC112X_PKT_CFG1,          0x07},                        //(0x0027) packet configuration reg. 1
+ //      0b0000 0111 Byte-Swap Enabled  (b0 first)
+ //      0b0000 0101 Byte-Swap Disabled (b7 first)	[D]
  {CC112X_PKT_CFG0,          0x40},                        //(0x0028) packet configuration reg. 0
-//      0b0100 0000 Continuous
-//      0b0010 0000 Fixed
+ //      0b0100 0000 Continuous
+ //      0b0010 0000 Fixed [D]
  {CC112X_PA_CFG0,           0x7A},                        //(0x002d) power amplifier configuration reg. 0
  {CC112X_PKT_LEN,           0xFF},                        //(0x002e) packet length configuration
-//      255
+ //      0b1111 1111 N=255
+ //      0b0000 0000 N=0/256[D]
  {CC112X_IF_MIX_CFG,        0x00},                        //(0x2f00) if mix configuration
  {CC112X_TOC_CFG,           0x0A},                        //(0x2f02) timing offset correction configuration
  {CC112X_FREQ2,             0x6C},                        //(0x2f0c) frequency configuration [23:16]

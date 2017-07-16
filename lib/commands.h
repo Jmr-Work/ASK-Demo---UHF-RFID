@@ -16,7 +16,7 @@ typedef enum command_t {
     QUERY_ACK = 0x03,
     REQ_RN    = 0x04,
     ACCESS    = 0x05,
-    LOCK      = 0x06,
+    LOCK_C    = 0x06,
     READ      = 0x07,
     WRITE     = 0x08,
     BLWRITE   = 0x09,

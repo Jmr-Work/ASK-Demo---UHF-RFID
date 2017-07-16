@@ -20,7 +20,7 @@
  *  @notes
  *          - write 8 symbols per byte
  *          - first byte of transmission is [0]
- *          - first bit of transmission is b0?
+ *          - first bit of transmission is b0 (BYTE_SWAP_EN = T)
  *
  *  @section    Opens
  *          none current
