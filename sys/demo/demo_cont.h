@@ -3,8 +3,8 @@
  *  @brief      give a demo of using finite packet mode configuration
  *  @details    this mode is useful often for debug & dev, leaving nearby & functional if needed
  */
-#ifndef SYS_DEMO_DEMO_CONT_H_
-#define SYS_DEMO_DEMO_CONT_H_
+#ifndef SYS_DEMO_CONT_H_
+#define SYS_DEMO_CONT_H_
 
 
 //Libraries
@@ -27,4 +27,4 @@
 extern void demo_cont(void);
 
 
-#endif /* SYS_DEMO_DEMO_CONT_H_ */
+#endif /* SYS_DEMO_CONT_H_ */

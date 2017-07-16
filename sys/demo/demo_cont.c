@@ -25,50 +25,47 @@
 
 /************************************************************************************************************************************/
 /** @fcn        void demo_cont(void)
- *  @brief      x
+ *  @brief      Continuous-Tx mode, with static buffer contents
  *  @details    x
- *
- *  @section    Opens
- *      x
- *
- *  @section    Waveform (see signal.c:signal_generate()
- *      Pre: .        Idle-Off    []
- *      [0]: (200 us) Idle-CW     [200us]
- *      [1]: .        Select      [3162.5us]
- *      [2]: (200 us) Idle-CW     [200us]
- *      [3]: .        Query       [1425us]
- *      [4]: (400 ms) Idle-CW     [400us]
- *      [5]: .        Idle-Off    [1000us]
-
- *  @note       x
  */
 /************************************************************************************************************************************/
 void demo_cont(void) {
 
-    uint16_t loop_ct = 0;
+    uint16_t loop_ct = 0, i = 0;
 
     //Generate Waveform
-//! signal_generate();
-    signal_grab_next();
 
-    radio_run_init();
+    //All Empty
+    for(i=0; i< TX_BUFF_SIZE; i++) {
+        tx_buff[i] = 0x00;
+    }
+
+    //Add 25% Pulse (of bits)
+    for(i=0; i< TX_BUFF_SIZE/4; i++) {
+        tx_buff[i] = 0x55;
+    }
+
+    //First Char holds 4 chips-low
+    tx_buff[0] = b11000011;
+
+    //Second Char all high
+    tx_buff[1] = b11111111;
+
+    //Third char two low
+    tx_buff[2] = b11100111;
+
+
+    //------------------------------------------------Send Waveform-----------------------------------------------------------------//
+    radio_cont_run_init();
 
     for(;;) {
-//!     P4OUT |= BIT7;                                                      /* BIT7 pulse: 101ms                                    */
-
-        radio_run_loop();
-
-        signal_grab_next();
+        radio_cont_run_loop();
 
         radio_run_waitForRoom();
-
-//!     P4OUT &= ~BIT7;
 
         radio_run_prepForNext();
 
         loop_ct++;
-
-//!     P4OUT ^= BIT6;
     } /* end for(;;)            */
 }
 
