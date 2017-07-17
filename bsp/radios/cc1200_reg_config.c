@@ -52,9 +52,9 @@ const registerSetting_t preferredSettings_cc1200[NUM_PREFERRED_SETTINGS_CC1200] 
   {CC120X_PKT_CFG2,          0x40},                        //(0x0026) packet configuration reg. 2
   //      0b0100 0000 Byte Swap Enabled  (b0 first)
   //      0b0100 0000 Byte Swap Disabled (b7 first)	[D]
-  {CC120X_PKT_CFG0,          0x40},                        //(0x0028) packet configuration reg. 0
+  {CC120X_PKT_CFG0,          0x00},                        //(0x0028) packet configuration reg. 0
   //      0b0100 0000 Continuous
-  //      0b0010 0000 Fixed [D]
+  //      0b0000 0000 Fixed [D]
   {CC120X_PA_CFG0,           0x52},                        //(0x002c) power amplifier configuration reg. 0
   {CC120X_ASK_CFG,           0x3F},                        //(0x002d) ask configuration
   {CC120X_PKT_LEN,           0xFF},                        //(0x002e) packet length configuration
