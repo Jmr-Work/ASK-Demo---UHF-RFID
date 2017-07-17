@@ -136,6 +136,16 @@
 			<locationURI>PARENT-2-PROJECT_LOC/bsp/radios/cc12xx.h</locationURI>
 		</link>
 		<link>
+			<name>bsp/radios/cc12xx_reg_config_names.c</name>
+			<type>1</type>
+			<location>D:/Documents/Ref/Platforms/TI/CC-Series/CC1200/Examples/workshop/ASK Demo - UHF RFID/bsp/radios/cc12xx_reg_config_names.c</location>
+		</link>
+		<link>
+			<name>bsp/radios/cc12xx_reg_config_names.h</name>
+			<type>1</type>
+			<location>D:/Documents/Ref/Platforms/TI/CC-Series/CC1200/Examples/workshop/ASK Demo - UHF RFID/bsp/radios/cc12xx_reg_config_names.h</location>
+		</link>
+		<link>
 			<name>bsp/radios/cc12xx_reg_lib.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/bsp/radios/cc12xx_reg_lib.c</locationURI>
@@ -163,7 +173,7 @@
 		<link>
 			<name>project/ewp/ask_demo.eww</name>
 			<type>1</type>
-			<location>D:/Documents/Ref/Platforms/TI/CC-Series/CC1200/Examples/workshop/ASK Demo - UHF RFID/project/ewp/ask_demo.eww</location>
+			<locationURI>PARENT-2-PROJECT_LOC/project/ewp/ask_demo.eww</locationURI>
 		</link>
 		<link>
 			<name>sys/ref/stdcomments.h</name>
@@ -179,11 +189,6 @@
 			<name>sys/test/rfid_test.h</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/sys/test/rfid_test.h</locationURI>
-		</link>
-		<link>
-			<name>bsp/targets/support/empty.txt</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/bsp/targets/support/empty.txt</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

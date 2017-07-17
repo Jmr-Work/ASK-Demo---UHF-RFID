@@ -67,9 +67,8 @@
  */
 /************************************************************************************************************************************/
 #include "globals.h"
-#include "sys/demo/demo_map.h"
 
-
+//Globals
 uint8_t tx_buff[TX_BUFF_SIZE] = {0};
 
 uint8_t data_arr[SRC_BUFF_SIZE] = {0x00};
@@ -87,7 +86,7 @@ int main(void) {
 	sys_init();
 	
 	//Run Demo
-	demo_map();
+	demo_finite();
 }
 
 

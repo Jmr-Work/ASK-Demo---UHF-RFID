@@ -12,7 +12,7 @@
 #include "bsp/mcu.h"
 
 
-//Project
+//Radio
 #include "bsp/radio.h"
 
 
@@ -22,6 +22,7 @@
 
 
 //Test & Dev
+#include "sys/demo/demo.h"
 #include "sys/test/rfid_test.h"
 
 
