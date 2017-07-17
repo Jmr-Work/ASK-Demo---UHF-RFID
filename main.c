@@ -41,6 +41,7 @@
  *          deprecate temp_radio.h                              (correct header format in consideration)
  *          code handles TX_FIFO open count correct             (15 is max val reported, cc1200_run_waitForRoom()&c12xx_queryTxFifo() done right!)
  *          memory maps are not identical, config to support    (e.g. REG_PA_CFG1 in diff spots on CC1200 & CC1175)
+ *          switch to use of signals.c, for gen & access, by all demos
  *          reads the tx_fifo contents directly!                (at 0x3Fnn!)
  *              also uses cc12xx_txFifoInfo.first & last to do reads of these vals
  *              provides a 'read whole FIFO' fcn
@@ -86,7 +87,7 @@ int main(void) {
 	sys_init();
 	
 	//Run Demo
-	demo_finite();
+	demo_rfid();
 }
 
 
