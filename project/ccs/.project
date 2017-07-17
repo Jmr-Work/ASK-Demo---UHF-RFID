@@ -180,15 +180,5 @@
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/sys/ref/stdcomments.h</locationURI>
 		</link>
-		<link>
-			<name>sys/test/rfid_test.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/sys/test/rfid_test.c</locationURI>
-		</link>
-		<link>
-			<name>sys/test/rfid_test.h</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/sys/test/rfid_test.h</locationURI>
-		</link>
 	</linkedResources>
 </projectDescription>

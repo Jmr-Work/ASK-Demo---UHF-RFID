@@ -11,7 +11,7 @@
 #include "temp_radio.h"
 
 //Definitions
-#define NUM_PREFERRED_SETTINGS_CC1175    (49)
+#define NUM_PREFERRED_SETTINGS_CC1175    (51)
 
 
 //Global Vars

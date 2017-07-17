@@ -13,6 +13,10 @@
  *
  *  @notes      x
  *
+ *  @section    Points of Cautions
+ *          The PA is observed to have ~18us ramp-on-time & ~28us ramp-off-time, ensure to account for this is signal design (e.g.
+ *          enter & exit with 0xFF idle-high byte)
+ *
  *  @section    Opens
  *          none current
  *

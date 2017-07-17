@@ -3,8 +3,8 @@
 
 
 //Radio Selection
-//#define RADIO_SEL_CC1175                                                  /* Uhf-Id's target radio                                */
-#define RADIO_SEL_CC1200                                                    /* Entry-level radio with similar features              */
+#define RADIO_SEL_CC1175                                                  /* Uhf-Id's target radio                                */
+//#define RADIO_SEL_CC1200                                                    /* Entry-level radio with similar features              */
 
 
 //Project
@@ -43,6 +43,23 @@
     #define radio_run_loop              cc1175_run_loop
     #define radio_run_waitForRoom       cc1175_run_waitForRoom
     #define radio_run_prepForNext       cc1175_run_prepForNext
+#endif
+
+
+//Radio Defs (clean code)
+#ifdef RADIO_SEL_CC1200
+    #define CC12XX_PKT_CFG0     CC120X_PKT_CFG0
+    #define CC12XX_PKT_LEN      CC120X_PKT_LEN
+    #define CC12XX_NUM_TXBYTES  CC120X_NUM_TXBYTES
+    #define CC12XX_SFTX         CC120X_SFTX
+    #define CC12XX_STX          CC120X_STX
+#endif
+#ifdef RADIO_SEL_CC1175
+    #define CC12XX_PKT_CFG0     CC112X_PKT_CFG0
+    #define CC12XX_PKT_LEN      CC112X_PKT_LEN
+    #define CC12XX_NUM_TXBYTES  CC112X_NUM_TXBYTES
+    #define CC12XX_SFTX         CC112X_SFTX
+    #define CC12XX_STX          CC112X_STX
 #endif
 
 

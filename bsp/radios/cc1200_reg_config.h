@@ -11,7 +11,7 @@
 #include "temp_radio.h"
 
 //Definitions
-#define NUM_PREFERRED_SETTINGS_CC1200    (52)
+#define NUM_PREFERRED_SETTINGS_CC1200    (53)
 
 
 //Global Vars

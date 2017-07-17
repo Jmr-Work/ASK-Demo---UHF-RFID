@@ -278,8 +278,8 @@ dataBitGenLoc rfid_sig_idleRF(uint8_t *arr, dataBitGenLoc loc, uint32_t idleRF_c
 /************************************************************************************************************************************/
 dataBitGenLoc rfid_sig_dataBit(uint8_t arr[], dataBitGenLoc loc, bool bitVal) {
 
-    //Data1(3 High, 1 Low)
-    //Data0(2 High, 1 Low)
+    //Data1(2 High, 1 Low)
+    //Data0(1 High, 1 Low)
 
     //Data-1 Chip (extension)
     if(bitVal) {
@@ -287,7 +287,6 @@ dataBitGenLoc rfid_sig_dataBit(uint8_t arr[], dataBitGenLoc loc, bool bitVal) {
     }
 
     //Data-0 RFID Symbol
-    loc = rfid_sig_add_chip(arr, loc, true);
     loc = rfid_sig_add_chip(arr, loc, true);
     loc = rfid_sig_add_chip(arr, loc, false);
 

@@ -30,11 +30,18 @@ const registerSetting_t preferredSettings_cc1175[NUM_PREFERRED_SETTINGS_CC1175] 
  {CC112X_IOCFG2,            0x06},                        //(0x0001) gpio2 io pin configuration
  {CC112X_IOCFG1,            0xB0},                        //(0x0002) gpio1 io pin configuration
  {CC112X_IOCFG0,            0x40},                        //(0x0003) gpio0 io pin configuration
- {CC112X_SYNC_CFG1,         0x0B},                        //(0x0008) sync word detection configuration reg. 1
+ {CC112X_SYNC_CFG1,         0x00},                        //(0x0008) sync word detection configuration reg. 1
+ //    0b0000 0000 Sync Off
+ //    0b0000 1100 Sync On[R]
+ {CC112X_SYNC_CFG0,         0x00},                        //(0x0009) sync word detection configuration reg. 0
+ //    0b0000 0000 Sync Off
+ //    0b0101 0011 Sync On[R]
  {CC112X_DEVIATION_M,       0x53},                        //(0x000a) frequency deviation configuration
  {CC112X_MODCFG_DEV_E,      0x1F},                        //(0x000b) modulation format and frequency deviation configur..
  {CC112X_DCFILT_CFG,        0x04},                        //(0x000c) digital dc removal configuration
- {CC112X_PREAMBLE_CFG1,     0x18},                        //(0x000d) preamble length configuration reg. 1
+ {CC112X_PREAMBLE_CFG1,     0x00},                        //(0x000d) preamble length configuration reg. 1
+ //     0b0000 0000 Preamble Off
+ //     0b0001 0100 5-Bit Preamble [R]
  {CC112X_FREQ_IF_CFG,       0x00},                        //(0x000f) rx mixer frequency configuration
  {CC112X_IQIC,              0x00},                        //(0x0010) digital image channel compensation configuration
  {CC112X_CHAN_BW,           0x01},                        //(0x0011) channel filter configuration
@@ -51,12 +58,15 @@ const registerSetting_t preferredSettings_cc1175[NUM_PREFERRED_SETTINGS_CC1175] 
  {CC112X_FIFO_CFG,          0x00},                        //(0x001e) fifo configuration
  {CC112X_SETTLING_CFG,      0x03},                        //(0x0020) frequency synthesizer calibration and settling con..
  {CC112X_FS_CFG,            0x12},                        //(0x0021) frequency synthesizer configuration
+ {CC112X_PKT_CFG1,          0x07},                        //(0x0027) packet configuration reg. 1
+ //      0b0000 0111 Byte-Swap Enabled
+ //      0b0000 0101 Byte-Swap Disabled [R]
  {CC112X_PKT_CFG0,          0x40},                        //(0x0028) packet configuration reg. 0
-//      0b0100 0000 Continuous
-//      0b0010 0000 Fixed
+ //      0b0100 0000 Continuous
+ //      0b0000 0000 Fixed
  {CC112X_PA_CFG0,           0x7A},                        //(0x002d) power amplifier configuration reg. 0
  {CC112X_PKT_LEN,           0xFF},                        //(0x002e) packet length configuration
-//      255
+ //      255
  {CC112X_IF_MIX_CFG,        0x00},                        //(0x2f00) if mix configuration
  {CC112X_TOC_CFG,           0x0A},                        //(0x2f02) timing offset correction configuration
  {CC112X_FREQ2,             0x6C},                        //(0x2f0c) frequency configuration [23:16]

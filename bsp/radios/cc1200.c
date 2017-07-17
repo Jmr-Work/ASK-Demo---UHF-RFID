@@ -13,8 +13,12 @@
  *
  *  @notes      x
  *
+ *  @section    Points of Cautions
+ *          The PA is observed to have ~18us ramp-on-time & ~28us ramp-off-time, ensure to account for this is signal design (e.g.
+ *          enter & exit with 0xFF idle-high byte)
+ *
  *  @section    Opens
- *          do something better than the hard spin if id not matching (id_matches)
+ *          none current
  *
  *  @section    Legal Disclaimer
  *          All contents of this source file and/or any other Misc. Product related source files are the explicit property of

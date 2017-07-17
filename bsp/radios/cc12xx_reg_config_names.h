@@ -10,8 +10,8 @@
 
 
 //Globals
-extern const char cc1200_names[52][20];
-extern const char cc1175_names[49][20];
+extern const char cc1200_names[53][20];                                     /* @todo    link in from #deffs!                        */
+extern const char cc1175_names[51][20];
 
 
 #endif  /*  BSP_RADIOS_CC12XX_REG_CONFIG_NAMES_H_  */
