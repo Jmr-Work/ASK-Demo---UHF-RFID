@@ -27,8 +27,8 @@
 const registerSetting_t preferredSettings_cc1200[NUM_PREFERRED_SETTINGS_CC1200] =
 {
   {CC120X_IOCFG2,            0x06},                        //(0x0001) gpio2 io pin configuration
-  {CC120X_SYNC_CFG1,         0xAB},                        //(0x0008) sync word detection configuration reg. 1
-  {CC120X_SYNC_CFG0,         0x13},                        //(0x0009) sync word detection configuration reg. 0
+  {CC120X_SYNC_CFG1,         0x00},                        //(0x0008) sync word detection configuration reg. 1
+  {CC120X_SYNC_CFG0,         0x00},                        //(0x0009) sync word detection configuration reg. 0
   {CC120X_DEVIATION_M,       0x99},                        //(0x000a) frequency deviation configuration
   {CC120X_MODCFG_DEV_E,      0x1D},                        //(0x000b) modulation format and frequency deviation configur..
   {CC120X_DCFILT_CFG,        0x26},                        //(0x000c) digital dc removal configuration
