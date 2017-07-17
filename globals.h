@@ -26,7 +26,7 @@
 
 
 //Defs
-#define TX_BUFF_SIZE        (100)                                          /* continuous tx observed from 2 to 127 (max)            */
+#define TX_BUFF_SIZE        (5)                                          /* continuous tx observed from 2 to 127 (max)            */
 #define SRC_BUFF_SIZE       (2400)
 
 #define NUM_BITS_IN_BYTE    (8)
