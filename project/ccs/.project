@@ -96,6 +96,11 @@
 			<locationURI>PARENT-2-PROJECT_LOC/sys/demo</locationURI>
 		</link>
 		<link>
+			<name>sys/test</name>
+			<type>2</type>
+			<location>D:/Documents/Ref/Platforms/TI/CC-Series/CC1200/Examples/workshop/ASK Demo - UHF RFID/sys/test</location>
+		</link>
+		<link>
 			<name>bsp/radios/cc1175.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/bsp/radios/cc1175.c</locationURI>

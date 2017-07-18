@@ -92,13 +92,13 @@ void demo_rfid(void) {
  *  @param      [in] (uint32_t) cts - number of counts to delay
  */
 /************************************************************************************************************************************/
-static void delay(uint32_t cts) {
-
-    uint32_t i;
-
-    for(i=cts; i>0; i--) {
-        asm(" NOP");
-    }
-
-    return;
-}
+//static void delay(uint32_t cts) {
+//
+//    uint32_t i;
+//
+//    for(i=cts; i>0; i--) {
+//        asm(" NOP");
+//    }
+//
+//    return;
+//}

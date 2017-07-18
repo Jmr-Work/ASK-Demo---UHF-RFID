@@ -36,21 +36,21 @@
  */
 /************************************************************************************************************************************/
 void rfid_test_chipSize(void) {
+    for(;;);                                                                /* @open                                                */
+//! uint32_t idle_cts = (88*NUM_BITS_IN_BYTE);                              /* 1ms of clock ticks @ 16 MHz                          */
 
-    uint32_t idle_cts = (88*NUM_BITS_IN_BYTE);                              /* 1ms of clock ticks @ 16 MHz                          */
+//! dataBitGenLoc loc = {0, 0};
 
-    dataBitGenLoc loc = {0, 0};
+//! loc = rfid_sig_idleRF(data_arr, loc, idle_cts, false);
 
-    loc = rfid_sig_idleRF(data_arr, loc, idle_cts, false);
+//! loc = rfid_sig_idleRF(data_arr, loc, 16, true);
 
-    loc = rfid_sig_idleRF(data_arr, loc, 16, true);
-
-    loc = rfid_sig_idleRF(data_arr, loc, idle_cts, false);
+//! loc = rfid_sig_idleRF(data_arr, loc, idle_cts, false);
 
     //Store new signal size
-    signal_size = loc.arr_ind+1;                                            /* e.g. if 3 bytes in array, arr_ind=2, signal_size = 3 */
+//! signal_size = loc.arr_ind+1;                                            /* e.g. if 3 bytes in array, arr_ind=2, signal_size = 3 */
 
-    return;
+//! return;
 }
 
 

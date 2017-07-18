@@ -15,6 +15,7 @@
  *      Slice    - a component of waveform loaded into the Tx buffer. Size defined by tx_buff size
  *      Active   - the slice currently in generation
  *      Chip     - TX FIFO smallest component (i.e. a bit in FIFO)
+ *      Bit		 - RFID Data-bit (e.g. Data-0 or Data-1)
  *
  *  @section    Opens
  *          none current

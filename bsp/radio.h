@@ -74,7 +74,8 @@ extern void radio_run_prepForNext(void);
 
 
 //Global Vars
-extern const char radio_reg_names[][];
+#define NUM_PREFERRED_SETTINGS_CC1175   (51)                                /* @open    IAR bug, compilation fails with IAR w/o     */
+extern const char radio_reg_names[NUM_PREFERRED_SETTINGS][20];
 
 #endif /* BSP_RADIO_H_ */
 

@@ -28,7 +28,7 @@ extern void demo_rfid(void);
 
 
 //Locals
-static void delay(uint32_t cts);
+//static void delay(uint32_t cts);
 
 
 #endif /* SYS_DEMO_DEMO_RFID_H_ */
