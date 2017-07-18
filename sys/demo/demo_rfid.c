@@ -61,7 +61,7 @@ void demo_rfid(void) {
 
     //------------------------------------Loop Finite Length Transmissions----------------------------------------------------------//
     for(;;) {
-        signal_grab_next();
+        signal_grab_next_rxt1();                                            /* signal_grab_next();                                  */
 
         //Transmit
         cc12xxSpiWriteTxFifo(tx_buff, TX_BUFF_SIZE);                        /* Load the buffer into the TX_FIFO                     */
@@ -75,10 +75,10 @@ void demo_rfid(void) {
 
         //Post
         loop_ct++;
-        delay(4000);                                                        /* Delay (makes scope easier read)                      */
+//?        delay(4000);                                                        /* Delay (makes scope easier read)                      */
 
         //Flush the TX FIFO
-        trxSpiCmdStrobe(CC12XX_SFTX);                                       /* from IDLE state this is required                     */
+//?        trxSpiCmdStrobe(CC12XX_SFTX);                                       /* from IDLE state this is required                     */
     }
 }
 

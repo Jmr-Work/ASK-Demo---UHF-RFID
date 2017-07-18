@@ -27,6 +27,8 @@
 #define MSG_COUNT_MAX           (6)                                         /* max number of messages stored for delivery           */
 
 #define NUM_CHIPS_IN_725_US     (725 / 12.5)
+#define NUM_CHIPS_IN_1_MS       (1000 / 12.5)
+#define NUM_CHIPS_IN_3_MS       (3000 / 12.5)
 #define NUM_CHIPS_DELIM         (1)
 #define NUM_CHIPS_DATA0         (2)
 #define NUM_CHIPS_DATA1         (4)
@@ -70,10 +72,11 @@ extern void signal_grab_next(void);
 
 //Locals
 static void load_command(Command type, uint8_t *cmd, uint32_t *idle_cts);
-Message get_current_msg(Message wvfm, uint32_t t_curr);
+Message *get_current_msg(Waveform wvfm, uint32_t t_curr);
 uint32_t calc_wvfm_duration(Waveform wvfm);
 uint32_t calc_msg_duration(Command type, uint8_t *cmd);
 
+extern /*static*/ void signal_grab_next_rxt1(void);
 
 
 #endif /* LIB_SIGNAL_H_ */

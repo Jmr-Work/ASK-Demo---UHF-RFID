@@ -40,13 +40,13 @@ uint32_t t_curr_stamp;                                                      /* e
 
 
 /************************************************************************************************************************************/
-/**! @fcn        void signal_generate(void)
- *!  @brief      generate the RFID signal for use in the project
- *!  @details    x
+/** @fcn        void signal_generate(void)
+ *  @brief      generate the RFID signal for use in the project
+ *  @details    x
  *
- *   @post       waveform is ready for use by transmit library
+ *  @post       waveform is ready for use by transmit library
  *
- *   @section   Message Contents
+ *  @section   Message Contents
  *      Idle-High   150 us
  *      Select
  *      Idle-High   725 us
@@ -54,7 +54,10 @@ uint32_t t_curr_stamp;                                                      /* e
  *      Idle-High   150 us
  *      Idle-Low    2.0 ms
  *
- *   @section   Opens
+ *  @post   wvfm initialized
+ *          tx_buff = {0}
+ *
+ *  @section   Opens
  *      Generate contents of q & s
  *      specify correct timing values
  *      generate routines to calculate CRC5 & CRC16
@@ -62,6 +65,12 @@ uint32_t t_curr_stamp;                                                      /* e
 /************************************************************************************************************************************/
 void signal_generate(void) {
 
+    uint8_t i;
+
+    //Pre (tx_buff set to 0)
+    for(i=0; i<TX_BUFF_SIZE; i++) {
+        tx_buff[i] = 0x00;
+    }
 
 #ifdef DEMO_SEL_RFID
     uint32_t s_times[3] = {NUM_CHIPS_IN_725_US, 0, 0};
@@ -147,7 +156,7 @@ void signal_grab_next(void) {
 
     //2. Identify Message & location within the message
     //walk down the message
-    Message curr_msg = get_current_msg(wvfm, t_curr);
+//??    Message curr_msg = get_current_msg(wvfm, t_curr);
 
 
 
@@ -247,7 +256,7 @@ static void load_command(Command type, uint8_t *cmd, uint32_t *idle_cts) {
 
 
 /************************************************************************************************************************************/
-/** @fcn        Message *get_current_msg(Message wvfm, uint32_t t_curr)
+/** @fcn        Message *get_current_msg(Waveform wvfm, uint32_t t_curr)
  *  @brief      get the current message
  *  @details    x
  *
@@ -262,13 +271,13 @@ static void load_command(Command type, uint8_t *cmd, uint32_t *idle_cts) {
 /************************************************************************************************************************************/
 Message *get_current_msg(Waveform wvfm, uint32_t t_curr) {
 
-    Messsage *msg;
+    Message *msg;
     bool found = false;
     uint8_t msg_ind;
-    uint32_t t;
+    //uint32_t t;
 
     //Setup
-    t = 0;
+    //t = 0;
     msg_ind = 0;
 
 
@@ -474,5 +483,110 @@ uint32_t calc_msg_duration(Command type, uint8_t *cmd) {
 
 
     return cmd_dur_cts;
+}
+
+
+/************************************************************************************************************************************/
+/** @fcn        static void signal_grab_next_rxt1(void)
+ *  @brief      Generate the static waveform for Rx-Testing #1 ('rxt1')
+ *  @details    x
+ *
+ *  @section    Source
+ *      Static RFID Wvfms#cc80 ('rxt1')
+ *      /Query/Reader Result/Reader Results.xlsx:3a
+ *
+ *  @dest       tx_buff directly
+ *
+ *  @section    3a Contents (1000100100000000001011)
+ *          Cmd     0b1000
+ *          DR      0b1 (DR=64/3)
+ *          M       0b00
+ *          Trext   0b1
+ *          Sel     0b00
+ *          Sess    0b00
+ *          Tgt     0b0
+ *          Q       0b0000
+ *          CRC-5   0b01011
+ *
+ *  @section    3a Timing
+ *      Scope Measure: 920us
+ *          D0:    2 Chips
+ *          D1:    3 Chips
+ *          RTCal: 63 us
+ *          TRCal: 85 us
+ *          Msg:   628us
+ *      Calc:
+ *          Total: 885us
+ *          Delim: 12.5us
+ *          D0:    25 us
+ *          D1:    37.5 us
+ *          RTCal: 62.5 us (D0+D1 - 62.5 us)
+ *          TRCal: 85.33 us (DR/BLF -> (64/3)/250k -> 85.33 us)
+ *          Msg: (6*1, 16*0) -> 625 us
+ *
+ *  @pre    tx_buff = {0}
+ *
+ *  @note   see '3a - Query - 1238917910(2).bmp' for illustration
+ */
+/************************************************************************************************************************************/
+/*static*/ void signal_grab_next_rxt1(void) {
+
+    //------------------------------------------Load into buffer--------------------------------------------------------------------//
+    dataBitGenLoc loc = {
+        .arr_ind = 0,
+        .byte_ind = 0
+    };
+
+    //Preamble
+    loc = rfid_sig_idleRF(tx_buff, loc, NUM_CHIPS_IN_1_MS, true);           /* Idle-High (1ms)                                      */
+    loc = rfid_sig_delim(tx_buff, loc);                                     /* Delim                                                */
+    loc = rfid_sig_dataBit(tx_buff, loc, false);                            /* Data-0                                               */
+    loc = rfid_sig_RTCal(tx_buff, loc);                                     /* RTCal                                                */
+    loc = rfid_sig_RTCal(tx_buff, loc);                                     /* TRCal                                                */
+
+    //------------------------------------------------------Message-----------------------------------------------------------------//
+    loc = rfid_sig_dataBit(tx_buff, loc, true);                             /* Command - 0b1000                                           */
+    loc = rfid_sig_dataBit(tx_buff, loc, false);
+    loc = rfid_sig_dataBit(tx_buff, loc, false);
+    loc = rfid_sig_dataBit(tx_buff, loc, false);
+
+    loc = rfid_sig_dataBit(tx_buff, loc, true);                             /* DR - 0b1                                             */
+
+    loc = rfid_sig_dataBit(tx_buff, loc, false);                            /* M - 0b00                                             */
+    loc = rfid_sig_dataBit(tx_buff, loc, false);
+
+    loc = rfid_sig_dataBit(tx_buff, loc, true);                             /* TRext - 0b1                                          */
+
+    loc = rfid_sig_dataBit(tx_buff, loc, false);                            /* Sel - 0b00                                           */
+    loc = rfid_sig_dataBit(tx_buff, loc, false);
+
+    loc = rfid_sig_dataBit(tx_buff, loc, false);                            /* Sess - 0b00                                          */
+    loc = rfid_sig_dataBit(tx_buff, loc, false);
+
+    loc = rfid_sig_dataBit(tx_buff, loc, false);                            /* Tgt - 0b0                                            */
+
+    loc = rfid_sig_dataBit(tx_buff, loc, false);                            /* Q - 0b0000                                           */
+    loc = rfid_sig_dataBit(tx_buff, loc, false);
+    loc = rfid_sig_dataBit(tx_buff, loc, false);
+    loc = rfid_sig_dataBit(tx_buff, loc, false);
+
+    loc = rfid_sig_dataBit(tx_buff, loc, false);                            /* CRC5 - 0b01011                                       */
+    loc = rfid_sig_dataBit(tx_buff, loc, true);
+    loc = rfid_sig_dataBit(tx_buff, loc, false);
+    loc = rfid_sig_dataBit(tx_buff, loc, true);
+    loc = rfid_sig_dataBit(tx_buff, loc, true);
+
+    //Exit Values
+    loc = rfid_sig_idleRF(tx_buff, loc, NUM_CHIPS_IN_3_MS, true);           /* Idle-High (3ms)                                      */
+
+    //Idle-Low (Remainder, all 0's already on init config)
+
+    //<TEMP>
+//    tx_buff[60] = 0xFF;
+//    tx_buff[80] = 0x80;
+    //</TEMP>
+
+
+    return;
 }
 
