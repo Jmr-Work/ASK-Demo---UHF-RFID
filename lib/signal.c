@@ -34,6 +34,11 @@
 Waveform wvfm;                                                            /* the meat, this is where the message goes!            */
 
 
+//Signal Generation
+uint32_t t_curr;                                                            /* current timestamp in slice acquisition               */
+uint32_t t_curr_stamp;                                                      /* entry timestamp to current slice                     */
+
+
 /************************************************************************************************************************************/
 /**! @fcn        void signal_generate(void)
  *!  @brief      generate the RFID signal for use in the project
@@ -95,6 +100,9 @@ void signal_generate(void) {
     //Set Mode (continuous)
     wvfm.mode = true;
 
+    //Init timestamp
+    t_curr = 0;                                                             /* start slice generation at the beginning              */
+
 #else
     for(;;);                                                                /* @open!                                               */
 #endif
@@ -110,41 +118,56 @@ void signal_generate(void) {
  *  @details    x
  *
  *  @section    Opens
- *      re-enable memcpy (jmr disabled to meet free license compile restrictions)
+ *      Finite Demo
+ *      Continuous Demo
+ *      RFID Demo
+ *
+ *      Validate all indexing math here in RFID demo section
+ *
+ *  @section    RFID Waveform Operation
+ *      The signal is held within Waveform and is a series of messages, each with data contents & specified timing vals (pre/post)
+ *
+ *      Waveform
+ *          msg[] <- cast to specified message (Select, Query, etc.)
+ *
+ *  @pre    t_curr is loaded with active time to begin generation from (e.g. t_curr=0 right at the start)
+ *  @post   new slice is loaded to the Tx Buffer (tx_buff)
+ *
+ *  @note   units of time 't' here are chips of Radio-Tx (e.g. 12.5us per chip)
  */
 /************************************************************************************************************************************/
 void signal_grab_next(void) {
+
+    uint32_t t_wvfm = calc_wvfm_duration(wvfm);
+
+#ifdef DEMO_SEL_RFID
+
+    //1. Identify location within the waveform
+    //(already loaded)
+
+    //2. Identify Message & location within the message
+    //walk down the message
+    Message curr_msg = get_current_msg(wvfm, t_curr);
+
+
+
+    //...
+    //Grab the current message
+    //...
+
+
+
+    //N. Update location
+    t_curr = (t_curr+NUM_CHIPS_SLICE) % t_curr_stamp;
+
+#else
     for(;;);                                                                /* @open                                                */
-//    memcpy(&tx_buff[0], &data_arr[next_grab_ind], TX_BUFF_SIZE*sizeof(uint8_t));    /* @open   validate in depth                  */
-//
-//    next_grab_ind = (next_grab_ind + TX_BUFF_SIZE) % signal_size;
-//
-//    uint16_t i;
-//
-//    //All Empty
-//    for(i=0; i< TX_BUFF_SIZE; i++) {
-//        tx_buff[i] = 0x00;
-//    }
-//
-//    //Add 25% Pulse (of bits)
-//    for(i=0; i< TX_BUFF_SIZE/4; i++) {
-//        tx_buff[i] = 0x55;
-//    }
-//
-//    //First Char holds 4 chips-low
-//    tx_buff[0] = b11000011;
-//
-//    //Second Char all high
-//    tx_buff[1] = b11111111;
-//
-//    //Thirdchar two low
-//    tx_buff[2] = b11100111;
-//
-//
-//    return;
+#endif
+
+
+
+
 }
-
-
 
 
 /************************************************************************************************************************************/
@@ -219,6 +242,86 @@ static void load_command(Command type, uint8_t *cmd, uint32_t *idle_cts) {
     wvfm.msg_count++;
 
     return;
+}
+
+
+
+/************************************************************************************************************************************/
+/** @fcn        Message *get_current_msg(Message wvfm, uint32_t t_curr)
+ *  @brief      get the current message
+ *  @details    x
+ *
+ *  @section    Purpose
+ *      x
+ *
+ *  @param      [in] (Message) wvfm - Waveform
+ *  @param      [in] (uint32_t) t_curr - current timestamp into the waveform
+ *
+ *  @return     (Message *) current message pointer into the waveform
+ */
+/************************************************************************************************************************************/
+Message *get_current_msg(Waveform wvfm, uint32_t t_curr) {
+
+    Messsage *msg;
+    bool found = false;
+    uint8_t msg_ind;
+    uint32_t t;
+
+    //Setup
+    t = 0;
+    msg_ind = 0;
+
+
+    while(!found) {
+
+        //Grab Next Message
+        msg = &wvfm.msgs[msg_ind];
+    }
+
+
+    return msg;
+}
+
+
+/************************************************************************************************************************************/
+/** @fcn        uint32_t calc_wvfm_duration(Waveform wvfm)
+ *  @brief      calculate the duration of a waveform
+ *  @details    x
+ *
+ *  @section    Purpose
+ *      x
+ *
+ *  @param      [in] (Waveform) wvfm - waveform to perform calculation on
+ *
+ *  @return (uint32_t) time of waveform [chips]
+ *
+ *  @assum  all loaded messages have set & valid time values
+ *
+ *  @section    Opens
+ *      test & validate
+ */
+/************************************************************************************************************************************/
+uint32_t calc_wvfm_duration(Waveform wvfm) {
+
+    uint32_t t_total = 0;
+
+    uint32_t i;
+
+    for(i=0; i<wvfm.msg_count; i++) {
+
+        //Grab Current Message
+        Message msg = wvfm.msgs[i];
+
+        //Append Timing Values
+        t_total += msg.pre_idle_high_ct;
+        t_total += msg.post_idle_high_ct;
+        t_total += msg.exit_idle_low_ct;
+
+        //Append Signal
+        t_total += calc_msg_duration((Command) msg.type, msg.data);
+    }
+
+    return t_total;
 }
 
 

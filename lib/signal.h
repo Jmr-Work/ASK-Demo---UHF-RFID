@@ -33,6 +33,8 @@
 #define NUM_CHIPS_RTCAL         (6)
 #define NUM_CHIPS_TRCAL         (17)
 
+#define NUM_CHIPS_SLICE         (TX_BUFF_SIZE)                              /* for now, simplest answer                             */
+
 /**
  *  @title  RFID command for waveform insertion & transmit
  *  @note   leave idle_ct value as '0' to skip
@@ -68,9 +70,10 @@ extern void signal_grab_next(void);
 
 //Locals
 static void load_command(Command type, uint8_t *cmd, uint32_t *idle_cts);
+Message get_current_msg(Message wvfm, uint32_t t_curr);
+uint32_t calc_wvfm_duration(Waveform wvfm);
 uint32_t calc_msg_duration(Command type, uint8_t *cmd);
 
-//?extern uint16_t signal_size;
 
 
 #endif /* LIB_SIGNAL_H_ */
